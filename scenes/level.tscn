@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://dxnsakkvu2gwh"]
+
+[ext_resource type="Script" uid="uid://dc1aj8gt20jhr" path="res://scripts/level.gd" id="1_w7c3h"]
+[ext_resource type="PackedScene" uid="uid://bs4rndsusfiwu" path="res://scenes/player.tscn" id="2_w7c3h"]
+[ext_resource type="PackedScene" uid="uid://vpv67ohyb1c6" path="res://scenes/enemy.tscn" id="3_w8frs"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_w7c3h"]
+load_path = "res://.godot/imported/FTcskA.jpg-c3626521c44963d7c72de966f9a4326c.ctex"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2q6dc"]
+size = Vector2(44, 648)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w7c3h"]
+size = Vector2(1152, 48)
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_w7c3h")
+
+[node name="Background" type="Sprite2D" parent="."]
+scale = Vector2(0.6, 0.6)
+texture = SubResource("CompressedTexture2D_w7c3h")
+centered = false
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 4
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-22, 324)
+shape = SubResource("RectangleShape2D_2q6dc")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(1173.5, 324)
+shape = SubResource("RectangleShape2D_2q6dc")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(576, -23.5)
+shape = SubResource("RectangleShape2D_w7c3h")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(576, 672)
+shape = SubResource("RectangleShape2D_w7c3h")
+
+[node name="Player" parent="." instance=ExtResource("2_w7c3h")]
+
+[node name="Enemy" parent="." instance=ExtResource("3_w8frs")]
