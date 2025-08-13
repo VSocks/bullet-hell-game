@@ -1,11 +1,13 @@
 extends CharacterBody2D
+
+signal shoot
+
 var speed : int = 250
-var laser_scene : PackedScene = load("res://scenes/laser.tscn")
 
 func _ready():
-	position = Vector2(570, 600)
+	global_position = Vector2(570, 600)
 
-func _process(_delta):
+func _process(delta):
 	if Input.is_action_just_pressed("focus"):
 		speed /= 2
 	elif Input.is_action_just_released("focus"):
@@ -16,7 +18,5 @@ func _process(_delta):
 	move_and_slide()
 	
 	if Input.is_action_pressed("shoot"):
-		var laser = laser_scene.instantiate()
-		get_parent().add_child(laser)
-		laser.position = position
-		laser.position.y -= 20
+		print("shoot player laser signal emmitted")
+		shoot.emit()

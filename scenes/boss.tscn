@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://vpv67ohyb1c6"]
+
+[ext_resource type="Script" uid="uid://cfgcddcoysvgb" path="res://scripts/boss.gd" id="1_jncid"]
+[ext_resource type="Texture2D" uid="uid://er7aab6pg24b" path="res://assets/enemy.png" id="2_qnbj4"]
+[ext_resource type="Script" uid="uid://cpr7j3eswa68w" path="res://scripts/boss_attack_pattern.gd" id="3_jncid"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7p1mj"]
+radius = 13.0
+
+[node name="Boss" type="Area2D"]
+script = ExtResource("1_jncid")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_qnbj4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_7p1mj")
+
+[node name="BossAttackPattern" type="Node2D" parent="."]
+script = ExtResource("3_jncid")
+
+[connection signal="shoot" from="." to="BossAttackPattern" method="_on_boss_shoot"]

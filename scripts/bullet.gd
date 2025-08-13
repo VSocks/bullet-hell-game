@@ -1,9 +1,12 @@
 extends Area2D
-var speed = 500
-const damage = 1
+
+const damage : int = 1
+
+var speed : int = 1
+var direction = Vector2.DOWN
 
 func _process(delta):
-	position += transform.x * position * delta
+	position += direction * speed * delta
 
 func _on_screen_exited():
 	print("bullet deleted")

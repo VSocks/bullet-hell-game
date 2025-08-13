@@ -1,5 +1,9 @@
 extends Node
 
+#teste que fiz sobre object pooling de balas. não funcionou e não utilizei
+#mas posso tentar novamente depois, quando entender mais a respeito
+#object pooling é bem útil em bullet hell pelo que pesquisei
+
 @export var scene : PackedScene
 var object_pool : Array = []
 
