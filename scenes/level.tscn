@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://dxnsakkvu2gwh"]
+[gd_scene load_steps=8 format=3 uid="uid://dxnsakkvu2gwh"]
 
 [ext_resource type="Script" uid="uid://dc1aj8gt20jhr" path="res://scripts/level.gd" id="1_w7c3h"]
 [ext_resource type="PackedScene" uid="uid://bs4rndsusfiwu" path="res://scenes/player.tscn" id="2_w7c3h"]
 [ext_resource type="PackedScene" uid="uid://vpv67ohyb1c6" path="res://scenes/boss.tscn" id="3_w8frs"]
+[ext_resource type="AudioStream" uid="uid://c46ydamr8tn2b" path="res://assets/video-game-boss-fiight-259885.mp3" id="4_mx8sn"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_w7c3h"]
 load_path = "res://.godot/imported/FTcskA.jpg-c3626521c44963d7c72de966f9a4326c.ctex"
@@ -44,3 +45,7 @@ shape = SubResource("RectangleShape2D_w7c3h")
 [node name="Player" parent="." instance=ExtResource("2_w7c3h")]
 
 [node name="Boss" parent="." instance=ExtResource("3_w8frs")]
+
+[node name="BGM" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_mx8sn")
+autoplay = true

@@ -8,6 +8,10 @@ var direction = Vector2.DOWN
 func _process(delta):
 	position += direction * speed * delta
 
+func _on_body_entered(hitbox):
+	if hitbox.has_method("take_damage"):
+		hitbox.take_damage(damage)
+		queue_free()
+
 func _on_screen_exited():
-	print("bullet deleted")
 	queue_free()
