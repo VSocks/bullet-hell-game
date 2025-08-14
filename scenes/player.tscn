@@ -20,4 +20,7 @@ shape = SubResource("CircleShape2D_g2els")
 [node name="PlayerAttackPattern" type="Node2D" parent="."]
 script = ExtResource("3_qhqgy")
 
+[node name="InvincibilityTimer" type="Timer" parent="."]
+
 [connection signal="shoot" from="." to="PlayerAttackPattern" method="_on_player_shoot"]
+[connection signal="timeout" from="InvincibilityTimer" to="." method="_on_invincibility_timer_timeout"]

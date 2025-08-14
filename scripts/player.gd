@@ -6,10 +6,13 @@ signal shoot
 var speed : int = 250
 var max_health : int = 5
 var health : int
+var can_hit : bool
 
 func _ready():
+	$InvincibilityTimer.set_wait_time(3)
 	global_position = Vector2(570, 600)
 	health = max_health
+	can_hit = true
 
 func _process(delta):
 	if Input.is_action_just_pressed("focus"):
@@ -25,7 +28,16 @@ func _process(delta):
 		shoot.emit()
 
 func take_damage(damage):
-	print("player takes damage!")
-	health -= damage
-	if health <= 0:
-		queue_free()
+	if can_hit:
+		print("player takes damage!")
+		$InvincibilityTimer.start()
+		print("player temporairly invincible!")
+		health -= damage
+		if health <= 0:
+			queue_free()
+			print("player dead!")
+		can_hit = false
+
+func _on_invincibility_timer_timeout():
+	can_hit = true
+	print("incinvibility over!")
