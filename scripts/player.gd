@@ -9,7 +9,6 @@ var health : int
 var can_hit : bool
 
 func _ready():
-	$InvincibilityTimer.set_wait_time(3)
 	global_position = Vector2(570, 600)
 	health = max_health
 	can_hit = true
@@ -30,6 +29,8 @@ func _process(delta):
 func take_damage(damage):
 	if can_hit:
 		print("player takes damage!")
+		$InvincibilityTimer.set_one_shot(true)
+		$InvincibilityTimer.set_wait_time(3)
 		$InvincibilityTimer.start()
 		print("player temporairly invincible!")
 		health -= damage

@@ -7,7 +7,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_y25gk"]
 radius = 5.0
 
-[node name="Bullet" type="Area2D"]
+[node name="Bullet" type="CharacterBody2D"]
 collision_layer = 8
 script = ExtResource("1_y25gk")
 
@@ -26,5 +26,4 @@ stream = ExtResource("3_l5glv")
 volume_db = -60.0
 autoplay = true
 
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_screen_exited"]
