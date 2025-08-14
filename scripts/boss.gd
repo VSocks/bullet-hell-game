@@ -1,4 +1,5 @@
-extends Area2D
+extends CharacterBody2D
+class_name Boss
 
 signal shoot1
 signal shoot2

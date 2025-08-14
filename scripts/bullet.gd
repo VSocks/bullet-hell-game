@@ -9,7 +9,7 @@ func _process(delta):
 	position += direction * speed * delta
 
 func _on_body_entered(hitbox):
-	if hitbox.has_method("take_damage"):
+	if hitbox is Player:
 		hitbox.take_damage(damage)
 		queue_free()
 

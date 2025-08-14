@@ -7,8 +7,8 @@ var speed : int = 1500
 func _process(delta):
 	position.y -= speed * delta
 
-func _on_area_entered(hitbox):
-	if hitbox.has_method("take_damage"):
+func _on_body_entered(hitbox):
+	if hitbox is Boss:
 		hitbox.take_damage(damage)
 		queue_free()
 
