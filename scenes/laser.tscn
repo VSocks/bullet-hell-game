@@ -15,7 +15,7 @@ script = ExtResource("1_a7dhc")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_xmihv")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Hitbox" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_a7dhc")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]

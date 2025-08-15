@@ -11,4 +11,3 @@ func _on_player_shoot():
 	get_tree().current_scene.add_child(laser)
 	laser.global_position = global_position
 	laser.global_position.y -= 10
-	

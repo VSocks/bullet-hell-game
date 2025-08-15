@@ -14,7 +14,7 @@ script = ExtResource("1_g2els")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_4flbx")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Hitbox" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_g2els")
 
 [node name="PlayerAttackPattern" type="Node2D" parent="."]
@@ -22,5 +22,4 @@ script = ExtResource("3_qhqgy")
 
 [node name="InvincibilityTimer" type="Timer" parent="."]
 
-[connection signal="shoot" from="." to="PlayerAttackPattern" method="_on_player_shoot"]
 [connection signal="timeout" from="InvincibilityTimer" to="." method="_on_invincibility_timer_timeout"]
