@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://vpv67ohyb1c6"]
+[gd_scene load_steps=7 format=3 uid="uid://vpv67ohyb1c6"]
 
 [ext_resource type="Script" uid="uid://cfgcddcoysvgb" path="res://scripts/boss.gd" id="1_jncid"]
 [ext_resource type="Texture2D" uid="uid://er7aab6pg24b" path="res://assets/enemy.png" id="2_qnbj4"]
 [ext_resource type="Script" uid="uid://cpr7j3eswa68w" path="res://scripts/boss_attack_pattern_1.gd" id="3_jncid"]
+[ext_resource type="Script" uid="uid://pvavxrkcobwl" path="res://scripts/boss_attack_pattern_2.gd" id="4_qnbj4"]
+[ext_resource type="Script" uid="uid://dvvpp0mr56yjy" path="res://scripts/boss_attack_pattern_3.gd" id="5_r3bxh"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7p1mj"]
 radius = 13.0
@@ -20,4 +22,12 @@ shape = SubResource("CircleShape2D_7p1mj")
 [node name="BossAttackPattern1" type="Node2D" parent="."]
 script = ExtResource("3_jncid")
 
+[node name="BossAttackPattern2" type="Node2D" parent="."]
+script = ExtResource("4_qnbj4")
+
+[node name="BossAttackPattern3" type="Node2D" parent="."]
+script = ExtResource("5_r3bxh")
+
 [connection signal="shoot1" from="." to="BossAttackPattern1" method="_on_boss_shoot_1"]
+[connection signal="shoot2" from="." to="BossAttackPattern2" method="_on_boss_shoot_2"]
+[connection signal="shoot3" from="." to="BossAttackPattern3" method="_on_boss_shoot_3"]
