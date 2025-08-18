@@ -3,7 +3,7 @@ class_name Player
 
 signal shoot
 
-var speed : int = 250
+var speed : int = 240
 var max_health : int = 5
 var health : int
 
@@ -13,9 +13,9 @@ func _ready():
 
 func _process(delta):
 	if Input.is_action_just_pressed("focus"):
-		speed = 85
+		speed = 80
 	elif Input.is_action_just_released("focus"):
-		speed = 250
+		speed = 240
 		
 	var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	velocity = direction * speed

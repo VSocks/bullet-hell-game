@@ -2,9 +2,9 @@ extends CharacterBody2D
 class_name Boss
 
 signal shoot1
-signal shoot2
-signal shoot4
-signal shoot5
+#signal shoot2
+#signal shoot4
+#signal shoot5
 
 var max_health : int = 1000
 var health : int
