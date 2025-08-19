@@ -7,6 +7,7 @@ var speed : int = 240
 var max_health : int = 5
 var health : int
 
+@onready var current_attack = $PlayerAttackLaser
 @onready var invincibility_timer = $InvincibilityTimer
 
 func _ready():
@@ -23,8 +24,10 @@ func _process(delta):
 	velocity = direction * speed
 	move_and_slide()
 	
-	if Input.is_action_pressed("shoot"):
-		shoot.emit()
+	if Input.is_action_just_pressed("shoot"):
+		current_attack.start_attack()
+	elif Input.is_action_just_released("shoot"):
+		current_attack.stop_attack()
 
 func take_damage():
 	$Hitbox.set_deferred("disabled", true)

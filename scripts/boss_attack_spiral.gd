@@ -16,6 +16,10 @@ var spiral_speed : float = 10.0
 var angle : float = 0.0
 var angle_increment : float = 6
 
+var movement_range : float = 100.0
+var min_move_distance : float = 50.0
+
+
 @onready var shot_timer = $ShotTimer
 @onready var cycle_timer = $CycleTimer
 
@@ -46,11 +50,11 @@ func shoot():
 		var direction = Vector2(cos(bullet_angle), sin(bullet_angle))
 		
 		var bullet = bullet_scene.instantiate()
+		bullet.global_position = global_position
 		bullet.direction = direction
 		bullet.speed = 300
 		bullet.rotation = direction.angle()
 		get_tree().current_scene.add_child(bullet)
-		bullet.global_position = global_position
 	
 	angle += angle_increment
 	burst_count += 1

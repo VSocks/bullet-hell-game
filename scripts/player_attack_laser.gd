@@ -4,8 +4,18 @@ var bullet_scene_laser : PackedScene = preload("res://scenes/player_bullet_laser
 
 var spread_angle : float = deg_to_rad(30)
 var bullet_count : int = 7
+var fire_rate : float = 0.05
 
-func _on_player_shoot():
+@onready var fire_rate_timer = $FireRateTimer
+
+func start_attack():
+	fire_rate_timer.wait_time = fire_rate
+	fire_rate_timer.start()
+
+func stop_attack():
+	fire_rate_timer.stop()
+
+func _on_fire_rate_timer_timeout():
 	var angle_step = spread_angle / (bullet_count - 1) if bullet_count > 1 else 0
 	var start_angle = -spread_angle / 2
 	for i in range(bullet_count):
@@ -14,6 +24,6 @@ func _on_player_shoot():
 		var bullet = bullet_scene_laser.instantiate()
 		bullet.global_position = global_position
 		bullet.direction = direction
-		bullet.speed = 1000
+		bullet.speed = 800
 		bullet.rotation = direction.angle() + PI /2
 		get_tree().current_scene.add_child(bullet)
