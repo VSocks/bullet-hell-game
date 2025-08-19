@@ -1,8 +1,6 @@
 extends CharacterBody2D
 class_name Player
 
-signal shoot()
-
 var speed : int = 240
 var max_health : int = 5
 var health : int
@@ -10,11 +8,13 @@ var health : int
 @onready var current_attack = $PlayerAttackLaser
 @onready var invincibility_timer = $InvincibilityTimer
 
+
 func _ready():
 	global_position = Vector2(570, 600)
 	health = max_health
 
-func _process(delta):
+
+func _process(_delta):
 	if Input.is_action_just_pressed("focus"):
 		speed = 80
 	elif Input.is_action_just_released("focus"):
@@ -29,6 +29,7 @@ func _process(delta):
 	elif Input.is_action_just_released("shoot"):
 		current_attack.stop_attack()
 
+
 func take_damage():
 	$Hitbox.set_deferred("disabled", true)
 	print("player temporairly invincible!")
@@ -40,6 +41,7 @@ func take_damage():
 	if health <= 0:
 		queue_free()
 		print("player dead!")
+
 
 func _on_invincibility_timer_timeout():
 	$Hitbox.set_deferred("disabled", false)

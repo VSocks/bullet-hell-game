@@ -16,23 +16,23 @@ var spiral_speed : float = 10.0
 var angle : float = 0.0
 var angle_increment : float = 6
 
-var movement_range : float = 100.0
-var min_move_distance : float = 50.0
-
 
 @onready var shot_timer = $ShotTimer
 @onready var cycle_timer = $CycleTimer
+
 
 func start_attack():
 	is_attacking = true
 	start_cycle()
 	print("Spiral attack started!")
 
+
 func stop_attack():
 	is_attacking = false
 	shot_timer.stop()
 	cycle_timer.stop()
 	print("Spiral attack stopped!")
+
 
 func start_cycle():
 	if is_attacking:
@@ -42,6 +42,7 @@ func start_cycle():
 		shoot()  # First shot
 		cycle_timer.wait_time = total_cycle_time
 		cycle_timer.start()  # Start the full cycle timer
+
 
 func shoot():
 	# Spiral shooting code
@@ -59,10 +60,12 @@ func shoot():
 	angle += angle_increment
 	burst_count += 1
 
+
 func _on_shot_timer_timeout():
 	if is_attacking and burst_count < max_burst_shots:
 		shoot()
 		shot_timer.start()  # Continue burst
+
 
 func _on_cycle_timer_timeout():
 	if is_attacking:
