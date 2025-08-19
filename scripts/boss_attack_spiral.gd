@@ -1,24 +1,22 @@
 extends Node2D
 
-var bullet_scene : PackedScene = preload("res://scenes/enemy_bullet_laser.tscn")
-
 # Burst firing parameters
 var is_attacking : bool = false
 var burst_count : int = 0
-var max_burst_shots : int = 10
+var max_burst_shots : int = 18
 var shot_interval : float = 0.04
 var cooldown : float = 1
-var total_cycle_time : float = (max_burst_shots * shot_interval) + cooldown
+var total_cycle_time : float = (max_burst_shots * shot_interval) + cooldown + 0.1
 
 # Spiral parameters
-var bullet_count : int = 28
+var bullet_count : int = 36
 var angle : float = 0.0
 var angle_increment : float = 20
 
 
 @onready var shot_timer = $ShotTimer
 @onready var cycle_timer = $CycleTimer
-
+@onready var pool_manager = $BulletPool
 
 func start_attack():
 	is_attacking = true
@@ -49,7 +47,9 @@ func shoot():
 		var bullet_angle = angle + (TAU / bullet_count) * i
 		var direction = Vector2(cos(bullet_angle), sin(bullet_angle))
 		
-		var bullet = bullet_scene.instantiate()
+		# Get bullet from pool instead of instantiating
+		var bullet = pool_manager.get_bullet()
+		bullet.setup(direction, 400, pool_manager)
 		bullet.global_position = global_position
 		bullet.direction = direction
 		bullet.speed = 300
