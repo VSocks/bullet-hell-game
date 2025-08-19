@@ -1,20 +1,19 @@
 extends Node2D
 
-var bullet_scene : PackedScene = preload("res://scenes/enemy_bullet_round.tscn")
+var bullet_scene : PackedScene = preload("res://scenes/enemy_bullet_laser.tscn")
 
 # Burst firing parameters
 var is_attacking : bool = false
 var burst_count : int = 0
-var max_burst_shots : int = 12
-var shot_interval : float = 0.02
+var max_burst_shots : int = 10
+var shot_interval : float = 0.04
 var cooldown : float = 1
 var total_cycle_time : float = (max_burst_shots * shot_interval) + cooldown
 
 # Spiral parameters
-var bullet_count : int = 32
-var spiral_speed : float = 10.0
+var bullet_count : int = 28
 var angle : float = 0.0
-var angle_increment : float = 16
+var angle_increment : float = 20
 
 
 @onready var shot_timer = $ShotTimer
