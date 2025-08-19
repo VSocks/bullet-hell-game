@@ -5,40 +5,38 @@ var bullet_scene : PackedScene = preload("res://scenes/enemy_bullet_laser.tscn")
 # Burst firing parameters
 var is_attacking : bool = false
 var burst_count : int = 0
-var max_burst_shots : int = 25  # 0.5 seconds at 0.1s interval = 5 shots
-var shot_interval : float = 0.01  # Time between shots in burst
-var cooldown_time : float = 1.0  # Time between bursts
+var max_burst_shots : int = 36
+var shot_interval : float = 0.01
+var cooldown : float = 2
+var total_cycle_time : float = (max_burst_shots * shot_interval) + cooldown
 
 # Spiral parameters
-var bullet_count : int = 8
-var spiral_speed : float = 5.0
+var bullet_count : int = 16
+var spiral_speed : float = 10.0
 var angle : float = 0.0
 
 @onready var shot_timer = $ShotTimer
-@onready var cooldown_timer = $CooldownTimer
+@onready var cycle_timer = $CycleTimer
 
 func start_attack():
 	is_attacking = true
-	burst_count = 0
-	start_burst()
+	start_cycle()
 	print("Spiral attack started!")
 
 func stop_attack():
 	is_attacking = false
 	shot_timer.stop()
-	cooldown_timer.stop()
+	cycle_timer.stop()
 	print("Spiral attack stopped!")
 
-func start_burst():
+func start_cycle():
 	if is_attacking:
 		burst_count = 0
 		shot_timer.wait_time = shot_interval
 		shot_timer.start()
-		shoot()  # Shoot immediately on burst start
-
-func start_cooldown():
-	cooldown_timer.wait_time = cooldown_time
-	cooldown_timer.start()
+		shoot()  # First shot
+		cycle_timer.wait_time = total_cycle_time
+		cycle_timer.start()  # Start the full cycle timer
 
 func shoot():
 	# Spiral shooting code
@@ -60,10 +58,7 @@ func _on_shot_timer_timeout():
 	if is_attacking and burst_count < max_burst_shots:
 		shoot()
 		shot_timer.start()  # Continue burst
-	else:
-		shot_timer.stop()
-		start_cooldown()  # Start pause after burst
 
-func _on_cooldown_timer_timeout():
+func _on_cycle_timer_timeout():
 	if is_attacking:
-		start_burst()  # Start next burst after cooldown
+		start_cycle()  # Start next cycle

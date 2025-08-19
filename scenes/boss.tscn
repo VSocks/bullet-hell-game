@@ -24,7 +24,7 @@ script = ExtResource("3_jncid")
 
 [node name="ShotTimer" type="Timer" parent="AttackPatterns/SpiralAttack"]
 
-[node name="CooldownTimer" type="Timer" parent="AttackPatterns/SpiralAttack"]
+[node name="CycleTimer" type="Timer" parent="AttackPatterns/SpiralAttack"]
 
 [connection signal="timeout" from="AttackPatterns/SpiralAttack/ShotTimer" to="AttackPatterns/SpiralAttack" method="_on_shot_timer_timeout"]
-[connection signal="timeout" from="AttackPatterns/SpiralAttack/CooldownTimer" to="AttackPatterns/SpiralAttack" method="_on_cooldown_timer_timeout"]
+[connection signal="timeout" from="AttackPatterns/SpiralAttack/CycleTimer" to="AttackPatterns/SpiralAttack" method="_on_cycle_timer_timeout"]
