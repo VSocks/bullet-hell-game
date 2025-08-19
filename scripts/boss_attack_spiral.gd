@@ -14,6 +14,7 @@ var total_cycle_time : float = (max_burst_shots * shot_interval) + cooldown
 var bullet_count : int = 16
 var spiral_speed : float = 10.0
 var angle : float = 0.0
+var angle_increment : float = 6
 
 @onready var shot_timer = $ShotTimer
 @onready var cycle_timer = $CycleTimer
@@ -51,7 +52,7 @@ func shoot():
 		get_tree().current_scene.add_child(bullet)
 		bullet.global_position = global_position
 	
-	angle += spiral_speed * get_process_delta_time()
+	angle += angle_increment
 	burst_count += 1
 
 func _on_shot_timer_timeout():
