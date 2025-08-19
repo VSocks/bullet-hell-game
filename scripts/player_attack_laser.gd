@@ -2,7 +2,7 @@ extends Node2D
 
 var bullet_scene_laser : PackedScene = preload("res://scenes/player_bullet_laser.tscn")
 
-var spread_angle : float = deg_to_rad(30)
+var spread_angle : float
 var bullet_count : int = 9
 var fire_rate : float = 0.05
 
@@ -10,6 +10,7 @@ var fire_rate : float = 0.05
 
 
 func start_attack():
+	spread_angle = deg_to_rad(3 * bullet_count)
 	fire_rate_timer.wait_time = fire_rate
 	fire_rate_timer.start()
 
