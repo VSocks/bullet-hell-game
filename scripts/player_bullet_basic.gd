@@ -6,13 +6,13 @@ var speed : int = 1
 var direction = Vector2.UP
 
 func _ready():
-	add_to_group("PlayerBullets")
+	add_to_group("player_bullets")
 
 func _process(delta):
 	position += direction * speed * delta
 
 func _on_body_entered(hitbox):
-	if hitbox is Boss:
+	if hitbox.is_in_group("enemies"):
 		hitbox.take_damage(damage)
 	queue_free()
 

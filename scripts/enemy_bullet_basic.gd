@@ -5,7 +5,8 @@ var speed : int = 1
 var direction = Vector2.DOWN
 
 func _ready():
-	add_to_group("EnemyBullets")
+	rotation = direction.angle() + PI /2
+	add_to_group("enemy_bullets")
 
 func _process(delta):
 	position += direction * speed * delta

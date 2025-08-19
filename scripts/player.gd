@@ -7,6 +7,8 @@ var speed : int = 240
 var max_health : int = 5
 var health : int
 
+@onready var invincibility_timer = $InvincibilityTimer
+
 func _ready():
 	global_position = Vector2(570, 600)
 	health = max_health
@@ -27,9 +29,9 @@ func _process(delta):
 func take_damage():
 	$Hitbox.set_deferred("disabled", true)
 	print("player temporairly invincible!")
-	$InvincibilityTimer.set_one_shot(true)
-	$InvincibilityTimer.set_wait_time(3)
-	$InvincibilityTimer.start()
+	invincibility_timer.set_one_shot(true)
+	invincibility_timer.set_wait_time(3)
+	invincibility_timer.start()
 	health -= 1
 	print("player takes damage!")
 	if health <= 0:
