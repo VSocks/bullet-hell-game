@@ -10,6 +10,7 @@ var max_health : int = 1000
 var health : int
 
 func _ready():
+	add_to_group("Enemies")
 	position = Vector2(570, 100)
 	health = max_health
 

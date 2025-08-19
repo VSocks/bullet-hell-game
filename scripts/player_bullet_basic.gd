@@ -2,10 +2,14 @@ extends Area2D
 class_name Laser
 
 var damage : int = 1
-var speed : int = 1000
+var speed : int = 1
+var direction = Vector2.UP
 
-func _physics_process(delta):
-	position += Vector2.UP * speed * delta
+func _ready():
+	add_to_group("PlayerBullets")
+
+func _process(delta):
+	position += direction * speed * delta
 
 func _on_body_entered(hitbox):
 	if hitbox is Boss:

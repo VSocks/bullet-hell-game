@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://c6yx8r4bvxhbb" path="res://assets/player.png" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://kplcdo3ey3hg" path="res://scripts/player.gd" id="1_g2els"]
-[ext_resource type="Script" uid="uid://cvyilijwbd2jk" path="res://scripts/player_attack_pattern.gd" id="3_qhqgy"]
+[ext_resource type="Script" uid="uid://cvyilijwbd2jk" path="res://scripts/player_attack_laser.gd" id="3_qhqgy"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g2els"]
 radius = 5.0
@@ -17,10 +17,12 @@ texture = ExtResource("1_4flbx")
 [node name="Hitbox" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_g2els")
 
-[node name="PlayerAttackPattern" type="Node2D" parent="."]
+[node name="PlayerAttackLaser" type="Node2D" parent="."]
 script = ExtResource("3_qhqgy")
+
+[node name="PlayerAttack" type="Node2D" parent="."]
 
 [node name="InvincibilityTimer" type="Timer" parent="."]
 
-[connection signal="shoot" from="." to="PlayerAttackPattern" method="_on_player_shoot"]
+[connection signal="shoot" from="." to="PlayerAttackLaser" method="_on_player_shoot"]
 [connection signal="timeout" from="InvincibilityTimer" to="." method="_on_invincibility_timer_timeout"]

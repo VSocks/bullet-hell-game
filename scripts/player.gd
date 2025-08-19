@@ -1,7 +1,7 @@
 extends CharacterBody2D
 class_name Player
 
-signal shoot
+signal shoot()
 
 var speed : int = 240
 var max_health : int = 5
