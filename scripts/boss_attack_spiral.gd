@@ -4,7 +4,7 @@ extends Node2D
 var is_attacking : bool = false
 var burst_count : int = 0
 var max_burst_shots : int = 18
-var shot_interval : float = 0.04
+var shot_interval : float = 1
 var cooldown : float = 1
 var total_cycle_time : float = (max_burst_shots * shot_interval) + cooldown + 0.1
 
@@ -41,16 +41,16 @@ func start_cycle():
 
 
 func shoot():
-	# Spiral shooting code
 	for i in range(bullet_count):
 		var bullet_angle = angle + (TAU / bullet_count) * i
 		var direction = Vector2(cos(bullet_angle), sin(bullet_angle))
 		
 		# Get bullet from the global pool
 		var bullet = BulletPool.get_bullet()
-		bullet.setup(direction, 400)
 		bullet.position = global_position
-		#bullet.rotation = direction.angle() + PI / 2
+		bullet.direction = direction
+		bullet.rotation = direction.angle() + PI / 2
+		bullet.speed = 400
 	
 	angle += angle_increment
 	burst_count += 1

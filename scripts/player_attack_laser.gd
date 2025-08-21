@@ -11,6 +11,7 @@ var fire_rate : float = 0.05
 
 func start_attack():
 	spread_angle = deg_to_rad(3 * bullet_count)
+	shoot()
 	fire_rate_timer.wait_time = fire_rate
 	fire_rate_timer.start()
 
@@ -19,7 +20,7 @@ func stop_attack():
 	fire_rate_timer.stop()
 
 
-func _on_fire_rate_timer_timeout():
+func shoot():
 	var angle_step = spread_angle / (bullet_count - 1) if bullet_count > 1 else 0
 	var start_angle = -spread_angle / 2
 	for i in range(bullet_count):
@@ -32,3 +33,7 @@ func _on_fire_rate_timer_timeout():
 		bullet.speed = 800
 		bullet.rotation = direction.angle() + PI /2
 		get_tree().current_scene.add_child(bullet)
+
+
+func _on_fire_rate_timer_timeout():
+	shoot()
