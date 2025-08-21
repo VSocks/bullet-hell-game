@@ -20,3 +20,5 @@ shape = SubResource("RectangleShape2D_fk5jw")
 stream = ExtResource("3_e8qni")
 volume_db = -60.0
 autoplay = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

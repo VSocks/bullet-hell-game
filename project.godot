@@ -14,6 +14,10 @@ config/name="Bullet Hell Project"
 run/main_scene="uid://dndbvaipr3jhs"
 config/features=PackedStringArray("4.4", "Forward Plus")
 
+[autoload]
+
+BulletPool="*res://scripts/bullet_pool.gd"
+
 [display]
 
 window/size/mode=3

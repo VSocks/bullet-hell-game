@@ -16,7 +16,6 @@ var angle_increment : float = 20
 
 @onready var shot_timer = $ShotTimer
 @onready var cycle_timer = $CycleTimer
-@onready var pool_manager = $BulletPool
 
 func start_attack():
 	is_attacking = true
@@ -47,13 +46,11 @@ func shoot():
 		var bullet_angle = angle + (TAU / bullet_count) * i
 		var direction = Vector2(cos(bullet_angle), sin(bullet_angle))
 		
-		# Get bullet from pool instead of instantiating
-		var bullet = pool_manager.get_bullet()
-		bullet.setup(direction, 400, pool_manager)
-		bullet.global_position = global_position
-		bullet.direction = direction
-		bullet.speed = 300
-		get_tree().current_scene.add_child(bullet)
+		# Get bullet from the global pool
+		var bullet = BulletPool.get_bullet()
+		bullet.setup(direction, 400)
+		bullet.position = global_position
+		#bullet.rotation = direction.angle() + PI / 2
 	
 	angle += angle_increment
 	burst_count += 1
