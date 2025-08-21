@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://ccbj01xw7gyqg"]
+
+[ext_resource type="Script" uid="uid://c0qug8j6apbkq" path="res://scripts/enemy_bullet_basic.gd" id="1_31cb0"]
+[ext_resource type="Texture2D" uid="uid://c6oql1vr5amsu" path="res://assets/sprites/enemy_bullet_round_big.png" id="2_0xb3y"]
+[ext_resource type="AudioStream" uid="uid://cpetwhpn0xt3a" path="res://assets/sounds/laser-312360.mp3" id="3_0xb3y"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_umx0o"]
+radius = 7.0
+
+[node name="EnemyBulletRoundBig" type="Area2D"]
+script = ExtResource("1_31cb0")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_0xb3y")
+
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_umx0o")
+
+[node name="BulletSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_0xb3y")
+volume_db = -60.0
+autoplay = true

@@ -53,7 +53,6 @@ func shoot():
 		bullet.global_position = global_position
 		bullet.direction = direction
 		bullet.speed = 300
-		bullet.rotation = direction.angle()
 		get_tree().current_scene.add_child(bullet)
 	
 	angle += angle_increment

@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://vpv67ohyb1c6"]
 
 [ext_resource type="Script" uid="uid://cfgcddcoysvgb" path="res://scripts/boss.gd" id="1_jncid"]
-[ext_resource type="Texture2D" uid="uid://er7aab6pg24b" path="res://assets/enemy.png" id="2_qnbj4"]
+[ext_resource type="Texture2D" uid="uid://er7aab6pg24b" path="res://assets/sprites/enemy.png" id="2_qnbj4"]
 [ext_resource type="Script" uid="uid://b173cu56ue1a5" path="res://scripts/boss_attack_spiral.gd" id="3_jncid"]
 [ext_resource type="PackedScene" uid="uid://ciswy7jk4xe3b" path="res://scenes/bullet_pool.tscn" id="4_qnbj4"]
 

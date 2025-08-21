@@ -1,5 +1,4 @@
 extends Area2D
-class_name Laser
 
 var damage : int = 1
 var speed : int = 1

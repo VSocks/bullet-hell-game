@@ -1,11 +1,11 @@
 [gd_scene load_steps=5 format=3 uid="uid://d20i3xgeev0bt"]
 
 [ext_resource type="Script" uid="uid://4wnuec7prnpj" path="res://scripts/player_bullet_basic.gd" id="1_a3skr"]
-[ext_resource type="Texture2D" uid="uid://bpdk1mbkkcbak" path="res://assets/laser.png" id="2_dv4up"]
-[ext_resource type="AudioStream" uid="uid://yn5eu835tphs" path="res://assets/laser-45816.mp3" id="3_evdtg"]
+[ext_resource type="Texture2D" uid="uid://cvmeasokwc544" path="res://assets/sprites/player_bullet_laser.png" id="2_a3skr"]
+[ext_resource type="AudioStream" uid="uid://yn5eu835tphs" path="res://assets/sounds/laser-45816.mp3" id="3_evdtg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a7dhc"]
-size = Vector2(8, 12)
+size = Vector2(6, 10)
 
 [node name="PlayerBulletLaser" type="Area2D"]
 collision_layer = 8
@@ -13,14 +13,13 @@ collision_mask = 2
 script = ExtResource("1_a3skr")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_dv4up")
+texture = ExtResource("2_a3skr")
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_a7dhc")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 scale = Vector2(0.4, 0.6)
-metadata/_edit_lock_ = true
 
 [node name="LaserSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_evdtg")
