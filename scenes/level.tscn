@@ -1,12 +1,10 @@
 [gd_scene load_steps=8 format=3 uid="uid://dxnsakkvu2gwh"]
 
 [ext_resource type="Script" uid="uid://dc1aj8gt20jhr" path="res://scripts/level.gd" id="1_w7c3h"]
+[ext_resource type="Texture2D" uid="uid://bq4hy1bo6mahf" path="res://assets/sprites/FTcskA.jpg" id="2_ppgk2"]
 [ext_resource type="PackedScene" uid="uid://bs4rndsusfiwu" path="res://scenes/player.tscn" id="2_w7c3h"]
 [ext_resource type="PackedScene" uid="uid://vpv67ohyb1c6" path="res://scenes/boss.tscn" id="3_w8frs"]
 [ext_resource type="AudioStream" uid="uid://c46ydamr8tn2b" path="res://assets/sounds/video-game-boss-fiight-259885.mp3" id="4_mx8sn"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_w7c3h"]
-load_path = "res://.godot/imported/FTcskA.jpg-c3626521c44963d7c72de966f9a4326c.ctex"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2q6dc"]
 size = Vector2(44, 648)
@@ -18,8 +16,9 @@ size = Vector2(1152, 48)
 script = ExtResource("1_w7c3h")
 
 [node name="Background" type="Sprite2D" parent="."]
+visible = false
 scale = Vector2(0.6, 0.6)
-texture = SubResource("CompressedTexture2D_w7c3h")
+texture = ExtResource("2_ppgk2")
 centered = false
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]

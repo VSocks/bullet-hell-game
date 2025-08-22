@@ -17,9 +17,11 @@ texture = ExtResource("2_ehu66")
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_6m53u")
 
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
 [node name="BulletSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_icww1")
 volume_db = -60.0
-autoplay = true
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_screen_exited"]

@@ -14,7 +14,7 @@ func _ready():
 	health = max_health
 
 
-func _process(delta):
+func _process(_delta):
 	if Input.is_action_just_pressed("focus"):
 		speed = 80
 	elif Input.is_action_just_released("focus"):

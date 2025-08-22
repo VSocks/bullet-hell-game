@@ -20,8 +20,11 @@ scale = Vector2(0.4, 0.4)
 skew = -0.39619
 shape = SubResource("RectangleShape2D_a27i0")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="BulletSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_qdlig")
 volume_db = -60.0
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_screen_exited"]

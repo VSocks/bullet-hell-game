@@ -16,9 +16,11 @@ texture = ExtResource("2_vq366")
 [node name="Hitbox" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_fk5jw")
 
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
 [node name="BulletSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_e8qni")
 volume_db = -60.0
-autoplay = true
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_screen_exited"]
