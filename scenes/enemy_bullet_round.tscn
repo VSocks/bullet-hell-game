@@ -18,6 +18,8 @@ texture = ExtResource("2_2rw7y")
 shape = SubResource("CircleShape2D_y25gk")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(2.38419e-07, 0)
+scale = Vector2(0.5, 0.5)
 
 [node name="BulletSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_l5glv")

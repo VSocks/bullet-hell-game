@@ -21,6 +21,8 @@ skew = -0.39619
 shape = SubResource("RectangleShape2D_a27i0")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(2.38419e-07, 0)
+scale = Vector2(0.4, 0.6)
 
 [node name="BulletSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_qdlig")
