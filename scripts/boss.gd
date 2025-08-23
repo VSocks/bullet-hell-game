@@ -5,7 +5,7 @@ var max_health : int = 10000
 var health : int
 
 @onready var spiral_attack = $AttackPatterns/SpiralAttack
-@onready var new_attack = $AttackPatterns/NewAttack
+#@onready var new_attack = $AttackPatterns/NewAttack
 @onready var current_attack = spiral_attack  # Start with spiral
 
 
@@ -31,11 +31,11 @@ func take_damage(damage):
 func check_phase_change():
 	var health_percent = float(health) / max_health
 	
-	if health_percent < 0.25 and current_attack == spiral_attack:
-		switch_attack(new_attack)
-	elif health_percent < 0.5:
-		# You can add more patterns here later
-		pass
+#	if health_percent < 0.25 and current_attack == spiral_attack:
+#		switch_attack(new_attack)
+#	elif health_percent < 0.5:
+#		# You can add more patterns here later
+#		pass
 
 
 func switch_attack(new_pattern):

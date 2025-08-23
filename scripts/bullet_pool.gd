@@ -1,7 +1,7 @@
 extends Node
 
-var bullet_scene : PackedScene = preload("res://scenes/enemy_bullet_square.tscn")
-var pool_size : int = 0
+var bullet_scene : PackedScene = preload("res://scenes/enemy_bullet_missile.tscn")
+var pool_size : int = 500
 var available_bullets : Array = []
 var expansion : int = 0
 
@@ -19,7 +19,7 @@ func _ready():
 func return_bullet(bullet: Area2D) -> void:
 	bullet.visible = false
 	bullet.process_mode = Node.PROCESS_MODE_DISABLED
-	bullet.position = Vector2(-1000, -1000)  # Move off-screen
+	bullet.position = Vector2(-1000, -1000)
 	available_bullets.append(bullet)
 	#print("Bullet returned to pool!")
 
@@ -36,5 +36,4 @@ func get_bullet() -> Area2D:
 		#print("Bullet pulled from pool!")
 	bullet.visible = true
 	bullet.process_mode = Node.PROCESS_MODE_INHERIT
-	bullet.play_sound()
 	return bullet
