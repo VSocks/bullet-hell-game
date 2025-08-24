@@ -1,7 +1,9 @@
 extends Node
 
 var bullet_scene : PackedScene = preload("res://scenes/enemy_bullet_diamond.tscn")
-var pool_size : int = 700
+
+const POOL_SIZE : int = 700
+
 var available_bullets : Array = []
 var expansion : int = 0
 var this_level : Node
@@ -9,7 +11,7 @@ var this_level : Node
 
 func _ready():
 	this_level = get_tree().current_scene
-	for i in range(pool_size):
+	for i in range(POOL_SIZE):
 		var bullet = bullet_scene.instantiate()
 		bullet.visible = false
 		bullet.process_mode = Node.PROCESS_MODE_DISABLED

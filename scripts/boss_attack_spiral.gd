@@ -26,14 +26,14 @@ func _process(_delta):
 func start_attack():
 	is_attacking = true
 	start_cycle()
-	print("Spiral attack started!")
+	#print("Spiral attack started!")
 
 
 func stop_attack():
 	is_attacking = false
 	shot_timer.stop()
 	cycle_timer.stop()
-	print("Spiral attack stopped!")	
+	#print("Spiral attack stopped!")	
 
 
 func start_cycle():

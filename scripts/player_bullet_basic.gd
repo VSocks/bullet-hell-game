@@ -4,6 +4,8 @@ var damage : int = 1
 var speed : int = 1
 var direction = Vector2.UP
 
+@onready var bullet_sound = $BulletSound
+
 
 func _ready():
 	add_to_group("player_bullets")
@@ -19,7 +21,7 @@ func initialize(_position, _direction, _speed, _angle):
 	direction = _direction
 	speed = _speed
 	rotation = _angle + PI /2
-	$BulletSound.play()
+	bullet_sound.play()
 
 
 func _on_body_entered(hitbox):
