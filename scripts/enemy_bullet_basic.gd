@@ -23,7 +23,6 @@ func initialize(_position, _direction, _speed, _angle):
 	rotation = _angle + PI /2
 	$BulletSound.play()
 
-
 func _on_body_entered(hitbox):
 	if hitbox is Player:
 		hitbox.take_damage()

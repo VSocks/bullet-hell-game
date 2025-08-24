@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://d20i3xgeev0bt"]
 
 [ext_resource type="Script" uid="uid://4wnuec7prnpj" path="res://scripts/player_bullet_basic.gd" id="1_a3skr"]
-[ext_resource type="Texture2D" uid="uid://cvmeasokwc544" path="res://assets/sprites/player_bullet_laser.png" id="2_a3skr"]
+[ext_resource type="Texture2D" uid="uid://dv5slrksuqed" path="res://assets/sprites/player_bullet_laser.png" id="2_a3skr"]
 [ext_resource type="AudioStream" uid="uid://yn5eu835tphs" path="res://assets/sounds/laser-45816.mp3" id="3_evdtg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a7dhc"]
