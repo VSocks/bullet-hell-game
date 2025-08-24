@@ -1,7 +1,7 @@
 extends Node
 
 var bullet_scene : PackedScene = preload("res://scenes/enemy_bullet_missile.tscn")
-var pool_size : int = 500
+var pool_size : int = 600
 var available_bullets : Array = []
 var expansion : int = 0
 
@@ -11,7 +11,11 @@ func _ready():
 		var bullet = bullet_scene.instantiate()
 		bullet.visible = false
 		bullet.process_mode = Node.PROCESS_MODE_DISABLED
-		add_child(bullet)
+		if get_tree().current_scene:
+			get_tree().current_scene.add_child(bullet)
+		else:
+			add_child(bullet) # Fallback
+			#print("Error, could not get tree")
 		available_bullets.append(bullet)
 	#print("Bullet pool initialized with ", pool_size, " bullets")	
 
@@ -28,7 +32,11 @@ func get_bullet() -> Area2D:
 	var bullet : Area2D
 	if available_bullets.is_empty():
 		bullet = bullet_scene.instantiate()
-		add_child(bullet)
+		if get_tree().current_scene:
+			get_tree().current_scene.add_child(bullet)
+		else:
+			add_child(bullet) # Fallback
+			#print("Error, could not get tree")
 		expansion += 1
 		#print("New bullet created, bullet pool expanded to size ", pool_size + expansion)
 	else:

@@ -2,31 +2,26 @@ extends Node2D
 
 var is_attacking : bool = false
 var burst_count : int = 0
-var max_burst_shots : int = 9
-var shot_interval : float = 0.25
+var max_burst_shots : int = 12
+var shot_interval : float = 0.05
 var cooldown : float = 1
 var total_cycle_time : float = (max_burst_shots * shot_interval) + cooldown + 0.1
 
-var bullet_count : int = 18
+var bullet_count : int = 36
 var angle : float = 0.0
 var angle_increment : float = 20
-
-var bullets
 
 
 @onready var shot_timer = $ShotTimer
 @onready var cycle_timer = $CycleTimer
-@onready var player = get_parent().get_parent().get_parent().get_node("Player")
 
 
 func _process(_delta):
-	bullets = get_tree().get_nodes_in_group("enemy_bullets")
+	var bullets = get_tree().get_nodes_in_group("enemy_bullets")
 	for bullet in bullets:
-		bullet.speed -= 20
-		if bullet.speed <= 20:
-			bullet.speed = 500
-			bullet.direction = Vector2(player.position.x - bullet.position.x, player.position.y - bullet.position.y).normalized()
-			bullet.rotation = bullet.direction.angle() + PI /2
+		bullet.speed -= 8
+		if bullet.speed <= -120:
+			bullet.speed = 280
 
 func start_attack():
 	is_attacking = true
@@ -56,7 +51,7 @@ func shoot():
 	for i in range(bullet_count):
 		var bullet_angle = angle + (TAU / bullet_count) * i
 		var direction = Vector2(cos(bullet_angle), sin(bullet_angle))
-		var speed = 500
+		var speed = 300
 		var bullet = BulletPool.get_bullet()
 		bullet.initialize(global_position, direction, speed, direction.angle())
 	
