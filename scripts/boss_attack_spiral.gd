@@ -2,12 +2,12 @@ extends Node2D
 
 var is_attacking : bool = false
 var burst_count : int = 0
-var max_burst_shots : int = 12
-var shot_interval : float = 0.05
+var max_burst_shots : int = 16
+var shot_interval : float = 0.025
 var cooldown : float = 1
 var total_cycle_time : float = (max_burst_shots * shot_interval) + cooldown + 0.1
 
-var bullet_count : int = 36
+var bullet_count : int = 18
 var angle : float = 0.0
 var angle_increment : float = 20
 
@@ -19,9 +19,9 @@ var angle_increment : float = 20
 func _process(_delta):
 	var bullets = get_tree().get_nodes_in_group("enemy_bullets")
 	for bullet in bullets:
-		bullet.speed -= 8
-		if bullet.speed <= -120:
-			bullet.speed = 280
+		bullet.speed -= 10
+		if bullet.speed <= -180:
+			bullet.speed = 380
 
 func start_attack():
 	is_attacking = true

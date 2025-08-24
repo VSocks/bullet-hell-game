@@ -21,11 +21,10 @@ shape = SubResource("RectangleShape2D_a7dhc")
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 scale = Vector2(0.4, 0.6)
 
-[node name="LaserSound" type="AudioStreamPlayer" parent="."]
+[node name="BulletSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_evdtg")
 volume_db = -25.0
 pitch_scale = 1.5
-autoplay = true
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_screen_exited"]
