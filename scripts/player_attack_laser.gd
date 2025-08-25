@@ -1,7 +1,7 @@
 extends Node2D
 
 const BULLET_COUNT : int = 7
-const FIRE_RATE : float = 0.2
+const FIRE_RATE : float = 0.075
 const SPEED : int = 800
 
 var spread_angle : float

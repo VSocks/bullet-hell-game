@@ -2,12 +2,12 @@ extends Node2D
 
 var is_attacking : bool = false
 var burst_count : int = 0
-var max_burst_shots : int = 1
-var shot_interval : float = 0.1
-var cooldown : float = 0.25
+var max_burst_shots : int = 16
+var shot_interval : float = 0.05
+var cooldown : float = 2
 var total_cycle_time : float = (max_burst_shots * shot_interval) + cooldown + 0.1
 
-var bullet_count : int = 36
+var bullet_count : int = 18
 var angle : float = 0.0
 var angle_increment : float = 60
 
@@ -21,6 +21,7 @@ var bullet_index : int = 0
 
 func _process(_delta):
 	pass
+
 
 func start_attack():
 	is_attacking = true
@@ -54,7 +55,11 @@ func shoot():
 		var bullet_angle = angle + (TAU / bullet_count) * i
 		var direction = Vector2(cos(bullet_angle), sin(bullet_angle))
 		var bullet = BulletPool.get_bullet(bullets[bullet_index])
+		var bullet2_angle = -(angle + (TAU / bullet_count) * i)
+		var direction2 = -Vector2(cos(bullet2_angle), sin(bullet2_angle))
+		var bullet2 = BulletPool.get_bullet(bullets[bullet_index])
 		bullet.initialize(global_position, direction, 300, direction.angle())
+		bullet2.initialize(global_position, direction2, 300, direction2.angle())
 	
 	angle += angle_increment
 	burst_count += 1
