@@ -10,7 +10,7 @@ var bullet_scenes : Dictionary = {
 	"pb_laser": preload("res://scenes/player_bullet_laser.tscn"),
 }
 
-const pool_size : int = 100
+const pool_size : int = 200
 
 var available_bullets : Dictionary = {}
 var this_level : Node
@@ -31,7 +31,7 @@ func _ready():
 func create_bullet(bullet_type: String) -> Area2D:
 	var bullet_scene = bullet_scenes.get(bullet_type)
 	if not bullet_scene:
-		push_error("Bullet type not found: " + bullet_type)
+		print("Bullet type not found: " + bullet_type)
 		return null
 	
 	var bullet = bullet_scene.instantiate()
@@ -48,9 +48,9 @@ func create_bullet(bullet_type: String) -> Area2D:
 	return bullet
 
 
-func get_bullet(bullet_type: String = "diamond") -> Area2D:
+func get_bullet(bullet_type: String) -> Area2D:
 	if not bullet_scenes.has(bullet_type):
-		push_error("Unknown bullet type: " + bullet_type)
+		print("Unknown bullet type: " + bullet_type)
 		bullet_type = "eb_round"  # Fallback
 	
 	var bullet_array = available_bullets.get(bullet_type, [])
@@ -68,12 +68,19 @@ func get_bullet(bullet_type: String = "diamond") -> Area2D:
 
 
 func return_bullet(bullet: Area2D) -> void:
-	var bullet_type = bullet.get_meta("bullet_type", "diamond")
+	# Use call_deferred to avoid physics callback errors
+	call_deferred("_deferred_return_bullet", bullet)
+
+
+func _deferred_return_bullet(bullet: Area2D):
+	# Get bullet type from metadata
+	var bullet_type = bullet.get_meta("bullet_type", "")
 	
 	bullet.visible = false
 	bullet.process_mode = Node.PROCESS_MODE_DISABLED
 	bullet.position = Vector2(-1000, -1000)
 	
+	# Return to the correct pool
 	if available_bullets.has(bullet_type):
 		available_bullets[bullet_type].append(bullet)
 	else:

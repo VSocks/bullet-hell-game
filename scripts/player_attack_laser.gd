@@ -1,14 +1,11 @@
 extends Node2D
 
-var bullet_scene_laser : PackedScene = preload("res://scenes/player_bullet_laser.tscn")
-
-const BULLET_COUNT : int = 9
-const FIRE_RATE : float = 0.05
+const BULLET_COUNT : int = 7
+const FIRE_RATE : float = 0.2
 const SPEED : int = 800
 
 var spread_angle : float
 var angle_step : float 
-
 
 @onready var fire_rate_timer = $FireRateTimer
 

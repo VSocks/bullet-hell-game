@@ -8,6 +8,7 @@ const MAX_HEALTH : int = 5
 
 var speed : int
 var health : int
+var is_focusing : bool = false
 var target_rotation: float = 0.0
 
 @onready var current_attack = $PlayerAttackLaser
@@ -39,7 +40,7 @@ func get_input():
 		current_attack.stop_attack()
 	
 	var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
-	velocity = direction * speed
+	velocity = direction * speed	
 	
 	if direction.x != 0:
 		target_rotation = deg_to_rad(30) * sign(direction.x)
@@ -56,17 +57,17 @@ func handle_rotation(delta):
 
 func take_damage():
 	hitbox.set_deferred("disabled", true)
-	#print("player temporairly invincible!")
+	print("player temporairly invincible!")
 	invincibility_timer.set_one_shot(true)
 	invincibility_timer.set_wait_time(3)
 	invincibility_timer.start()
 	health -= 1
-	#print("player takes damage!")
+	print("player takes damage!")
 	if health <= 0:
 		queue_free()
-		#print("player dead!")
+		print("player dead!")
 
 
 func _on_invincibility_timer_timeout():
 	hitbox.set_deferred("disabled", false)
-	#print("incinvibility over!")
+	print("incinvibility over!")

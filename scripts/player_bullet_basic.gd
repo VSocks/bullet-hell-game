@@ -3,19 +3,18 @@ extends Area2D
 
 var damage : int = 1
 var speed : int = 1
-var direction = Vector2.UP
+var direction : Vector2 = Vector2.DOWN
 
 
 func _ready():
 	add_to_group("player_bullets")
 
 
-func _process(delta):
+func _physics_process(delta):
 	position += direction * speed * delta
 
 
 func initialize(_position, _direction, _speed, _angle):
-	add_to_group("player_bullets")
 	position = _position
 	direction = _direction
 	speed = _speed
@@ -26,10 +25,8 @@ func initialize(_position, _direction, _speed, _angle):
 func _on_body_entered(hitbox):
 	if hitbox.is_in_group("enemies"):
 		hitbox.take_damage(damage)
-	remove_from_group("player_bullets")
 	BulletPool.return_bullet(self)
 
 
 func _on_screen_exited():
-	remove_from_group("player_bullets")
 	BulletPool.return_bullet(self)
