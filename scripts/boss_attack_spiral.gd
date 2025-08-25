@@ -2,9 +2,9 @@ extends Node2D
 
 var is_attacking : bool = false
 var burst_count : int = 0
-var max_burst_shots : int = 12
+var max_burst_shots : int = 1
 var shot_interval : float = 0.1
-var cooldown : float = 1
+var cooldown : float = 0.25
 var total_cycle_time : float = (max_burst_shots * shot_interval) + cooldown + 0.1
 
 var bullet_count : int = 36

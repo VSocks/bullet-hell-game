@@ -10,7 +10,7 @@ var bullet_scenes : Dictionary = {
 	"pb_laser": preload("res://scenes/player_bullet_laser.tscn"),
 }
 
-const pool_size : int = 700
+const pool_size : int = 100
 
 var available_bullets : Dictionary = {}
 var this_level : Node
