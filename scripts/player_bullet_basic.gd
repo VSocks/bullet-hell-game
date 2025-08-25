@@ -1,3 +1,4 @@
+class_name PlayerBullet
 extends Area2D
 
 var damage : int = 1
@@ -25,8 +26,10 @@ func initialize(_position, _direction, _speed, _angle):
 func _on_body_entered(hitbox):
 	if hitbox.is_in_group("enemies"):
 		hitbox.take_damage(damage)
-	queue_free()
+	remove_from_group("player_bullets")
+	BulletPool.return_bullet(self)
 
 
 func _on_screen_exited():
-	queue_free()
+	remove_from_group("player_bullets")
+	BulletPool.return_bullet(self)

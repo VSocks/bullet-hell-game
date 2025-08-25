@@ -1,5 +1,5 @@
-extends CharacterBody2D
 class_name Player
+extends CharacterBody2D
 
 const SLOW_SPEED : int = 80
 const NORMAL_SPEED : int = 240

@@ -1,10 +1,8 @@
+class_name EnemyBullet
 extends Area2D
-class_name Bullet
 
 var speed : int = 1
 var direction = Vector2.DOWN
-var borderx : int
-var bordery : int
 
 
 func _ready():
@@ -22,6 +20,7 @@ func initialize(_position, _direction, _speed, _angle):
 	speed = _speed
 	rotation = _angle + PI /2
 	$BulletSound.play()
+
 
 func _on_body_entered(hitbox):
 	if hitbox is Player:

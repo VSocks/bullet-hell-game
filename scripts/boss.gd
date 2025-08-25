@@ -1,5 +1,5 @@
-extends CharacterBody2D
 class_name Boss
+extends CharacterBody2D
 
 var max_health : int = 10000
 var health : int
