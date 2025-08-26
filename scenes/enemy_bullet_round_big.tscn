@@ -5,7 +5,7 @@
 [ext_resource type="AudioStream" uid="uid://cpetwhpn0xt3a" path="res://assets/sounds/laser-312360.mp3" id="3_0xb3y"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_umx0o"]
-radius = 7.0
+radius = 11.0454
 
 [node name="EnemyBulletRoundBig" type="Area2D"]
 script = ExtResource("1_31cb0")
@@ -17,8 +17,8 @@ texture = ExtResource("2_0xb3y")
 shape = SubResource("CircleShape2D_umx0o")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
-position = Vector2(4.17233e-07, 4.17233e-07)
-scale = Vector2(0.8, 0.8)
+position = Vector2(-1.54972e-06, -2.38419e-07)
+scale = Vector2(1.2, 1.2)
 
 [node name="BulletSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_0xb3y")
