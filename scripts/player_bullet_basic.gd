@@ -1,7 +1,8 @@
 class_name PlayerBullet
 extends Area2D
 
-var damage : int = 1
+const DAMAGE : int = 1
+
 var speed : int = 800
 var direction : Vector2 = Vector2.UP
 var is_initialized : bool = false
@@ -52,7 +53,7 @@ func _on_body_entered(hitbox):
 		return 
 	
 	if hitbox.is_in_group("enemies"):
-		hitbox.take_damage(damage)
+		hitbox.take_damage(DAMAGE)
 	BulletPool.return_bullet(self)
 
 

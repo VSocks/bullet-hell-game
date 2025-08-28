@@ -1,7 +1,8 @@
 class_name Boss
 extends CharacterBody2D
 
-var max_health : int = 10000
+const MAX_HEALTH : int = 500
+
 var health : int
 
 @onready var spiral_attack = $AttackPatterns/SpiralAttack
@@ -12,7 +13,7 @@ var health : int
 func _ready():
 	add_to_group("enemies")
 	position = Vector2(570, 100)
-	health = max_health
+	health = MAX_HEALTH
 	start_attacking()
 
 
@@ -23,7 +24,8 @@ func start_attacking():
 func take_damage(damage):
 	health -= damage
 	#print("boss takes damage!")
-#	check_phase_change()
+	#check_phase_change()
+	print(health)
 	if health <= 0:
 		queue_free()
 
