@@ -14,6 +14,7 @@ var target_rotation: float = 0.0
 @onready var current_attack = $PlayerAttackLaser
 @onready var invincibility_timer = $InvincibilityTimer
 @onready var hitbox = $Hitbox
+@onready var hitbox_sprite = $Hitbox/HitboxSprite
 
 
 func _ready():
@@ -30,8 +31,11 @@ func _process(delta):
 func get_movement(delta):
 	if Input.is_action_just_pressed("focus"):
 		speed = SLOW_SPEED
+		hitbox_sprite.show()
 	if Input.is_action_just_released("focus"):
 		speed = NORMAL_SPEED
+		hitbox_sprite.hide()
+		
 	
 	if Input.is_action_just_pressed("shoot"):
 		current_attack.start_attack()
