@@ -2,17 +2,16 @@ extends Node2D
 
 var is_attacking : bool = false
 var burst_count : int = 0
-var max_burst_shots : int = 16
-var shot_interval : float = 0.05
-var cooldown : float = 2
+var max_burst_shots : int = 12
+var shot_interval : float = 0.075
+var cooldown : float = 1.5
 var total_cycle_time : float = (max_burst_shots * shot_interval) + cooldown + 0.1
 
-var bullet_count : int = 18
-var angle : float = 0.0
-var angle_increment : float = 60
-
-var bullets = ["eb_diamond", "eb_laser", "eb_missile", "eb_round", "eb_round_big", "eb_square"]
 var bullet_index : int = 0
+var bullet_count : int = 36
+var bullet_speed : int = 200
+var angle : float = 0.0
+var angle_increment : float = 30
 
 @onready var shot_timer = $ShotTimer
 @onready var cycle_timer = $CycleTimer
@@ -37,9 +36,6 @@ func stop_attack():
 
 func start_cycle():
 	if is_attacking:
-		bullet_index += 1
-		if bullet_index >= 6:
-			bullet_index = 0
 		burst_count = 0
 		angle = 0
 		shot_timer.wait_time = shot_interval
@@ -50,16 +46,19 @@ func start_cycle():
 
 
 func shoot():
+	var bullet_order = ["eb_diamond", "eb_square", "eb_round", "eb_round_big"]
 	for i in range(bullet_count):
 		var bullet_angle = angle + (TAU / bullet_count) * i
 		var direction = Vector2(cos(bullet_angle), sin(bullet_angle))
-		var bullet = BulletPool.get_bullet(bullets[bullet_index])
-		var bullet2_angle = -(angle + (TAU / bullet_count) * i)
-		var direction2 = -Vector2(cos(bullet2_angle), sin(bullet2_angle))
-		var bullet2 = BulletPool.get_bullet(bullets[bullet_index])
-		bullet.initialize(global_position, direction, 300, direction.angle())
-		bullet2.initialize(global_position, direction2, 300, direction2.angle())
-	
+		var bullet = BulletPool.get_bullet(bullet_order[bullet_index])
+		bullet.initialize(global_position, direction, bullet_speed, direction.angle())
+		
+	if bullet_index >= 3:
+		bullet_index = 0
+		bullet_speed = 200
+	else:
+		bullet_index += 1
+		bullet_speed -= 20
 	angle += angle_increment
 	burst_count += 1
 

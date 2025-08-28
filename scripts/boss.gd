@@ -23,18 +23,18 @@ func start_attacking():
 func take_damage(damage):
 	health -= damage
 	#print("boss takes damage!")
-	check_phase_change()
+#	check_phase_change()
 	if health <= 0:
 		queue_free()
 
 
-func check_phase_change():
-	var _health_percent = float(health) / max_health
+#func check_phase_change():
+#	var health_percent = float(health) / max_health
 	
 #	if health_percent < 0.25 and current_attack == spiral_attack:
 #		switch_attack(new_attack)
 #	elif health_percent < 0.5:
-#		# You can add more patterns here later
+		# You can add more patterns here later
 #		pass
 
 

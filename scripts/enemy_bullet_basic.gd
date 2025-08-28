@@ -1,9 +1,10 @@
 class_name EnemyBullet
 extends Area2D
 
-var speed : int = 1
+var speed : int = 300
 var direction : Vector2 = Vector2.DOWN
 var is_initialized : bool = false
+var tween := self.create_tween()
 
 
 func _ready():
@@ -22,7 +23,7 @@ func initialize(_position, _direction, _speed, _angle):
 	speed = _speed
 	rotation = _angle + PI / 2
 	is_initialized = true
-	var tween := create_tween()
+	reset_tween()
 	tween.tween_property(self, "scale", Vector2(0.0, 0.0), 0.0)
 	tween.tween_property(self, "scale", Vector2(1.0, 1.0), 0.15)
 	$BulletSound.play()
@@ -35,9 +36,14 @@ func reset_bullet():
 	is_initialized = false
 	direction = Vector2.DOWN
 	speed = 300
-	
 	if $BulletSound.playing:
 		$BulletSound.stop()
+
+
+func reset_tween():
+	if tween:
+		tween.kill()
+		tween = create_tween()
 
 
 func _on_body_entered(hitbox):
