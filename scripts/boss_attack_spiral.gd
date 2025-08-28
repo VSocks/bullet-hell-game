@@ -9,16 +9,12 @@ var total_cycle_time : float = (max_burst_shots * shot_interval) + cooldown + 0.
 
 var bullet_index : int = 0
 var bullet_count : int = 36
-var bullet_speed : int = 200
+var bullet_speed : int = 150
 var angle : float = 0.0
 var angle_increment : float = 30
 
 @onready var shot_timer = $ShotTimer
 @onready var cycle_timer = $CycleTimer
-
-
-func _process(_delta):
-	pass
 
 
 func start_attack():
@@ -55,7 +51,7 @@ func shoot():
 		
 	if bullet_index >= 3:
 		bullet_index = 0
-		bullet_speed = 200
+		bullet_speed = 150
 	else:
 		bullet_index += 1
 		bullet_speed -= 20
