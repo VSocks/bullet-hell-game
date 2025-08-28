@@ -14,7 +14,6 @@ var angle_increment : float = 60
 var bullets = ["eb_diamond", "eb_laser", "eb_missile", "eb_round", "eb_round_big", "eb_square"]
 var bullet_index : int = 0
 
-
 @onready var shot_timer = $ShotTimer
 @onready var cycle_timer = $CycleTimer
 

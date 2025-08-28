@@ -22,6 +22,9 @@ func initialize(_position, _direction, _speed, _angle):
 	speed = _speed
 	rotation = _angle + PI / 2
 	is_initialized = true
+	var tween := create_tween()
+	tween.tween_property(self, "scale", Vector2(0.0, 0.0), 0.0)
+	tween.tween_property(self, "scale", Vector2(1.0, 1.0), 0.15)
 	$BulletSound.play()
 
 
