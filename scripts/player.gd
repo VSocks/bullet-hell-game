@@ -23,12 +23,11 @@ func _ready():
 
 
 func _process(delta):
-	get_input()
-	handle_rotation(delta)
+	get_movement(delta)
 	move_and_slide()
 
 
-func get_input():
+func get_movement(delta):
 	if Input.is_action_just_pressed("focus"):
 		speed = SLOW_SPEED
 	if Input.is_action_just_released("focus"):
@@ -41,18 +40,8 @@ func get_input():
 	
 	var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	velocity = direction * speed	
-	
-	if direction.x != 0:
-		target_rotation = deg_to_rad(30) * sign(direction.x)
-	else:
-		target_rotation = 0.0
-
-
-func handle_rotation(delta):
-	if target_rotation != 0:
-		rotation = lerp_angle(rotation, target_rotation, ROTATION_SPEED * delta)
-	else:
-		rotation = lerp_angle(rotation, 0.0, ROTATION_SPEED * delta)
+	target_rotation = deg_to_rad(30) * sign(direction.x)
+	rotation = lerp_angle(rotation, target_rotation, ROTATION_SPEED * delta)
 
 
 func take_damage():
