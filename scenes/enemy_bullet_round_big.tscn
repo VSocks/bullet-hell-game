@@ -5,7 +5,6 @@
 [ext_resource type="AudioStream" uid="uid://cpetwhpn0xt3a" path="res://assets/sounds/laser-312360.mp3" id="3_0xb3y"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_umx0o"]
-radius = 11.0454
 
 [node name="EnemyBulletRoundBig" type="Area2D"]
 script = ExtResource("1_31cb0")

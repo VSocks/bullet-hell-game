@@ -5,7 +5,7 @@
 [ext_resource type="AudioStream" uid="uid://cpetwhpn0xt3a" path="res://assets/sounds/laser-312360.mp3" id="3_qdlig"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a27i0"]
-size = Vector2(14.5098, 14.3209)
+size = Vector2(12.371, 12.443)
 
 [node name="EnemyBulletDiamond" type="Area2D"]
 script = ExtResource("1_srl68")
@@ -14,14 +14,13 @@ script = ExtResource("1_srl68")
 texture = ExtResource("2_2yemp")
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
-position = Vector2(5.96046e-08, 0)
+position = Vector2(5.96046e-08, -7.45058e-09)
 rotation = -2.15374
 scale = Vector2(0.4, 0.4)
 skew = -0.39619
 shape = SubResource("RectangleShape2D_a27i0")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
-position = Vector2(2.38419e-07, 0)
 scale = Vector2(0.4, 0.6)
 
 [node name="BulletSound" type="AudioStreamPlayer" parent="."]
