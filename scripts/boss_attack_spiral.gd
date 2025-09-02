@@ -9,7 +9,7 @@ const ANGLE_INCREMENT : float = 5
 
 var burst_count : int = 0
 var bullet_index : int = 0
-var bullet_speed : int = 125
+var bullet_speed : int = 200
 var angle : float = 0.0
 var is_attacking : bool = false
 
@@ -49,6 +49,7 @@ func shoot():
 		var direction = Vector2(cos(bullet_angle), sin(bullet_angle))
 		var bullet = BulletPool.get_bullet(bullet_order[bullet_index])
 		bullet.initialize(global_position, direction, bullet_speed, direction.angle())
+		bullet.define_tragectory("curved", 0.4)
 		
 	if bullet_index >= 3:
 		bullet_index = 0
