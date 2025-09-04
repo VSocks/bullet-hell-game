@@ -51,6 +51,14 @@ func initialize(_position, _direction, _speed, _angle):
 	$BulletSound.play()
 
 
+func scale_bullet(_size, _time):
+	tween.tween_property(self, "scale", Vector2(_size, _size), _time)
+
+
+func change_bullet_speed(_speed, _time):
+	tween.tween_property(self, "speed", _speed, _time)
+
+
 func reset_bullet():
 	visible = false
 	process_mode = Node.PROCESS_MODE_DISABLED

@@ -4,6 +4,8 @@ extends CharacterBody2D
 const MAX_HEALTH : int = 500
 
 var health : int
+var counter : int
+var i : int = 1
 
 @onready var spiral_attack = $AttackPatterns/SpiralAttack
 #@onready var new_attack = $AttackPatterns/NewAttack
@@ -15,6 +17,14 @@ func _ready():
 	position = Vector2(570, 100)
 	health = MAX_HEALTH
 	start_attacking()
+
+
+func _process(_delta):
+	position += Vector2(1,0) * i
+	counter += 1
+	if counter >= 100:
+		counter = 0
+		i = -i
 
 
 func start_attacking():

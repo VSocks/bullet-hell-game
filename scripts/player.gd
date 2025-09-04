@@ -4,7 +4,7 @@ extends CharacterBody2D
 const SLOW_SPEED : int = 80
 const NORMAL_SPEED : int = 240
 const ROTATION_SPEED: float = 10.0
-const MAX_HEALTH : int = 5
+const MAX_HEALTH : int = 50
 
 var speed : int
 var health : int
