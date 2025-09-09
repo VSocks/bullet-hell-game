@@ -1,12 +1,14 @@
 extends Node2D
 
-const BULLET_COUNT : int = 18
-const MAX_BURST_SHOTS : int = 18
-const SHOT_INTERVAL : float = 0.15
-const COOLDOWN : float = 0.5
+const BULLET_COUNT : int = 36
+const MISSILE_COUNT : int = 72
+const LASER_COUNT : int = 5
+const MAX_BURST_SHOTS : int = 24
+const SHOT_INTERVAL : float = 0.1
+const COOLDOWN : float = 1
 const HALF_CYCLE_TIME : float = (MAX_BURST_SHOTS * SHOT_INTERVAL)
 const TOTAL_CYCLE_TIME : float = (MAX_BURST_SHOTS * SHOT_INTERVAL) + COOLDOWN + 0.1
-const ANGLE_INCREMENT : float = 4
+const ANGLE_INCREMENT : float = 5
 
 var burst_count : int = 0
 var bullet_index : int = 0
@@ -61,16 +63,15 @@ func shoot():
 		var direction = Vector2(cos(bullet_angle), sin(bullet_angle))
 		var bullet = BulletPool.get_bullet(bullet_order[bullet_index])
 		bullet.initialize(global_position, direction, bullet_speed, direction.angle())
+		bullet.scale_bullet(1, 0.25)
 		bullet.define_tragectory("curved", 0.3)
-		bullet.change_bullet_speed(0, 0)
-		bullet.change_bullet_speed(200, 2)
-		var bullet_angle2 = -(deg_to_rad(angle) + (TAU / BULLET_COUNT) * i)
-		var direction2 = -(Vector2(cos(bullet_angle2), sin(bullet_angle2)))
-		var bullet2 = BulletPool.get_bullet(bullet_order[bullet_index])
-		bullet2.initialize(global_position, direction2, bullet_speed, direction2.angle())
-		bullet2.define_tragectory("curved", 0.3)
-		bullet2.change_bullet_speed(0, 0)
-		bullet2.change_bullet_speed(200, 2)
+		#var bullet_angle2 = -(deg_to_rad(angle) + (TAU / BULLET_COUNT) * i)
+		#var direction2 = -(Vector2(cos(bullet_angle2), sin(bullet_angle2)))
+		#var bullet2 = BulletPool.get_bullet(bullet_order[bullet_index])
+		#bullet2.initialize(global_position, direction2, bullet_speed, direction2.angle())
+		#bullet.scale_bullet(1, 0.25)
+		#bullet2.define_tragectory("curved", 0.3)
+
 		
 	if bullet_index >= 2:
 		bullet_index = 0
@@ -84,20 +85,21 @@ func shoot():
 
 func shoot_laser():
 	var offset = -20
-	for i in range(5):
+	for i in range(LASER_COUNT):
 		var bullet = BulletPool.get_bullet("eb_laser")
 		bullet.initialize(global_position + Vector2(offset, 0), Vector2.DOWN, bullet_speed * 3, bullet.direction.angle())
+		bullet.scale_bullet(1, 0.2)
 		offset += 10
 
 
 func shoot_missiles():
-	for i in range(72):
-		var bullet_angle = deg_to_rad(angle) + (TAU / 72) * i
+	for i in range(MISSILE_COUNT):
+		var bullet_angle = deg_to_rad(angle) + (TAU / MISSILE_COUNT) * i
 		var direction = Vector2(cos(bullet_angle), sin(bullet_angle))
 		var bullet = BulletPool.get_bullet("eb_missile")
 		bullet.initialize(global_position, direction, bullet_speed, direction.angle())
-		bullet.scale_bullet(2, 0.5)
-		bullet.change_bullet_speed(800, 0.5)
+		bullet.scale_bullet(2, 0.1)
+		bullet.speed = 400
 
 
 func _on_shot_timer_timeout():
