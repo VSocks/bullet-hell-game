@@ -64,13 +64,15 @@ func shoot():
 		var bullet = BulletPool.get_bullet(bullet_order[bullet_index])
 		bullet.initialize(global_position, direction, bullet_speed, direction.angle())
 		bullet.scale_bullet(1, 0.25)
-		bullet.define_tragectory("curved", 0.3)
+		bullet.define_tragectory("bounce")
+		bullet.define_bounce(6, -150, 350)
 		#var bullet_angle2 = -(deg_to_rad(angle) + (TAU / BULLET_COUNT) * i)
 		#var direction2 = -(Vector2(cos(bullet_angle2), sin(bullet_angle2)))
 		#var bullet2 = BulletPool.get_bullet(bullet_order[bullet_index])
 		#bullet2.initialize(global_position, direction2, bullet_speed, direction2.angle())
 		#bullet.scale_bullet(1, 0.25)
-		#bullet2.define_tragectory("curved", 0.3)
+		#bullet2.define_tragectory("curved")
+		#bullet2.define_curve(0.3)
 
 		
 	if bullet_index >= 2:

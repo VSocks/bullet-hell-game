@@ -5,6 +5,9 @@ var speed : int = 300
 var direction : Vector2 = Vector2.DOWN
 var tragectory : String
 var curve_angle : float
+var deacceleration : int
+var thresehold : int
+var bounce_speed : int
 var is_initialized : bool = false
 var tween := self.create_tween()
 
@@ -21,6 +24,8 @@ func _physics_process(delta):
 			move_straight(delta)
 		"curved":
 			move_curved(delta)
+		"bounce":
+			move_bouncing(delta)
 		_:
 			move_straight(delta)
 
@@ -34,9 +39,25 @@ func move_curved(delta):
 	position += transform.y.normalized() * speed * delta
 
 
-func define_tragectory(_tragectory, _tragectory_angle):
+func move_bouncing(delta):
+	position += direction * speed * delta
+	speed -= deacceleration
+	if speed <= thresehold:
+		speed = bounce_speed
+
+
+func define_tragectory(_tragectory):
 	tragectory = _tragectory
-	curve_angle = _tragectory_angle
+
+
+func define_curve(_curve_angle):
+	curve_angle = _curve_angle
+
+
+func define_bounce(_deacceleration, _thresehold, _bounce_speed):
+	deacceleration = _deacceleration
+	thresehold = _thresehold
+	bounce_speed = _bounce_speed
 
 
 func initialize(_position, _direction, _speed, _angle):
