@@ -7,9 +7,9 @@ var health : int
 var counter : int
 var i : int = 1
 
-@onready var spiral_attack = $AttackPatterns/SpiralAttack
+@onready var attack1 = $AttackPatterns/Attack1
 #@onready var new_attack = $AttackPatterns/NewAttack
-@onready var current_attack = spiral_attack  # Start with spiral
+@onready var current_attack = attack1  # Start with spiral
 
 
 func _ready():
@@ -19,12 +19,12 @@ func _ready():
 	start_attacking()
 
 
-func _process(_delta):
-	position += Vector2(1,0) * i
-	counter += 1
-	if counter >= 100:
-		counter = 0
-		i = -i
+#func _process(_delta):
+	#position += Vector2(1,0) * i
+	#counter += 1
+	#if counter >= 100:
+	#	counter = 0
+	#	i = -i
 
 
 func start_attacking():
