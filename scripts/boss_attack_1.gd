@@ -10,8 +10,6 @@ const TOTAL_CYCLE_TIME : float = (MAX_BURST_SHOTS * SHOT_INTERVAL) + COOLDOWN + 
 const ANGLE_INCREMENT : float = 5
 
 var burst_count : int = 0
-#var bullet_index : int = 0
-var bullet_speed : int = 150
 var bullet_orientation : int = 1
 var angle : float = 0.0
 var is_attacking : bool = false
@@ -49,32 +47,11 @@ func start_cycle():
 
 
 func shoot_primary():
-	#var bullet_order = ["eb_diamond", "eb_square", "eb_round"]
 	for i in range(PRIMARY_BULLET_COUNT):
 		var bullet_angle = ((deg_to_rad(angle) + (TAU / PRIMARY_BULLET_COUNT) * i)) * bullet_orientation
 		var direction = (Vector2(cos(bullet_angle), sin(bullet_angle))) * bullet_orientation
 		var bullet = BulletPool.get_bullet("eb_diamond")
-		bullet.initialize(global_position, direction, bullet_speed, direction.angle())
-		#bullet.scale_bullet(1, 0.25)
-		#bullet.define_tragectory("straight")
-		#bullet.define_curve(0.4 * bullet_orientation)
-		bullet.speed = 200
-		#bullet.define_bounce(6, -150, 350)
-		#var bullet_angle2 = -(deg_to_rad(angle) + (TAU / BULLET_COUNT) * i)
-		#var direction2 = -(Vector2(cos(bullet_angle2), sin(bullet_angle2)))
-		#var bullet2 = BulletPool.get_bullet(bullet_order[bullet_index])
-		#bullet2.initialize(global_position, direction2, bullet_speed, direction2.angle())
-		#bullet.scale_bullet(1, 0.25)
-		#bullet2.define_tragectory("curved")
-		#bullet2.define_curve(0.3)
-
-		
-	#if bullet_index >= 2:
-	#	bullet_index = 0
-		#bullet_speed = 150
-	#else:
-	#	bullet_index += 1
-		#bullet_speed -= 20
+		bullet.initialize(global_position, direction, 200, direction.angle())
 	angle += ANGLE_INCREMENT
 	burst_count += 1
 	if burst_count >= MAX_BURST_SHOTS:
@@ -86,8 +63,7 @@ func shoot_secondary():
 		var bullet_angle = deg_to_rad(angle) + (TAU / SECONDARY_BULLET_COUNT) * i
 		var direction = Vector2(cos(bullet_angle), sin(bullet_angle))
 		var bullet = BulletPool.get_bullet("eb_round_big")
-		bullet.initialize(global_position, direction, bullet_speed, direction.angle())
-		bullet.speed = 300
+		bullet.initialize(global_position, direction, 300, direction.angle())
 
 
 func _on_shot_timer_timeout():

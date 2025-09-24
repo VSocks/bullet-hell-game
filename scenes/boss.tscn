@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://vpv67ohyb1c6"]
+[gd_scene load_steps=6 format=3 uid="uid://vpv67ohyb1c6"]
 
 [ext_resource type="Script" uid="uid://cfgcddcoysvgb" path="res://scripts/boss.gd" id="1_jncid"]
 [ext_resource type="Texture2D" uid="uid://er7aab6pg24b" path="res://assets/sprites/enemy.png" id="2_qnbj4"]
 [ext_resource type="Script" uid="uid://b173cu56ue1a5" path="res://scripts/boss_attack_1.gd" id="3_jncid"]
+[ext_resource type="Script" uid="uid://c7ldjbla2ttfd" path="res://scripts/boss_attack_2.gd" id="4_qnbj4"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7p1mj"]
 radius = 13.0
@@ -30,7 +31,16 @@ script = ExtResource("3_jncid")
 
 [node name="HalfCycleTimer" type="Timer" parent="AttackPatterns/Attack1"]
 
+[node name="Attack2" type="Node2D" parent="AttackPatterns"]
+script = ExtResource("4_qnbj4")
+
+[node name="ShotTimer" type="Timer" parent="AttackPatterns/Attack2"]
+
+[node name="CycleTimer" type="Timer" parent="AttackPatterns/Attack2"]
+
 [connection signal="timeout" from="AttackPatterns/Attack1/ShotTimer" to="AttackPatterns/Attack1" method="_on_shot_timer_timeout"]
 [connection signal="timeout" from="AttackPatterns/Attack1/ShotTimer2" to="AttackPatterns/Attack1" method="_on_shot_timer_2_timeout"]
 [connection signal="timeout" from="AttackPatterns/Attack1/CycleTimer" to="AttackPatterns/Attack1" method="_on_cycle_timer_timeout"]
 [connection signal="timeout" from="AttackPatterns/Attack1/HalfCycleTimer" to="AttackPatterns/Attack1" method="_on_half_cycle_timer_timeout"]
+[connection signal="timeout" from="AttackPatterns/Attack2/ShotTimer" to="AttackPatterns/Attack2" method="_on_shot_timer_timeout"]
+[connection signal="timeout" from="AttackPatterns/Attack2/CycleTimer" to="AttackPatterns/Attack2" method="_on_cycle_timer_timeout"]

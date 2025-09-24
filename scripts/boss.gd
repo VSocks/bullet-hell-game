@@ -8,8 +8,8 @@ var counter : int
 var i : int = 1
 
 @onready var attack1 = $AttackPatterns/Attack1
-#@onready var new_attack = $AttackPatterns/NewAttack
-@onready var current_attack = attack1  # Start with spiral
+@onready var attack2 = $AttackPatterns/Attack2
+@onready var current_attack = attack1
 
 
 func _ready():
@@ -34,20 +34,19 @@ func start_attacking():
 func take_damage(damage):
 	health -= damage
 	#print("boss takes damage!")
-	#check_phase_change()
+	check_phase_change()
 	print(health)
 	if health <= 0:
 		queue_free()
 
 
-#func check_phase_change():
-#	var health_percent = float(health) / max_health
+func check_phase_change():
+	var health_percent = float(health) / MAX_HEALTH
 	
-#	if health_percent < 0.25 and current_attack == spiral_attack:
-#		switch_attack(new_attack)
-#	elif health_percent < 0.5:
-		# You can add more patterns here later
-#		pass
+	if health_percent < 0.75 and current_attack != attack2:
+		switch_attack(attack2)
+	#elif health_percent < 0.5:
+		
 
 
 func switch_attack(new_pattern):
