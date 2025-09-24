@@ -9,6 +9,7 @@ var i : int = 1
 
 @onready var attack1 = $AttackPatterns/Attack1
 @onready var attack2 = $AttackPatterns/Attack2
+@onready var attack3 = $AttackPatterns/Attack3
 @onready var current_attack = attack1
 
 
@@ -43,9 +44,10 @@ func take_damage(damage):
 func check_phase_change():
 	var health_percent = float(health) / MAX_HEALTH
 	
-	if health_percent < 0.75 and current_attack != attack2:
+	if health_percent < 0.5 and current_attack == attack2:
+		switch_attack(attack3)
+	elif health_percent < 0.75 and current_attack == attack1:
 		switch_attack(attack2)
-	#elif health_percent < 0.5:
 		
 
 

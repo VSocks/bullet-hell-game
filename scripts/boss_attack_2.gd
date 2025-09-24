@@ -11,7 +11,6 @@ var burst_count : int = 0
 var angle : float = 0.0
 var is_attacking : bool = false
 
-
 @onready var shot_timer_primary = $ShotTimer
 @onready var cycle_timer = $CycleTimer
 

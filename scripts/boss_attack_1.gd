@@ -14,7 +14,6 @@ var bullet_orientation : int = 1
 var angle : float = 0.0
 var is_attacking : bool = false
 
-
 @onready var shot_timer_primary = $ShotTimer
 @onready var shot_timer_secondary = $ShotTimer2
 @onready var cycle_timer = $CycleTimer
