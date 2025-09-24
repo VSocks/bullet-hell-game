@@ -46,6 +46,8 @@ script = ExtResource("5_r3bxh")
 
 [node name="ShotTimer2" type="Timer" parent="AttackPatterns/Attack3"]
 
+[node name="PhaseTransitionTimer" type="Timer" parent="."]
+
 [connection signal="timeout" from="AttackPatterns/Attack1/ShotTimer" to="AttackPatterns/Attack1" method="_on_shot_timer_timeout"]
 [connection signal="timeout" from="AttackPatterns/Attack1/ShotTimer2" to="AttackPatterns/Attack1" method="_on_shot_timer_2_timeout"]
 [connection signal="timeout" from="AttackPatterns/Attack1/CycleTimer" to="AttackPatterns/Attack1" method="_on_cycle_timer_timeout"]
@@ -54,3 +56,4 @@ script = ExtResource("5_r3bxh")
 [connection signal="timeout" from="AttackPatterns/Attack2/CycleTimer" to="AttackPatterns/Attack2" method="_on_cycle_timer_timeout"]
 [connection signal="timeout" from="AttackPatterns/Attack3/ShotTimer" to="AttackPatterns/Attack3" method="_on_shot_timer_timeout"]
 [connection signal="timeout" from="AttackPatterns/Attack3/ShotTimer2" to="AttackPatterns/Attack3" method="_on_shot_timer_2_timeout"]
+[connection signal="timeout" from="PhaseTransitionTimer" to="." method="_on_phase_transition_timer_timeout"]

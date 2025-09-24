@@ -11,12 +11,17 @@ var i : int = 1
 @onready var attack2 = $AttackPatterns/Attack2
 @onready var attack3 = $AttackPatterns/Attack3
 @onready var current_attack = attack1
+@onready var phase_transition_timer = $PhaseTransitionTimer
+@onready var hitbox = $Hitbox
+
 
 
 func _ready():
 	add_to_group("enemies")
 	position = Vector2(570, 100)
 	health = MAX_HEALTH
+	phase_transition_timer.wait_time = 1
+	phase_transition_timer.one_shot = true
 	start_attacking()
 
 
@@ -32,6 +37,10 @@ func start_attacking():
 	current_attack.start_attack()
 
 
+func stop_attacking():
+	current_attack.stop_attack()
+
+
 func take_damage(damage):
 	health -= damage
 	#print("boss takes damage!")
@@ -45,20 +54,25 @@ func check_phase_change():
 	var health_percent = float(health) / MAX_HEALTH
 	
 	if health_percent < 0.5 and current_attack == attack2:
-		switch_attack(attack3)
+		hitbox.set_deferred("disabled", true)
+		current_attack.stop_attack()
+		clear_bullets()
+		current_attack = attack3
+		phase_transition_timer.start()
 	elif health_percent < 0.75 and current_attack == attack1:
-		switch_attack(attack2)
-		
+		hitbox.set_deferred("disabled", true)
+		current_attack.stop_attack()
+		clear_bullets()
+		current_attack = attack2
+		phase_transition_timer.start()
 
 
-func switch_attack(new_pattern):
-	current_attack.stop_attack()
-	
-	current_attack = new_pattern
+func clear_bullets():
+	var bullets = get_tree().get_nodes_in_group("enemy_bullets")
+	for bullet in bullets:
+		BulletPool.return_bullet(bullet)
+
+
+func _on_phase_transition_timer_timeout():
 	current_attack.start_attack()
-	
-	#print("Switched to new attack pattern!")
-
-
-func stop_attacking():
-	current_attack.stop_attack()
+	hitbox.set_deferred("disabled", false)
