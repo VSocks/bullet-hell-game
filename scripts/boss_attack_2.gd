@@ -13,6 +13,7 @@ var is_attacking : bool = false
 
 @onready var shot_timer_primary = $ShotTimer
 @onready var cycle_timer = $CycleTimer
+@onready var boss = get_parent().get_parent()
 
 
 func start_attack():
@@ -63,4 +64,5 @@ func _on_shot_timer_timeout():
 
 func _on_cycle_timer_timeout():
 	if is_attacking:
+		boss.stop_attacking_and_move()
 		start_cycle()

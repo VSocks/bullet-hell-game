@@ -18,6 +18,8 @@ var is_attacking : bool = false
 @onready var shot_timer_secondary = $ShotTimer2
 @onready var cycle_timer = $CycleTimer
 @onready var half_cycle_timer = $HalfCycleTimer
+@onready var boss = get_parent().get_parent()
+
 
 
 func start_attack():
@@ -63,6 +65,7 @@ func shoot_secondary():
 		var direction = Vector2(cos(bullet_angle), sin(bullet_angle))
 		var bullet = BulletPool.get_bullet("eb_round_big")
 		bullet.initialize(global_position, direction, 300, direction.angle())
+	boss.move_to_random_position()
 
 
 func _on_shot_timer_timeout():

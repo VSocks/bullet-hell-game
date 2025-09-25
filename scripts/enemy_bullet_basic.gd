@@ -100,7 +100,7 @@ func _on_body_entered(hitbox):
 	
 	if hitbox is Player:
 		hitbox.take_damage()
-	BulletPool.return_bullet(self)
+		BulletPool.return_bullet(self)
 
 
 func _on_screen_exited():

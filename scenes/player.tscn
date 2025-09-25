@@ -29,8 +29,6 @@ script = ExtResource("3_qhqgy")
 
 [node name="FireRateTimer" type="Timer" parent="PlayerAttackLaser"]
 
-[node name="PlayerAttackHoming" type="Node2D" parent="."]
-
 [node name="InvincibilityTimer" type="Timer" parent="."]
 
 [connection signal="timeout" from="PlayerAttackLaser/FireRateTimer" to="PlayerAttackLaser" method="_on_fire_rate_timer_timeout"]

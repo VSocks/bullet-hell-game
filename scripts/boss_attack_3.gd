@@ -10,6 +10,8 @@ var sweep_direction : int = 1
 var angle : float = 0.0
 
 @onready var shot_timer = $ShotTimer
+@onready var movement_timer = $MovementTimer
+@onready var boss = get_parent().get_parent()
 
 
 func start_attack():
@@ -17,7 +19,9 @@ func start_attack():
 	current_angle = deg_to_rad(SWEEP_ANGLE / 2)
 	sweep_direction = 1
 	shot_timer.wait_time = SHOT_INTERVAL
+	movement_timer.wait_time = 1
 	shot_timer.start()
+	movement_timer.start()
 	#print("Sweeping laser attack started!")
 
 
@@ -31,19 +35,16 @@ func shoot():
 	if not is_attacking:
 		return
 	
-	shoot_at_angle(deg_to_rad(current_angle))
+	shoot_at_angle()
 	current_angle += ANGLE_STEP * sweep_direction
 	
 	if sweep_direction == 1 and current_angle >= SWEEP_ANGLE / 2:
-		print("condition 1")
 		sweep_direction *= -1
-		
 	elif sweep_direction == -1 and current_angle <= -SWEEP_ANGLE / 2:
-		print("condition 2")
 		sweep_direction *= -1
 
 
-func shoot_at_angle(angle: float):
+func shoot_at_angle():
 	var orientation = 1
 	var offset = [0, 0, 30, -30, 60, -60, 90, -90]
 	
@@ -66,3 +67,7 @@ func shoot_at_angle(angle: float):
 func _on_shot_timer_timeout():
 	shoot()
 	shot_timer.start()
+
+
+func _on_movement_timer_timeout():
+	boss.move_to_random_position()

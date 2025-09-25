@@ -54,7 +54,7 @@ func _on_body_entered(hitbox):
 	
 	if hitbox.is_in_group("enemies"):
 		hitbox.take_damage(DAMAGE)
-	BulletPool.return_bullet(self)
+		BulletPool.return_bullet(self)
 
 
 func _on_screen_exited():
