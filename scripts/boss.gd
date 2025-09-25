@@ -10,7 +10,7 @@ var i : int = 1
 @onready var attack1 = $AttackPatterns/Attack1
 @onready var attack2 = $AttackPatterns/Attack2
 @onready var attack3 = $AttackPatterns/Attack3
-@onready var current_attack = attack1
+@onready var current_attack = attack3
 @onready var phase_transition_timer = $PhaseTransitionTimer
 @onready var hitbox = $Hitbox
 
