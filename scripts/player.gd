@@ -11,7 +11,7 @@ var health : int
 var is_focusing : bool = false
 var target_rotation: float = 0.0
 
-@onready var current_attack = $PlayerAttackLaser
+@onready var current_attack = $PlayerAttackExplosive
 @onready var invincibility_timer = $InvincibilityTimer
 @onready var hitbox = $Hitbox
 @onready var hitbox_sprite = $Hitbox/HitboxSprite

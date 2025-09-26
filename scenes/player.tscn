@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://bs4rndsusfiwu"]
+[gd_scene load_steps=7 format=3 uid="uid://bs4rndsusfiwu"]
 
 [ext_resource type="Texture2D" uid="uid://c6yx8r4bvxhbb" path="res://assets/sprites/player.png" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://kplcdo3ey3hg" path="res://scripts/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://bf2ytvqbonvqq" path="res://assets/sprites/player_hitbox.png" id="3_dqkch"]
 [ext_resource type="Script" uid="uid://cvyilijwbd2jk" path="res://scripts/player_attack_laser.gd" id="3_qhqgy"]
+[ext_resource type="Script" uid="uid://blyxyxfvlmpk7" path="res://scripts/player_attack_explosive.gd" id="5_qlg0r"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g2els"]
 radius = 2.0
@@ -29,7 +30,13 @@ script = ExtResource("3_qhqgy")
 
 [node name="FireRateTimer" type="Timer" parent="PlayerAttackLaser"]
 
+[node name="PlayerAttackExplosive" type="Node2D" parent="."]
+script = ExtResource("5_qlg0r")
+
+[node name="FireRateTimer" type="Timer" parent="PlayerAttackExplosive"]
+
 [node name="InvincibilityTimer" type="Timer" parent="."]
 
 [connection signal="timeout" from="PlayerAttackLaser/FireRateTimer" to="PlayerAttackLaser" method="_on_fire_rate_timer_timeout"]
+[connection signal="timeout" from="PlayerAttackExplosive/FireRateTimer" to="PlayerAttackExplosive" method="_on_fire_rate_timer_timeout"]
 [connection signal="timeout" from="InvincibilityTimer" to="." method="_on_invincibility_timer_timeout"]
