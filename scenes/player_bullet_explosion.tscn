@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://d3s42u1bywo0t"]
+
+[ext_resource type="Script" uid="uid://dy3rs5pxy0o2h" path="res://scripts/player_bullet_explosion.gd" id="1_rx343"]
+[ext_resource type="Texture2D" uid="uid://dmpgiyevy18bi" path="res://assets/sprites/explosion_temporary.png" id="2_66a4a"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4gwpn"]
+radius = 8.0
+
+[node name="PlayerBulletExplosion" type="Area2D"]
+collision_layer = 8
+collision_mask = 2
+script = ExtResource("1_rx343")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-2.38419e-07, -2.38419e-07)
+scale = Vector2(0.0142708, 0.0142708)
+texture = ExtResource("2_66a4a")
+
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_4gwpn")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -8,6 +8,7 @@ var bullet_scenes : Dictionary = {
 	"eb_round_big": preload("res://scenes/enemy_bullet_round_big.tscn"),
 	"eb_square": preload("res://scenes/enemy_bullet_square.tscn"),
 	"pb_laser": preload("res://scenes/player_bullet_laser.tscn"),
+	"pb_explosive": preload("res://scenes/player_bullet_explosive.tscn"),
 }
 
 const pool_size : int = 500

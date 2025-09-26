@@ -32,7 +32,7 @@ func _ready():
 func _process(delta):
 	if is_moving:
 		# Simple linear interpolation movement
-		print("moving")
+		#print("moving")
 		position = position.move_toward(target_position, move_speed * delta)
 		
 		if position.distance_to(target_position) < 5.0:
@@ -40,7 +40,7 @@ func _process(delta):
 			if is_attacking == false:
 				start_attacking()
 				is_attacking = true
-			print("Boss reached target")
+			#print("Boss reached target")
 
 
 func start_attacking():
@@ -87,7 +87,7 @@ func move_to_random_position():
 	target_position = position + random_offset
 	target_position = clamp_to_screen_bounds(target_position)
 	is_moving = true
-	print("calculatig position")
+	#print("calculatig position")
 
 
 func stop_attacking_and_move():

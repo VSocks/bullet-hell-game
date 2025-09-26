@@ -7,6 +7,8 @@ var direction : Vector2 = Vector2.UP
 var is_initialized : bool = false
 var tween := self.create_tween()
 
+var explosion_scene = preload("res://scenes/player_bullet_explosion.tscn")
+
 
 func _ready():
 	add_to_group("player_bullets")
@@ -53,6 +55,9 @@ func _on_body_entered(hitbox):
 	
 	if hitbox.is_in_group("enemies"):
 		hitbox.take_damage(DAMAGE)
+		var explosion = explosion_scene.instantiate()
+		explosion.position = position
+		get_tree().current_scene.add_child(explosion)
 		BulletPool.return_bullet(self)
 
 
