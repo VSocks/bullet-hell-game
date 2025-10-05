@@ -24,7 +24,7 @@ func stop_attack():
 func shoot():
 	var attack_rotation = get_parent().rotation /3
 	for i in range(BULLET_COUNT):
-		var offset = Vector2(-((BULLET_COUNT * bullet_spacing)/2) + (bullet_spacing * (i + 1)), 0).rotated(attack_rotation)
+		var offset = Vector2(-(((BULLET_COUNT +1) * bullet_spacing)/2) + (bullet_spacing * (i + 1)), 0).rotated(attack_rotation)
 		var direction = Vector2.UP.rotated(attack_rotation)
 		var bullet = BulletPool.get_bullet("pb_explosive")
 		bullet.initialize(global_position + offset, direction, SPEED, direction.angle())

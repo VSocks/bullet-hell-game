@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://83jn1qb05j7x"]
+
+[ext_resource type="Texture2D" uid="uid://cqjyu0nr11cvi" path="res://assets/sprites/enemy1.png" id="1_7p1mj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_md0e3"]
+
+[node name="Enemy" type="CharacterBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_7p1mj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_md0e3")
+
+[node name="Movement" type="Node2D" parent="."]
+
+[node name="Attack" type="Node2D" parent="."]
