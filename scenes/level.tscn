@@ -49,3 +49,7 @@ parameters/looping = true
 
 [node name="EnemySpawner" type="Node" parent="."]
 script = ExtResource("5_ppgk2")
+
+[node name="Timer" type="Timer" parent="EnemySpawner"]
+
+[connection signal="timeout" from="EnemySpawner/Timer" to="EnemySpawner" method="_on_timer_timeout"]

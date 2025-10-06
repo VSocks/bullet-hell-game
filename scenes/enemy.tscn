@@ -15,3 +15,5 @@ shape = SubResource("RectangleShape2D_md0e3")
 [node name="Movement" type="Node2D" parent="."]
 
 [node name="Attack" type="Node2D" parent="."]
+
+[node name="Timer" type="Timer" parent="Attack"]
