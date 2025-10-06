@@ -10,7 +10,7 @@
 size = Vector2(44, 648)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w7c3h"]
-size = Vector2(1152, 48)
+size = Vector2(1153, 48)
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_w7c3h")
@@ -29,15 +29,15 @@ position = Vector2(-22, 324)
 shape = SubResource("RectangleShape2D_2q6dc")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(1173.5, 324)
+position = Vector2(1174, 324)
 shape = SubResource("RectangleShape2D_2q6dc")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(576, -23.5)
+position = Vector2(576, -24)
 shape = SubResource("RectangleShape2D_w7c3h")
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(576, 672)
+position = Vector2(576.5, 672)
 shape = SubResource("RectangleShape2D_w7c3h")
 
 [node name="Player" parent="." instance=ExtResource("2_w7c3h")]

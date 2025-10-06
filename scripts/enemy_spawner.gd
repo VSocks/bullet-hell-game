@@ -38,28 +38,13 @@ func setup_enemy_wave():
 	var spawn_list = []
 	
 	spawn_list.append(EnemySpawner.create_spawn_data(
-		basic_enemy_scene, 
-		Vector2(100, 0), 
-		straight_down_move, 
-		single_shot_attack, 
-		2.0
-	))
+		basic_enemy_scene, Vector2(100, 0), straight_down_move, single_shot_attack, 2.0))
 	
 	spawn_list.append(EnemySpawner.create_spawn_data(
-		basic_enemy_scene, 
-		Vector2(200, 0), 
-		straight_down_move, 
-		single_shot_attack, 
-		1.5
-	))
+		basic_enemy_scene, Vector2(200, 0), straight_down_move, single_shot_attack, 1.5))
 	
 	spawn_list.append(EnemySpawner.create_spawn_data(
-		basic_enemy_scene, 
-		Vector2(300, 0), 
-		straight_down_move, 
-		single_shot_attack, 
-		3.0
-	))
+		basic_enemy_scene, Vector2(300, 0), straight_down_move, single_shot_attack, 3.0))
 	
 	# Setup spawner
 	setup_spawn_list(spawn_list)
