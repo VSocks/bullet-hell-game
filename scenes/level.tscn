@@ -1,46 +1,49 @@
 [gd_scene load_steps=8 format=3 uid="uid://dxnsakkvu2gwh"]
 
 [ext_resource type="Script" uid="uid://dc1aj8gt20jhr" path="res://scripts/level.gd" id="1_w7c3h"]
-[ext_resource type="Texture2D" uid="uid://bq4hy1bo6mahf" path="res://assets/sprites/FTcskA.jpg" id="2_ppgk2"]
+[ext_resource type="Texture2D" uid="uid://biqebya77prgu" path="res://assets/sprites/bg.jpeg" id="2_ppgk2"]
 [ext_resource type="PackedScene" uid="uid://bs4rndsusfiwu" path="res://scenes/player.tscn" id="2_w7c3h"]
 [ext_resource type="AudioStream" uid="uid://c46ydamr8tn2b" path="res://assets/sounds/video-game-boss-fiight-259885.mp3" id="4_mx8sn"]
 [ext_resource type="Script" uid="uid://cm35tqamgrqij" path="res://scripts/enemy_spawner.gd" id="5_ppgk2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2q6dc"]
-size = Vector2(44, 648)
+size = Vector2(44, 900)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w7c3h"]
-size = Vector2(1153, 48)
+size = Vector2(688, 48)
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_w7c3h")
 
-[node name="Background" type="Sprite2D" parent="."]
-scale = Vector2(0.6, 0.6)
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 600.0
+offset_bottom = 905.0
 texture = ExtResource("2_ppgk2")
-centered = false
+expand_mode = 1
+stretch_mode = 4
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 collision_layer = 4
 collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(-22, 324)
+position = Vector2(-22, 450)
 shape = SubResource("RectangleShape2D_2q6dc")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(1174, 324)
+position = Vector2(622, 450)
 shape = SubResource("RectangleShape2D_2q6dc")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(576, -24)
+position = Vector2(300, -24)
 shape = SubResource("RectangleShape2D_w7c3h")
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(576.5, 672)
+position = Vector2(300, 924)
 shape = SubResource("RectangleShape2D_w7c3h")
 
 [node name="Player" parent="." instance=ExtResource("2_w7c3h")]
+position = Vector2(301, 797)
 
 [node name="BGM" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_mx8sn")

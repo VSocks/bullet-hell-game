@@ -1,5 +1,4 @@
 extends Node2D
-class_name StraightDownMovement
 
 var speed: float = 100.0
 

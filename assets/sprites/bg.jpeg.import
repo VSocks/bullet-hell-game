@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bq4hy1bo6mahf"
-path="res://.godot/imported/FTcskA.jpg-c59a966caa42b0bb5f3d0cbdbbb7bf1e.ctex"
+uid="uid://biqebya77prgu"
+path="res://.godot/imported/bg.jpeg-b731a471ab8f984f48b4ac82c101231f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/FTcskA.jpg"
-dest_files=["res://.godot/imported/FTcskA.jpg-c59a966caa42b0bb5f3d0cbdbbb7bf1e.ctex"]
+source_file="res://assets/sprites/bg.jpeg"
+dest_files=["res://.godot/imported/bg.jpeg-b731a471ab8f984f48b4ac82c101231f.ctex"]
 
 [params]
 

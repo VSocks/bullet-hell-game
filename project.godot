@@ -20,6 +20,8 @@ BulletPool="*res://scripts/bullet_pool.gd"
 
 [display]
 
+window/size/viewport_width=600
+window/size/viewport_height=900
 window/size/mode=3
 window/stretch/mode="viewport"
 

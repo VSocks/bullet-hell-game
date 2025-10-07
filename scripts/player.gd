@@ -18,7 +18,7 @@ var target_rotation: float = 0.0
 
 
 func _ready():
-	global_position = Vector2(570, 600)
+	global_position = Vector2(300, 800)
 	health = MAX_HEALTH
 	speed = NORMAL_SPEED
 

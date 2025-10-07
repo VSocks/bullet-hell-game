@@ -14,29 +14,30 @@ func _ready():
 	start_spawning()
 
 func create_enemy_wave_with_groups():
+	var boss = preload("res://scenes/boss.tscn")
 	var basic_enemy = preload("res://scenes/enemy.tscn")
 	var straight_move = load("res://scripts/straight_down_movement.gd")
+	var sine_move = load("res://scripts/sine_wave_movement.gd")
 	var single_shot = load("res://scripts/single_shot_attack.gd")
 	
 	var spawn_list = []
 	
-	# Group 1: Three enemies spawn instantly together
 	spawn_list.append(EnemySpawner.create_spawn_data(
-		basic_enemy, Vector2(200, -50), straight_move, single_shot, 0.0
+		basic_enemy, Vector2(200, -50), sine_move, single_shot, 0.0
 	))
 	spawn_list.append(EnemySpawner.create_spawn_data(
-		basic_enemy, Vector2(400, -50), straight_move, single_shot, 0.0  
+		basic_enemy, Vector2(400, -50), sine_move, single_shot, 0.0  
 	))
 	spawn_list.append(EnemySpawner.create_spawn_data(
-		basic_enemy, Vector2(600, -50), straight_move, single_shot, 0.0
-	))
-	
-	# Wait 2 seconds after the group
-	spawn_list.append(EnemySpawner.create_spawn_data(
-		basic_enemy, Vector2(300, -50), straight_move, single_shot, 2.0
+		basic_enemy, Vector2(600, -50), sine_move, single_shot, 2.0
 	))
 	
-	# Group 2: Two more enemies spawn instantly
+	for i in range(5):
+		var positions = [Vector2(10, 10), Vector2(20, 20), Vector2(30, 30), Vector2(40, 40), Vector2(50, 50)]
+		spawn_list.append(EnemySpawner.create_spawn_data(
+			basic_enemy, positions[i], straight_move, single_shot, 0.0
+		))
+	
 	spawn_list.append(EnemySpawner.create_spawn_data(
 		basic_enemy, Vector2(200, -50), straight_move, single_shot, 0.0
 	))
@@ -46,7 +47,7 @@ func create_enemy_wave_with_groups():
 	
 	# Wait 3 seconds
 	spawn_list.append(EnemySpawner.create_spawn_data(
-		basic_enemy, Vector2(400, -50), straight_move, single_shot, 3.0
+		boss, Vector2(400, 100), null, null, 3.0
 	))
 	
 	setup_spawn_list(spawn_list)
