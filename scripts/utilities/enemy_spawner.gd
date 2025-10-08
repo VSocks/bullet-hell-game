@@ -15,7 +15,7 @@ func _ready():
 
 func create_enemy_wave_with_groups():
 	var basic_enemy = preload("res://scenes/enemies/enemy.tscn")
-	var _boss = preload("res://scenes/bosses/boss.tscn")
+	var boss = preload("res://scenes/bosses/boss.tscn")
 	
 	var delayed_diagonal_move = load("res://scripts/enemy_scripts/movement/delayed_diagonal_movement.gd")
 	var _orbit_dive_move = load("res://scripts/enemy_scripts/movement/orbit_then_dive_movement.gd")
@@ -54,8 +54,8 @@ func create_enemy_wave_with_groups():
 	spawn_list.append(EnemySpawner.create_spawn_data(
 		basic_enemy, Vector2(350, 0), delayed_diagonal_move, single_shot, 5.0))
 	
-	#spawn_list.append(EnemySpawner.create_spawn_data(
-	#	boss, Vector2(300, 50), null, null, 3.0))
+	spawn_list.append(EnemySpawner.create_spawn_data(
+		boss, Vector2(300, 50), null, null, 3.0))
 	
 	setup_spawn_list(spawn_list)
 

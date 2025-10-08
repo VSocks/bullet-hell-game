@@ -70,7 +70,7 @@ func take_damage():
 		can_attack = false
 		print("player temporairly invincible!")
 		invincibility_timer.set_one_shot(true)
-		invincibility_timer.set_wait_time(3)
+		invincibility_timer.set_wait_time(1)
 		invincibility_timer.start()
 		health -= 1
 		print("player takes damage!")
@@ -98,5 +98,6 @@ func _on_invincibility_timer_timeout():
 	can_attack = true
 	if Input.is_action_pressed("shoot"):
 		current_attack.start_attack()
+		animation.play("attack")
 	animation.play("default")
 	print("incinvibility over!")
