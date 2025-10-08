@@ -96,8 +96,10 @@ func reset_tween():
 func _on_invincibility_timer_timeout():
 	can_take_damage = true
 	can_attack = true
+	
 	if Input.is_action_pressed("shoot"):
 		current_attack.start_attack()
 		animation.play("attack")
-	animation.play("default")
+	else:
+		animation.play("default")
 	print("incinvibility over!")
