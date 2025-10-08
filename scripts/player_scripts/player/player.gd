@@ -59,7 +59,6 @@ func get_movement(delta):
 
 
 func take_damage():
-	#hitbox.set_deferred("disabled", true)
 	if can_take_damage:
 		can_take_damage = false
 		print("player temporairly invincible!")
@@ -75,5 +74,4 @@ func take_damage():
 
 func _on_invincibility_timer_timeout():
 	can_take_damage = true
-	#hitbox.set_deferred("disabled", false)
 	print("incinvibility over!")

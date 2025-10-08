@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://dxnsakkvu2gwh"]
 
 [ext_resource type="Script" uid="uid://dc1aj8gt20jhr" path="res://scripts/utilities/level.gd" id="1_w7c3h"]
-[ext_resource type="Texture2D" uid="uid://biqebya77prgu" path="res://assets/sprites/backgrounds/bg.jpeg" id="2_ppgk2"]
+[ext_resource type="Texture2D" uid="uid://d3eojbvlfmqdi" path="res://assets/sprites/backgrounds/BG.png" id="2_tqxvh"]
 [ext_resource type="PackedScene" uid="uid://bs4rndsusfiwu" path="res://scenes/player/player.tscn" id="2_w7c3h"]
 [ext_resource type="AudioStream" uid="uid://c46ydamr8tn2b" path="res://assets/sounds/video-game-boss-fiight-259885.mp3" id="4_mx8sn"]
 [ext_resource type="Script" uid="uid://cm35tqamgrqij" path="res://scripts/utilities/enemy_spawner.gd" id="5_ppgk2"]
@@ -17,8 +17,8 @@ script = ExtResource("1_w7c3h")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_right = 604.0
-offset_bottom = 901.0
-texture = ExtResource("2_ppgk2")
+offset_bottom = 858.0
+texture = ExtResource("2_tqxvh")
 expand_mode = 1
 stretch_mode = 4
 
@@ -39,11 +39,11 @@ position = Vector2(300, -24)
 shape = SubResource("RectangleShape2D_w7c3h")
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(301, 824)
+position = Vector2(301, 829)
 shape = SubResource("RectangleShape2D_w7c3h")
 
 [node name="Player" parent="." instance=ExtResource("2_w7c3h")]
-position = Vector2(296, 757)
+position = Vector2(301, 770)
 
 [node name="BGM" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_mx8sn")

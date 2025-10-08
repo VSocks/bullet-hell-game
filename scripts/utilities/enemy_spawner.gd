@@ -14,8 +14,8 @@ func _ready():
 	start_spawning()
 
 func create_enemy_wave_with_groups():
-	var boss = preload("res://scenes/bosses/boss.tscn")
 	var basic_enemy = preload("res://scenes/enemies/enemy.tscn")
+	var boss = preload("res://scenes/bosses/boss.tscn")
 	
 	var straight_move = load("res://scripts/enemy_scripts/movement/straight_down_movement.gd")
 	var sine_move = load("res://scripts/enemy_scripts/movement/sine_wave_movement.gd")
@@ -35,19 +35,19 @@ func create_enemy_wave_with_groups():
 	spawn_list.append(EnemySpawner.create_spawn_data(
 		basic_enemy, Vector2(200, -50), sine_move, fan_attack, 0.0))
 	spawn_list.append(EnemySpawner.create_spawn_data(
-		basic_enemy, Vector2(400, -50), sine_move, fan_attack, 0.0))
+		basic_enemy, Vector2(300, -50), sine_move, fan_attack, 0.0))
 	spawn_list.append(EnemySpawner.create_spawn_data(
-		basic_enemy, Vector2(600, -50), sine_move, fan_attack, 2.0))
+		basic_enemy, Vector2(400, -50), sine_move, fan_attack, 2.0))
 	
 	for i in range(5):
-		var positions = [Vector2(10, 10), Vector2(20, 20), Vector2(30, 30), Vector2(40, 40), Vector2(50, 50)]
+		var positions = [Vector2(100, -50), Vector2(200, -80), Vector2(300, -100), Vector2(400, -80), Vector2(500, -50)]
 		spawn_list.append(EnemySpawner.create_spawn_data(
 			basic_enemy, positions[i], straight_move, fan_attack, 0.0))
 	
 	spawn_list.append(EnemySpawner.create_spawn_data(
-		basic_enemy, Vector2(200, -50), straight_move, fan_attack, 0.0))
+		basic_enemy, Vector2(-50, 200), straight_move, fan_attack, 0.0))
 	spawn_list.append(EnemySpawner.create_spawn_data(
-		basic_enemy, Vector2(600, -50), straight_move, fan_attack, 0.0))
+		basic_enemy, Vector2(650, 200), straight_move, fan_attack, 0.0))
 	
 	#spawn_list.append(EnemySpawner.create_spawn_data(
 	#	boss, Vector2(300, 50), null, null, 3.0
@@ -80,7 +80,6 @@ func spawn_next_enemy():
 	
 	var spawn_data = spawn_queue[current_index]
 	
-	# Spawn the enemy
 	var enemy_instance = spawn_data["enemy_scene"].instantiate()
 	enemy_instance.position = spawn_data["spawn_position"]
 	
@@ -97,7 +96,6 @@ func spawn_next_enemy():
 	
 	current_index += 1
 	
-	# Schedule next spawn
 	if current_index < spawn_queue.size():
 		var delay = spawn_data["delay_until_next"]
 		
@@ -114,7 +112,6 @@ func _on_timer_timeout():
 	spawn_next_enemy()
 
 
-# Helper function to create spawn data
 static func create_spawn_data(scene: PackedScene, pos: Vector2, move_script: Script = null, attack_script: Script = null, delay: float = 1.0) -> Dictionary:
 	return {
 		"enemy_scene": scene,

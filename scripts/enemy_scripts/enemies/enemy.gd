@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-const MAX_HEALTH : int = 10
+const MAX_HEALTH : int = 5
 
 var health : int
 
