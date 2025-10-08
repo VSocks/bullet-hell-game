@@ -1,5 +1,4 @@
 extends Node2D
-class_name SingleShotAttack
 
 var fire_rate: float = 1.5
 var can_shoot: bool = true

@@ -47,7 +47,7 @@ func create_enemy_wave_with_groups():
 	
 	# Wait 3 seconds
 	spawn_list.append(EnemySpawner.create_spawn_data(
-		boss, Vector2(400, 100), null, null, 3.0
+		boss, Vector2(300, 50), null, null, 3.0
 	))
 	
 	setup_spawn_list(spawn_list)
@@ -61,6 +61,7 @@ func setup_spawn_list(spawn_list: Array):
 func start_spawning():
 	if spawn_queue.is_empty():
 		print("No enemies to spawn!")
+		timer.stop()
 		return
 	
 	is_spawning = true
@@ -71,6 +72,7 @@ func spawn_next_enemy():
 	if current_index >= spawn_queue.size():
 		print("All enemies spawned!")
 		is_spawning = false
+		timer.stop()
 		return
 	
 	var spawn_data = spawn_queue[current_index]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://83jn1qb05j7x"]
 
-[ext_resource type="Texture2D" uid="uid://cqjyu0nr11cvi" path="res://assets/sprites/enemy1.png" id="1_7p1mj"]
 [ext_resource type="Script" uid="uid://cjetlpq7e11aq" path="res://scripts/enemy.gd" id="1_md0e3"]
+[ext_resource type="Texture2D" uid="uid://er7aab6pg24b" path="res://assets/sprites/enemy.png" id="2_md0e3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_md0e3"]
 
@@ -11,7 +11,7 @@ collision_mask = 5
 script = ExtResource("1_md0e3")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_7p1mj")
+texture = ExtResource("2_md0e3")
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_md0e3")

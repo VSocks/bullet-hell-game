@@ -21,7 +21,6 @@ var target_position : Vector2
 
 func _ready():
 	add_to_group("enemies")
-	position = Vector2(570, 100)
 	health = MAX_HEALTH
 	phase_transition_timer.wait_time = 1
 	phase_transition_timer.one_shot = true
