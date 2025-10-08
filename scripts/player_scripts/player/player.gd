@@ -52,8 +52,10 @@ func get_movement(delta):
 	
 	if Input.is_action_just_pressed("shoot"):
 		current_attack.start_attack()
+		animation.play("attack")
 	if Input.is_action_just_released("shoot"):
 		current_attack.stop_attack()
+		animation.play("default")
 	
 	var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	velocity = direction * speed	

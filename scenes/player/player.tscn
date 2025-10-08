@@ -1,17 +1,42 @@
-[gd_scene load_steps=12 format=3 uid="uid://bs4rndsusfiwu"]
+[gd_scene load_steps=17 format=3 uid="uid://bs4rndsusfiwu"]
 
 [ext_resource type="Script" uid="uid://kplcdo3ey3hg" path="res://scripts/player_scripts/player/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://bf0ifkw3qs0q" path="res://assets/sprites/player/default1.png" id="2_5gtgg"]
+[ext_resource type="Texture2D" uid="uid://banyaxan78mm3" path="res://assets/sprites/player/attack1.png" id="2_ugbui"]
 [ext_resource type="Texture2D" uid="uid://bf2ytvqbonvqq" path="res://assets/sprites/misc/player_hitbox.png" id="3_dqkch"]
+[ext_resource type="Texture2D" uid="uid://cnge8u1jfvel2" path="res://assets/sprites/player/attack2.png" id="3_fcs02"]
 [ext_resource type="Texture2D" uid="uid://tpqa7p1aa7oo" path="res://assets/sprites/player/default2.png" id="3_h17s1"]
 [ext_resource type="Script" uid="uid://cvyilijwbd2jk" path="res://scripts/player_scripts/attack/player_attack_laser.gd" id="3_qhqgy"]
 [ext_resource type="Texture2D" uid="uid://b4qs7bfce8d5p" path="res://assets/sprites/player/default3.png" id="4_je7p5"]
+[ext_resource type="Texture2D" uid="uid://dey23ejomroja" path="res://assets/sprites/player/attack3.png" id="4_myrg7"]
 [ext_resource type="Texture2D" uid="uid://coymg2kxifqb0" path="res://assets/sprites/player/default4.png" id="5_fm80t"]
+[ext_resource type="Texture2D" uid="uid://b35jpk7vt4vb3" path="res://assets/sprites/player/attack4.png" id="5_kvlxm"]
 [ext_resource type="Script" uid="uid://blyxyxfvlmpk7" path="res://scripts/player_scripts/attack/player_attack_explosive.gd" id="5_qlg0r"]
 [ext_resource type="Texture2D" uid="uid://vxguijslig4r" path="res://assets/sprites/player/default5.png" id="6_gx1jg"]
+[ext_resource type="Texture2D" uid="uid://bcah26wp88t1v" path="res://assets/sprites/player/attack5.png" id="6_uf5tr"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ugbui"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ugbui")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_fcs02")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_myrg7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_kvlxm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_uf5tr")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 15.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_5gtgg")
@@ -42,7 +67,7 @@ script = ExtResource("1_g2els")
 
 [node name="Animation" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ugbui")
-frame_progress = 0.538147
+animation = &"attack"
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_g2els")

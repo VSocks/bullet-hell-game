@@ -22,5 +22,5 @@ func shoot_grid():
 			var direction = Vector2(x * 0.7, 1.0).normalized()  # Mostly downward
 			
 			var bullet = BulletPool.get_bullet("eb_laser")
-			var position = get_parent().position + Vector2(x * 15, y * 15)
-			bullet.initialize(position, direction, 200, direction.angle())
+			var attack_position = get_parent().position + Vector2(x * 15, y * 15)
+			bullet.initialize(attack_position, direction, 200, direction.angle())

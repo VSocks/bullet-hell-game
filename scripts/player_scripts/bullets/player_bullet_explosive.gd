@@ -57,7 +57,7 @@ func _on_body_entered(hitbox):
 		hitbox.take_damage(DAMAGE)
 		var explosion = explosion_scene.instantiate()
 		explosion.position = position
-		get_tree().current_scene.add_child(explosion)
+		get_tree().current_scene.call_deferred("add_child", explosion)
 		BulletPool.return_bullet(self)
 
 
