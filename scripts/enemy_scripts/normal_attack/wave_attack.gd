@@ -1,6 +1,6 @@
 extends Node2D
 
-var fire_rate: float = 0.1
+var fire_rate: float = 0.25
 var wave_phase: float = 0.0
 
 @onready var timer = $Timer

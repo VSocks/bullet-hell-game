@@ -11,6 +11,7 @@ var health : int
 var is_focusing : bool = false
 var can_take_damage : bool = true
 var target_rotation: float = 0.0
+var tween := self.create_tween()
 
 @onready var laser_attack = $PlayerAttackLaser
 @onready var explosive_attack = $PlayerAttackExplosive
@@ -54,7 +55,7 @@ func get_movement(delta):
 	
 	var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	velocity = direction * speed	
-	target_rotation = deg_to_rad(30) * sign(direction.x)
+	target_rotation = deg_to_rad(20) * sign(direction.x)
 	rotation = lerp_angle(rotation, target_rotation, ROTATION_SPEED * delta)
 
 
@@ -70,6 +71,18 @@ func take_damage():
 		if health <= 0:
 			queue_free()
 			print("player dead!")
+		reset_position()
+
+
+func reset_position():
+	reset_tween()
+	tween.tween_property(self, "position", Vector2(225, 550), 0.25)
+
+
+func reset_tween():
+	if tween:
+		tween.kill()
+		tween = create_tween()
 
 
 func _on_invincibility_timer_timeout():
