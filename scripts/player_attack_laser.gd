@@ -11,7 +11,7 @@ var angle_step : float
 
 
 func start_attack():
-	spread_angle = deg_to_rad(3 * BULLET_COUNT)
+	spread_angle = deg_to_rad(2 * BULLET_COUNT)
 	angle_step = spread_angle / (BULLET_COUNT - 1)
 	shoot()
 	fire_rate_timer.wait_time = FIRE_RATE
