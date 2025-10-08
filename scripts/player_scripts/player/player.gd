@@ -13,6 +13,7 @@ var can_take_damage : bool = true
 var target_rotation: float = 0.0
 var tween := self.create_tween()
 
+@onready var animation = $Animation
 @onready var laser_attack = $PlayerAttackLaser
 @onready var explosive_attack = $PlayerAttackExplosive
 @onready var current_attack = $PlayerAttackLaser
@@ -22,6 +23,7 @@ var tween := self.create_tween()
 
 
 func _ready():
+	animation.play("default")
 	health = MAX_HEALTH
 	speed = NORMAL_SPEED
 
