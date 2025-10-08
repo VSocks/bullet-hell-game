@@ -70,6 +70,7 @@ sprite_frames = SubResource("SpriteFrames_ugbui")
 animation = &"attack"
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
+position = Vector2(0, 8)
 shape = SubResource("CircleShape2D_g2els")
 
 [node name="HitboxSprite" type="Sprite2D" parent="Hitbox"]
