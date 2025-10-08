@@ -33,25 +33,25 @@ func create_enemy_wave_with_groups():
 	var spawn_list = []
 	
 	spawn_list.append(EnemySpawner.create_spawn_data(
+		basic_enemy, Vector2(100, -50), sine_move, fan_attack, 0.0))
+	spawn_list.append(EnemySpawner.create_spawn_data(
 		basic_enemy, Vector2(200, -50), sine_move, fan_attack, 0.0))
 	spawn_list.append(EnemySpawner.create_spawn_data(
-		basic_enemy, Vector2(300, -50), sine_move, fan_attack, 0.0))
-	spawn_list.append(EnemySpawner.create_spawn_data(
-		basic_enemy, Vector2(400, -50), sine_move, fan_attack, 2.0))
+		basic_enemy, Vector2(300, -50), sine_move, fan_attack, 2.0))
 	
 	for i in range(5):
-		var positions = [Vector2(100, -50), Vector2(200, -80), Vector2(300, -100), Vector2(400, -80), Vector2(500, -50)]
+		var positions = [Vector2(50, -50), Vector2(150, -80), Vector2(225, -100), Vector2(300, -80), Vector2(400, -50)]
 		spawn_list.append(EnemySpawner.create_spawn_data(
 			basic_enemy, positions[i], straight_move, fan_attack, 0.0))
 	
 	spawn_list.append(EnemySpawner.create_spawn_data(
-		basic_enemy, Vector2(-50, 200), straight_move, fan_attack, 0.0))
+		basic_enemy, Vector2(50, 0), straight_move, fan_attack, 0.0))
 	spawn_list.append(EnemySpawner.create_spawn_data(
-		basic_enemy, Vector2(650, 200), straight_move, fan_attack, 0.0))
+		basic_enemy, Vector2(400, 0), straight_move, fan_attack, 5.0))
 	
-	#spawn_list.append(EnemySpawner.create_spawn_data(
-	#	boss, Vector2(300, 50), null, null, 3.0
-	#))
+	spawn_list.append(EnemySpawner.create_spawn_data(
+		boss, Vector2(300, 50), null, null, 3.0
+	))
 	
 	setup_spawn_list(spawn_list)
 
