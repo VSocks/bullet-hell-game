@@ -10,6 +10,7 @@ var speed : int
 var health : int
 var is_focusing : bool = false
 var can_take_damage : bool = true
+var can_attack : bool = true
 var target_rotation: float = 0.0
 var tween := self.create_tween()
 
@@ -37,23 +38,23 @@ func get_movement(delta):
 	if Input.is_action_just_pressed("focus"):
 		current_attack.stop_attack()
 		current_attack = explosive_attack
-		if Input.is_action_pressed("shoot"):
+		if Input.is_action_pressed("shoot") and can_attack:
 			current_attack.start_attack()
 		speed = SLOW_SPEED
 		hitbox_sprite.show()
 	if Input.is_action_just_released("focus"):
 		current_attack.stop_attack()
 		current_attack = laser_attack
-		if Input.is_action_pressed("shoot"):
+		if Input.is_action_pressed("shoot") and can_attack:
 			current_attack.start_attack()
 		speed = NORMAL_SPEED
 		hitbox_sprite.hide()
 		
 	
-	if Input.is_action_just_pressed("shoot"):
+	if Input.is_action_just_pressed("shoot") and can_attack:
 		current_attack.start_attack()
 		animation.play("attack")
-	if Input.is_action_just_released("shoot"):
+	if Input.is_action_just_released("shoot") and can_attack:
 		current_attack.stop_attack()
 		animation.play("default")
 	
@@ -66,6 +67,7 @@ func get_movement(delta):
 func take_damage():
 	if can_take_damage:
 		can_take_damage = false
+		can_attack = false
 		print("player temporairly invincible!")
 		invincibility_timer.set_one_shot(true)
 		invincibility_timer.set_wait_time(3)
@@ -75,6 +77,8 @@ func take_damage():
 		if health <= 0:
 			queue_free()
 			print("player dead!")
+		current_attack.stop_attack()
+		animation.play("hurt")
 		reset_position()
 
 
@@ -91,4 +95,8 @@ func reset_tween():
 
 func _on_invincibility_timer_timeout():
 	can_take_damage = true
+	can_attack = true
+	if Input.is_action_pressed("shoot"):
+		current_attack.start_attack()
+	animation.play("default")
 	print("incinvibility over!")

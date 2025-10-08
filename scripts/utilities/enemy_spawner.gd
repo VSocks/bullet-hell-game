@@ -26,7 +26,7 @@ func create_enemy_wave_with_groups():
 	var _zigzag_move = load("res://scripts/enemy_scripts/movement/zigzag_movement.gd")
 	
 	var _alternating_attack = load("res://scripts/enemy_scripts/normal_attack/alternating_sides_attack.gd")
-	var _circle_attack = load("res://scripts/enemy_scripts/normal_attack/circle_attack.gd")
+	var circle_attack = load("res://scripts/enemy_scripts/normal_attack/circle_attack.gd")
 	var _cross_attack = load("res://scripts/enemy_scripts/normal_attack/cross_attack.gd")
 	var _fan_attack = load("res://scripts/enemy_scripts/normal_attack/fan_attack.gd")
 	var _grid_attack = load("res://scripts/enemy_scripts/normal_attack/grid_attack.gd")
@@ -38,11 +38,11 @@ func create_enemy_wave_with_groups():
 	var spawn_list = []
 	
 	spawn_list.append(EnemySpawner.create_spawn_data(
-		basic_enemy, Vector2(100, 200), delayed_diagonal_move, single_shot, 0.0))
+		basic_enemy, Vector2(100, 200), delayed_diagonal_move, circle_attack, 0.0))
 	spawn_list.append(EnemySpawner.create_spawn_data(
-		basic_enemy, Vector2(200, 200), delayed_diagonal_move, single_shot, 0.0))
+		basic_enemy, Vector2(200, 200), delayed_diagonal_move, circle_attack, 0.0))
 	spawn_list.append(EnemySpawner.create_spawn_data(
-		basic_enemy, Vector2(300, 200), delayed_diagonal_move, single_shot, 2.0))
+		basic_enemy, Vector2(300, 200), delayed_diagonal_move, circle_attack, 2.0))
 	
 	for i in range(5):
 		var positions = [Vector2(50, -50), Vector2(150, -80), Vector2(225, -100), Vector2(300, -80), Vector2(400, -50)]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bs4rndsusfiwu"]
+[gd_scene load_steps=20 format=3 uid="uid://bs4rndsusfiwu"]
 
 [ext_resource type="Script" uid="uid://kplcdo3ey3hg" path="res://scripts/player_scripts/player/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://bf0ifkw3qs0q" path="res://assets/sprites/player/default1.png" id="2_5gtgg"]
@@ -14,6 +14,9 @@
 [ext_resource type="Script" uid="uid://blyxyxfvlmpk7" path="res://scripts/player_scripts/attack/player_attack_explosive.gd" id="5_qlg0r"]
 [ext_resource type="Texture2D" uid="uid://vxguijslig4r" path="res://assets/sprites/player/default5.png" id="6_gx1jg"]
 [ext_resource type="Texture2D" uid="uid://bcah26wp88t1v" path="res://assets/sprites/player/attack5.png" id="6_uf5tr"]
+[ext_resource type="Texture2D" uid="uid://bfhd5edon141" path="res://assets/sprites/player/hurt1.png" id="12_kvlxm"]
+[ext_resource type="Texture2D" uid="uid://caegn6qpc54q4" path="res://assets/sprites/player/hurt2.png" id="13_uf5tr"]
+[ext_resource type="Texture2D" uid="uid://p7tk5lyqyto3" path="res://assets/sprites/player/hurt3.png" id="14_lgqa7"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ugbui"]
 animations = [{
@@ -56,6 +59,20 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_kvlxm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_uf5tr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_lgqa7")
+}],
+"loop": true,
+"name": &"hurt",
+"speed": 12.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g2els"]
@@ -67,7 +84,7 @@ script = ExtResource("1_g2els")
 
 [node name="Animation" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ugbui")
-animation = &"attack"
+animation = &"hurt"
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
 position = Vector2(0, 8)
