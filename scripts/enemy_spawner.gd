@@ -16,39 +16,42 @@ func _ready():
 func create_enemy_wave_with_groups():
 	var boss = preload("res://scenes/boss.tscn")
 	var basic_enemy = preload("res://scenes/enemy.tscn")
+	
 	var straight_move = load("res://scripts/straight_down_movement.gd")
 	var sine_move = load("res://scripts/sine_wave_movement.gd")
+	
 	var single_shot = load("res://scripts/single_shot_attack.gd")
+	var circle_attack = load("res://scripts/circle_attack.gd")
+	var spiral_attack = load("res://scripts/spiral_attack.gd")
+	var cross_attack = load("res://scripts/cross_attack.gd")
+	var alternating_attack = load("res://scripts/alternating_sides_attack.gd")
+	var layer_circle_attack = load("res://scripts/layer_circle_attack.gd")
+	var wave_attack = load("res://scripts/wave_attack.gd")
+	var grid_attack = load("res://scripts/grid_attack.gd")
+	var fan_attack = load("res://scripts/fan_attack.gd")
 	
 	var spawn_list = []
 	
 	spawn_list.append(EnemySpawner.create_spawn_data(
-		basic_enemy, Vector2(200, -50), sine_move, single_shot, 0.0
-	))
+		basic_enemy, Vector2(200, -50), sine_move, fan_attack, 0.0))
 	spawn_list.append(EnemySpawner.create_spawn_data(
-		basic_enemy, Vector2(400, -50), sine_move, single_shot, 0.0  
-	))
+		basic_enemy, Vector2(400, -50), sine_move, fan_attack, 0.0))
 	spawn_list.append(EnemySpawner.create_spawn_data(
-		basic_enemy, Vector2(600, -50), sine_move, single_shot, 2.0
-	))
+		basic_enemy, Vector2(600, -50), sine_move, fan_attack, 2.0))
 	
 	for i in range(5):
 		var positions = [Vector2(10, 10), Vector2(20, 20), Vector2(30, 30), Vector2(40, 40), Vector2(50, 50)]
 		spawn_list.append(EnemySpawner.create_spawn_data(
-			basic_enemy, positions[i], straight_move, single_shot, 0.0
-		))
+			basic_enemy, positions[i], straight_move, fan_attack, 0.0))
 	
 	spawn_list.append(EnemySpawner.create_spawn_data(
-		basic_enemy, Vector2(200, -50), straight_move, single_shot, 0.0
-	))
+		basic_enemy, Vector2(200, -50), straight_move, fan_attack, 0.0))
 	spawn_list.append(EnemySpawner.create_spawn_data(
-		basic_enemy, Vector2(600, -50), straight_move, single_shot, 0.0
-	))
+		basic_enemy, Vector2(600, -50), straight_move, fan_attack, 0.0))
 	
-	# Wait 3 seconds
-	spawn_list.append(EnemySpawner.create_spawn_data(
-		boss, Vector2(300, 50), null, null, 3.0
-	))
+	#spawn_list.append(EnemySpawner.create_spawn_data(
+	#	boss, Vector2(300, 50), null, null, 3.0
+	#))
 	
 	setup_spawn_list(spawn_list)
 
