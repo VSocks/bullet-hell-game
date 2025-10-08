@@ -13,7 +13,6 @@ script = ExtResource("1_rx343")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-2.38419e-07, -2.38419e-07)
-scale = Vector2(0.0142708, 0.0142708)
 texture = ExtResource("2_66a4a")
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
