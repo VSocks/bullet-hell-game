@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://b1p4q5s17x2ot"]
-
-[ext_resource type="Script" uid="uid://cjrw70jh0y4wg" path="res://scripts/bullet_pool.gd" id="1_n0c2w"]
-
-[node name="BulletPool" type="Node"]
-script = ExtResource("1_n0c2w")

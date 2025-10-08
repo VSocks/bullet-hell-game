@@ -16,7 +16,7 @@ config/features=PackedStringArray("4.4", "Forward Plus")
 
 [autoload]
 
-BulletPool="*res://scripts/bullet_pool.gd"
+BulletPool="*res://scripts/utilities/bullet_pool.gd"
 
 [display]
 

@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://xmocly3cs5pn"]
+
+[ext_resource type="Script" uid="uid://c0qug8j6apbkq" path="res://scripts/enemy_scripts/bullets/enemy_bullet_basic.gd" id="1_srl68"]
+[ext_resource type="Texture2D" uid="uid://bx33rt8wl34sq" path="res://assets/sprites/bullets/enemy_bullet_diamond.png" id="2_2yemp"]
+[ext_resource type="AudioStream" uid="uid://cpetwhpn0xt3a" path="res://assets/sounds/laser-312360.mp3" id="3_qdlig"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a27i0"]
+size = Vector2(12.371, 12.443)
+
+[node name="EnemyBulletDiamond" type="Area2D"]
+script = ExtResource("1_srl68")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_2yemp")
+
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+position = Vector2(5.96046e-08, -7.45058e-09)
+rotation = -2.15374
+scale = Vector2(0.4, 0.4)
+skew = -0.39619
+shape = SubResource("RectangleShape2D_a27i0")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+scale = Vector2(0.4, 0.6)
+
+[node name="BulletSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_qdlig")
+volume_db = -60.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_screen_exited"]
