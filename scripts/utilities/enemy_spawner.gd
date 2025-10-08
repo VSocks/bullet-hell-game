@@ -17,8 +17,13 @@ func create_enemy_wave_with_groups():
 	var basic_enemy = preload("res://scenes/enemies/enemy.tscn")
 	var boss = preload("res://scenes/bosses/boss.tscn")
 	
+	var bounce_move = load("res://scripts/enemy_scripts/movement/bounce_movement.gd")
+	var orbit_dive_move = load("res://scripts/enemy_scripts/movement/orbit_then_dive_movement.gd")
 	var sine_move = load("res://scripts/enemy_scripts/movement/sine_wave_movement.gd")
+	var spiral_descent_move = load("res://scripts/enemy_scripts/movement/spiral_descent_movement.gd")
 	var straight_move = load("res://scripts/enemy_scripts/movement/straight_down_movement.gd")
+	var wave_charge_move = load("res://scripts/enemy_scripts/movement/wave_then_charge_movement.gd")
+	var zigzag_move = load("res://scripts/enemy_scripts/movement/zigzag_movement.gd")
 	
 	var alternating_attack = load("res://scripts/enemy_scripts/normal_attack/alternating_sides_attack.gd")
 	var circle_attack = load("res://scripts/enemy_scripts/normal_attack/circle_attack.gd")
@@ -33,21 +38,21 @@ func create_enemy_wave_with_groups():
 	var spawn_list = []
 	
 	spawn_list.append(EnemySpawner.create_spawn_data(
-		basic_enemy, Vector2(100, -50), sine_move, layer_circle_attack, 0.0))
+		basic_enemy, Vector2(100, 200), bounce_move, single_shot, 0.0))
 	spawn_list.append(EnemySpawner.create_spawn_data(
-		basic_enemy, Vector2(200, -50), straight_move, cross_attack, 0.0))
+		basic_enemy, Vector2(200, 200), bounce_move, single_shot, 0.0))
 	spawn_list.append(EnemySpawner.create_spawn_data(
-		basic_enemy, Vector2(300, -50), sine_move, layer_circle_attack, 2.0))
+		basic_enemy, Vector2(300, 200), bounce_move, single_shot, 2.0))
 	
 	for i in range(5):
 		var positions = [Vector2(50, -50), Vector2(150, -80), Vector2(225, -100), Vector2(300, -80), Vector2(400, -50)]
 		spawn_list.append(EnemySpawner.create_spawn_data(
-			basic_enemy, positions[i], straight_move, grid_attack, 0.0))
+			basic_enemy, positions[i], bounce_move, single_shot, 0.0))
 	
 	spawn_list.append(EnemySpawner.create_spawn_data(
-		basic_enemy, Vector2(100, 0), straight_move, wave_attack, 0.0))
+		basic_enemy, Vector2(100, 0), bounce_move, single_shot, 0.0))
 	spawn_list.append(EnemySpawner.create_spawn_data(
-		basic_enemy, Vector2(350, 0), straight_move, wave_attack, 5.0))
+		basic_enemy, Vector2(350, 0), bounce_move, single_shot, 5.0))
 	
 	#spawn_list.append(EnemySpawner.create_spawn_data(
 	#	boss, Vector2(300, 50), null, null, 3.0))
