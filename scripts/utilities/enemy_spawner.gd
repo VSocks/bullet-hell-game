@@ -19,9 +19,9 @@ func create_enemy_wave_with_groups():
 	
 	var delayed_diagonal_move = load("res://scripts/enemy_scripts/movement/delayed_diagonal_movement.gd")
 	var _orbit_dive_move = load("res://scripts/enemy_scripts/movement/orbit_then_dive_movement.gd")
-	var _sine_move = load("res://scripts/enemy_scripts/movement/sine_wave_movement.gd")
+	var sine_move = load("res://scripts/enemy_scripts/movement/sine_wave_movement.gd")
 	var _spiral_descent_move = load("res://scripts/enemy_scripts/movement/spiral_descent_movement.gd")
-	var _straight_move = load("res://scripts/enemy_scripts/movement/straight_down_movement.gd")
+	var straight_move = load("res://scripts/enemy_scripts/movement/straight_down_movement.gd")
 	var _wave_charge_move = load("res://scripts/enemy_scripts/movement/wave_then_charge_movement.gd")
 	var _zigzag_move = load("res://scripts/enemy_scripts/movement/zigzag_movement.gd")
 	
@@ -36,26 +36,34 @@ func create_enemy_wave_with_groups():
 	var _wave_attack = load("res://scripts/enemy_scripts/normal_attack/wave_attack.gd")
 	
 	var spawn_list = []
-	
-	spawn_list.append(EnemySpawner.create_spawn_data(
-		basic_enemy, Vector2(100, 200), delayed_diagonal_move, circle_attack, 0.0))
-	spawn_list.append(EnemySpawner.create_spawn_data(
-		basic_enemy, Vector2(200, 200), delayed_diagonal_move, circle_attack, 0.0))
-	spawn_list.append(EnemySpawner.create_spawn_data(
-		basic_enemy, Vector2(300, 200), delayed_diagonal_move, circle_attack, 2.0))
+	var lastdelay = 0
 	
 	for i in range(5):
-		var positions = [Vector2(50, -50), Vector2(150, -80), Vector2(225, -100), Vector2(300, -80), Vector2(400, -50)]
+		if i == 4:
+			lastdelay = 3
+		var position = Vector2((i * 75) + 75, -abs((i * 10) - 20))
 		spawn_list.append(EnemySpawner.create_spawn_data(
-			basic_enemy, positions[i], delayed_diagonal_move, single_shot, 0.0))
+			basic_enemy, position, straight_move, null, 0.0 + lastdelay))
+	
+	lastdelay = 0
+	for i in range(10):
+		var direction
+		var enemy_index
+		if i > 4:
+			direction = -1
+			enemy_index = 9 - i
+		elif i == 9:
+			lastdelay = 3
+		else:
+			direction = 1
+			enemy_index = i
+		var position = Vector2(((enemy_index * 75) + 75), -50)
+		spawn_list.append(EnemySpawner.create_spawn_data(
+			basic_enemy, position, sine_move, null, 0.5 + lastdelay))
+	
 	
 	spawn_list.append(EnemySpawner.create_spawn_data(
-		basic_enemy, Vector2(100, 0), delayed_diagonal_move, single_shot, 0.0))
-	spawn_list.append(EnemySpawner.create_spawn_data(
-		basic_enemy, Vector2(350, 0), delayed_diagonal_move, single_shot, 5.0))
-	
-	spawn_list.append(EnemySpawner.create_spawn_data(
-		boss, Vector2(300, 50), null, null, 3.0))
+		boss, Vector2(300, 50), null, null, 0.0))
 	
 	setup_spawn_list(spawn_list)
 
