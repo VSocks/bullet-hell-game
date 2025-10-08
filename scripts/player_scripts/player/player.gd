@@ -9,6 +9,7 @@ const MAX_HEALTH : int = 50
 var speed : int
 var health : int
 var is_focusing : bool = false
+var can_take_damage : bool = true
 var target_rotation: float = 0.0
 
 @onready var laser_attack = $PlayerAttackLaser
@@ -20,7 +21,6 @@ var target_rotation: float = 0.0
 
 
 func _ready():
-	global_position = Vector2(300, 800)
 	health = MAX_HEALTH
 	speed = NORMAL_SPEED
 
@@ -59,18 +59,21 @@ func get_movement(delta):
 
 
 func take_damage():
-	hitbox.set_deferred("disabled", true)
-	print("player temporairly invincible!")
-	invincibility_timer.set_one_shot(true)
-	invincibility_timer.set_wait_time(3)
-	invincibility_timer.start()
-	health -= 1
-	print("player takes damage!")
-	if health <= 0:
-		queue_free()
-		print("player dead!")
+	#hitbox.set_deferred("disabled", true)
+	if can_take_damage:
+		can_take_damage = false
+		print("player temporairly invincible!")
+		invincibility_timer.set_one_shot(true)
+		invincibility_timer.set_wait_time(3)
+		invincibility_timer.start()
+		health -= 1
+		print("player takes damage!")
+		if health <= 0:
+			queue_free()
+			print("player dead!")
 
 
 func _on_invincibility_timer_timeout():
-	hitbox.set_deferred("disabled", false)
+	can_take_damage = true
+	#hitbox.set_deferred("disabled", false)
 	print("incinvibility over!")

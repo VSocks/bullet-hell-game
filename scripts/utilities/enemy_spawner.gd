@@ -20,15 +20,15 @@ func create_enemy_wave_with_groups():
 	var straight_move = load("res://scripts/enemy_scripts/movement/straight_down_movement.gd")
 	var sine_move = load("res://scripts/enemy_scripts/movement/sine_wave_movement.gd")
 	
-	var single_shot = load("res://scripts/enemy_scripts/normal_attack/single_shot_attack.gd")
-	var circle_attack = load("res://scripts/enemy_scripts/normal_attack/circle_attack.gd")
-	var spiral_attack = load("res://scripts/enemy_scripts/normal_attack/spiral_attack.gd")
-	var cross_attack = load("res://scripts/enemy_scripts/normal_attack/cross_attack.gd")
 	var alternating_attack = load("res://scripts/enemy_scripts/normal_attack/alternating_sides_attack.gd")
-	var layer_circle_attack = load("res://scripts/enemy_scripts/normal_attack/layer_circle_attack.gd")
-	var wave_attack = load("res://scripts/enemy_scripts/normal_attack/wave_attack.gd")
-	var grid_attack = load("res://scripts/enemy_scripts/normal_attack/grid_attack.gd")
+	var circle_attack = load("res://scripts/enemy_scripts/normal_attack/circle_attack.gd")
+	var cross_attack = load("res://scripts/enemy_scripts/normal_attack/cross_attack.gd")
 	var fan_attack = load("res://scripts/enemy_scripts/normal_attack/fan_attack.gd")
+	var grid_attack = load("res://scripts/enemy_scripts/normal_attack/grid_attack.gd")
+	var layer_circle_attack = load("res://scripts/enemy_scripts/normal_attack/layer_circle_attack.gd")
+	var single_shot = load("res://scripts/enemy_scripts/normal_attack/single_shot_attack.gd")
+	var spiral_attack = load("res://scripts/enemy_scripts/normal_attack/spiral_attack.gd")
+	var wave_attack = load("res://scripts/enemy_scripts/normal_attack/wave_attack.gd")
 	
 	var spawn_list = []
 	

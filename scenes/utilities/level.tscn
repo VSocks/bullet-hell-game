@@ -10,14 +10,14 @@
 size = Vector2(44, 900)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w7c3h"]
-size = Vector2(688, 48)
+size = Vector2(688, 46)
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_w7c3h")
 
 [node name="TextureRect" type="TextureRect" parent="."]
-offset_right = 600.0
-offset_bottom = 905.0
+offset_right = 604.0
+offset_bottom = 901.0
 texture = ExtResource("2_ppgk2")
 expand_mode = 1
 stretch_mode = 4
@@ -39,11 +39,11 @@ position = Vector2(300, -24)
 shape = SubResource("RectangleShape2D_w7c3h")
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(300, 924)
+position = Vector2(301, 824)
 shape = SubResource("RectangleShape2D_w7c3h")
 
 [node name="Player" parent="." instance=ExtResource("2_w7c3h")]
-position = Vector2(301, 797)
+position = Vector2(296, 757)
 
 [node name="BGM" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_mx8sn")
