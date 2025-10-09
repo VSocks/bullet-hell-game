@@ -19,7 +19,8 @@ func create_waves():
 	var basic_enemy = preload("res://scenes/enemies/enemy.tscn")
 	
 	# Preload path scenes
-	var curve_descent_wide = preload("res://scenes/paths/curve_descent_wide.tscn")
+	var sine_wide = preload("res://scenes/paths/sine_descent_wide.tscn")
+	var sine_small = preload("res://scenes/paths/sine_descent_small.tscn")
 
 	# Preload attack scripts
 	var single_shot = load("res://scripts/enemy_scripts/normal_attack/single_shot_attack.gd")
@@ -29,8 +30,8 @@ func create_waves():
 	# Enemy 1: Straight down path with attacks
 	spawn_list.append(EnemySpawner.create_spawn_data(
 		basic_enemy,
-		curve_descent_wide,
-		Vector2(0, -100),
+		sine_small,
+		Vector2(100, -100),
 		single_shot,
 		2.0
 	))
@@ -38,8 +39,8 @@ func create_waves():
 	# Enemy 2: Sine wave path (spawns instantly after first)
 	spawn_list.append(EnemySpawner.create_spawn_data(
 		basic_enemy,
-		curve_descent_wide,
-		Vector2(50, -100), 
+		sine_small,
+		Vector2(200, -100), 
 		single_shot,
 		0.0
 	))
@@ -47,8 +48,8 @@ func create_waves():
 	# Enemy 3: Looping path above player
 	spawn_list.append(EnemySpawner.create_spawn_data(
 		basic_enemy,
-		curve_descent_wide,
-		Vector2(50, 150),
+		sine_small,
+		Vector2(350, 150),
 		single_shot,
 		3.0
 	))
@@ -56,8 +57,8 @@ func create_waves():
 	# Enemy 4: Back and forth path (no attacks)
 	spawn_list.append(EnemySpawner.create_spawn_data(
 		basic_enemy,
-		curve_descent_wide,
-		Vector2(75, 100),
+		sine_small,
+		Vector2(375, 100),
 		null,  # No attacks
 		1.5
 	))
@@ -65,22 +66,22 @@ func create_waves():
 	# Group of enemies on the same path pattern
 	spawn_list.append(EnemySpawner.create_spawn_data(
 		basic_enemy,
-		curve_descent_wide,
-		Vector2(-25, -100),
-		single_shot,
-		0.0
-	))
-	spawn_list.append(EnemySpawner.create_spawn_data(
-		basic_enemy,
-		curve_descent_wide,
+		sine_small,
 		Vector2(50, -100),
-		single_shot, 
-		0.0
+		single_shot,
+		0.2
 	))
 	spawn_list.append(EnemySpawner.create_spawn_data(
 		basic_enemy,
-		curve_descent_wide,
-		Vector2(0, -100),
+		sine_small,
+		Vector2(150, -50),
+		single_shot, 
+		0.3
+	))
+	spawn_list.append(EnemySpawner.create_spawn_data(
+		basic_enemy,
+		sine_small,
+		Vector2(200, -150),
 		single_shot,
 		0.0
 	))

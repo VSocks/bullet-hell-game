@@ -8,9 +8,10 @@ _data = {
 }
 point_count = 12
 
-[node name="CurveDescentWide" type="Path2D"]
+[node name="SineDescentWide" type="Path2D"]
 curve = SubResource("Curve2D_7rhxg")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="."]
 rotates = false
+loop = false
 script = ExtResource("1_bipgx")

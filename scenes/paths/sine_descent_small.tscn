@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://cmaluv58nmmv0"]
+
+[ext_resource type="Script" uid="uid://decrp6qlvwgsm" path="res://scripts/enemy_scripts/paths/path_follow_2d.gd" id="1_leh1a"]
+
+[sub_resource type="Curve2D" id="Curve2D_h1tjq"]
+_data = {
+"points": PackedVector2Array(-0.350494, -63.7899, 0.350494, 63.7899, 0, 0, 0.00548983, -64.116, -0.00548983, 64.116, 128, 64, 0.239392, -63.9177, -0.239392, 63.9177, 0, 128, 0.239392, -63.6783, -0.239392, 63.6783, 128, 192, 0, -64.0002, 0, 64.0002, 0, 256, 0.385543, -64.3857, -0.385543, 64.3857, 128, 320, 0, -64.0002, 0, 64.0002, 0, 384, 0, -64.0002, 0, 64.0002, 128, 448, 0, -64.0002, 0, 64.0002, 0, 512, 0, -64.3857, 0, 64.3857, 128, 576, 0, -64.0002, 0, 64.0002, 0, 640, 0, -64.0002, 0, 64.0002, 128, 704)
+}
+point_count = 12
+
+[node name="SineDescentSmall" type="Path2D"]
+curve = SubResource("Curve2D_h1tjq")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="."]
+rotates = false
+loop = false
+script = ExtResource("1_leh1a")
