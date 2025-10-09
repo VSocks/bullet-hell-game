@@ -10,6 +10,8 @@ var health : int
 func _ready():
 	add_to_group("enemies")
 	health = MAX_HEALTH
+	global_rotation_degrees = 0.0
+	global_scale == Vector2.ONE
 
 
 func take_damage(damage):
