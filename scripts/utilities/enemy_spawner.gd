@@ -9,61 +9,81 @@ var is_spawning: bool = false
 
 
 func _ready():
-	await get_tree().create_timer(3.0).timeout
-	create_enemy_wave_with_groups()
+	create_waves()
+	await get_tree().create_timer(1.0).timeout
 	start_spawning()
 
-func create_enemy_wave_with_groups():
+
+func create_waves():
+	# Preload enemy scene
 	var basic_enemy = preload("res://scenes/enemies/enemy.tscn")
-	var boss = preload("res://scenes/bosses/boss.tscn")
 	
-	var delayed_diagonal_move = load("res://scripts/enemy_scripts/movement/delayed_diagonal_movement.gd")
-	var _orbit_dive_move = load("res://scripts/enemy_scripts/movement/orbit_then_dive_movement.gd")
-	var sine_move = load("res://scripts/enemy_scripts/movement/sine_wave_movement.gd")
-	var _spiral_descent_move = load("res://scripts/enemy_scripts/movement/spiral_descent_movement.gd")
-	var straight_move = load("res://scripts/enemy_scripts/movement/straight_down_movement.gd")
-	var _wave_charge_move = load("res://scripts/enemy_scripts/movement/wave_then_charge_movement.gd")
-	var _zigzag_move = load("res://scripts/enemy_scripts/movement/zigzag_movement.gd")
-	
-	var _alternating_attack = load("res://scripts/enemy_scripts/normal_attack/alternating_sides_attack.gd")
-	var circle_attack = load("res://scripts/enemy_scripts/normal_attack/circle_attack.gd")
-	var _cross_attack = load("res://scripts/enemy_scripts/normal_attack/cross_attack.gd")
-	var _fan_attack = load("res://scripts/enemy_scripts/normal_attack/fan_attack.gd")
-	var _grid_attack = load("res://scripts/enemy_scripts/normal_attack/grid_attack.gd")
-	var _layer_circle_attack = load("res://scripts/enemy_scripts/normal_attack/layer_circle_attack.gd")
+	# Preload path scenes
+	var curve_descent_wide = preload("res://scenes/paths/curve_descent_wide.tscn")
+
+	# Preload attack scripts
 	var single_shot = load("res://scripts/enemy_scripts/normal_attack/single_shot_attack.gd")
-	var _spiral_attack = load("res://scripts/enemy_scripts/normal_attack/spiral_attack.gd")
-	var _wave_attack = load("res://scripts/enemy_scripts/normal_attack/wave_attack.gd")
 	
 	var spawn_list = []
-	var lastdelay = 0
 	
-	for i in range(5):
-		if i == 4:
-			lastdelay = 3
-		var position = Vector2((i * 75) + 75, -abs((i * 10) - 20))
-		spawn_list.append(EnemySpawner.create_spawn_data(
-			basic_enemy, position, straight_move, null, 0.0 + lastdelay))
-	
-	lastdelay = 0
-	for i in range(10):
-		var direction
-		var enemy_index
-		if i > 4:
-			direction = -1
-			enemy_index = 9 - i
-		elif i == 9:
-			lastdelay = 3
-		else:
-			direction = 1
-			enemy_index = i
-		var position = Vector2(((enemy_index * 75) + 75), -50)
-		spawn_list.append(EnemySpawner.create_spawn_data(
-			basic_enemy, position, sine_move, null, 0.5 + lastdelay))
-	
-	
+	# Enemy 1: Straight down path with attacks
 	spawn_list.append(EnemySpawner.create_spawn_data(
-		boss, Vector2(300, 50), null, null, 0.0))
+		basic_enemy,
+		curve_descent_wide,
+		Vector2(0, -100),
+		single_shot,
+		2.0
+	))
+	
+	# Enemy 2: Sine wave path (spawns instantly after first)
+	spawn_list.append(EnemySpawner.create_spawn_data(
+		basic_enemy,
+		curve_descent_wide,
+		Vector2(50, -100), 
+		single_shot,
+		0.0
+	))
+	
+	# Enemy 3: Looping path above player
+	spawn_list.append(EnemySpawner.create_spawn_data(
+		basic_enemy,
+		curve_descent_wide,
+		Vector2(50, 150),
+		single_shot,
+		3.0
+	))
+	
+	# Enemy 4: Back and forth path (no attacks)
+	spawn_list.append(EnemySpawner.create_spawn_data(
+		basic_enemy,
+		curve_descent_wide,
+		Vector2(75, 100),
+		null,  # No attacks
+		1.5
+	))
+	
+	# Group of enemies on the same path pattern
+	spawn_list.append(EnemySpawner.create_spawn_data(
+		basic_enemy,
+		curve_descent_wide,
+		Vector2(-25, -100),
+		single_shot,
+		0.0
+	))
+	spawn_list.append(EnemySpawner.create_spawn_data(
+		basic_enemy,
+		curve_descent_wide,
+		Vector2(50, -100),
+		single_shot, 
+		0.0
+	))
+	spawn_list.append(EnemySpawner.create_spawn_data(
+		basic_enemy,
+		curve_descent_wide,
+		Vector2(0, -100),
+		single_shot,
+		0.0
+	))
 	
 	setup_spawn_list(spawn_list)
 
@@ -76,7 +96,6 @@ func setup_spawn_list(spawn_list: Array):
 func start_spawning():
 	if spawn_queue.is_empty():
 		print("No enemies to spawn!")
-		timer.stop()
 		return
 	
 	is_spawning = true
@@ -87,35 +106,48 @@ func spawn_next_enemy():
 	if current_index >= spawn_queue.size():
 		print("All enemies spawned!")
 		is_spawning = false
-		timer.stop()
 		return
 	
 	var spawn_data = spawn_queue[current_index]
 	
+	# Create Path2D structure
+	var path_instance = spawn_data["path_scene"].instantiate()
+	path_instance.position = spawn_data["spawn_position"]
+	
+	# Spawn the enemy and attach to PathFollow2D
 	var enemy_instance = spawn_data["enemy_scene"].instantiate()
-	enemy_instance.position = spawn_data["spawn_position"]
 	
-	# Attach movement script
-	if spawn_data.get("movement_script") and enemy_instance.has_node("Movement"):
-		enemy_instance.get_node("Movement").set_script(spawn_data["movement_script"])
+	# Find the PathFollow2D node (assuming it's a direct child)
+	var path_follow = path_instance.get_node("PathFollow2D")
+	if not path_follow:
+		# If no PathFollow2D exists, create one
+		path_follow = PathFollow2D.new()
+		path_instance.add_child(path_follow)
+		path_follow.owner = path_instance
 	
-	# Attach attack script  
+	# Add enemy as child of PathFollow2D
+	path_follow.add_child(enemy_instance)
+	enemy_instance.owner = path_instance
+	
+	# Attach attack script if specified
 	if spawn_data.get("attack_script") and enemy_instance.has_node("Attack"):
 		enemy_instance.get_node("Attack").set_script(spawn_data["attack_script"])
 	
-	get_parent().add_child(enemy_instance)
-	print("Spawned enemy ", current_index + 1, " at ", spawn_data["spawn_position"])
+	# Add the complete path structure to the scene
+	get_parent().add_child(path_instance)
+	print("Spawned enemy on path at position: ", spawn_data["spawn_position"])
 	
 	current_index += 1
 	
+	# Schedule next spawn
 	if current_index < spawn_queue.size():
 		var delay = spawn_data["delay_until_next"]
 		
 		if delay <= 0:
-			# Instant spawn - call immediately
+			# Instant spawn
 			spawn_next_enemy()
 		else:
-			# Delayed spawn - use timer
+			# Delayed spawn
 			timer.wait_time = delay
 			timer.start()
 
@@ -124,11 +156,11 @@ func _on_timer_timeout():
 	spawn_next_enemy()
 
 
-static func create_spawn_data(scene: PackedScene, pos: Vector2, move_script: Script = null, attack_script: Script = null, delay: float = 1.0) -> Dictionary:
+static func create_spawn_data(enemy_scene: PackedScene, path_scene: PackedScene, spawn_position: Vector2, attack_script: Script = null, delay: float = 1.0) -> Dictionary:
 	return {
-		"enemy_scene": scene,
-		"spawn_position": pos,
-		"movement_script": move_script,
+		"enemy_scene": enemy_scene,
+		"path_scene": path_scene,
+		"spawn_position": spawn_position,
 		"attack_script": attack_script,
 		"delay_until_next": delay
 	}
