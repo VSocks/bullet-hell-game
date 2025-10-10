@@ -4,8 +4,8 @@
 [ext_resource type="Script" uid="uid://wbba5ech0r4q" path="res://scripts/player_scripts/bullets/player_bullet_explosive.gd" id="1_pnqrw"]
 [ext_resource type="AudioStream" uid="uid://yn5eu835tphs" path="res://assets/sounds/laser-45816.mp3" id="2_pnqrw"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_id1qh"]
-size = Vector2(10, 14)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uaiek"]
+size = Vector2(10, 16)
 
 [node name="PlayerBulletExplosive" type="Area2D"]
 collision_layer = 8
@@ -16,10 +16,10 @@ script = ExtResource("1_pnqrw")
 texture = ExtResource("1_0wwcx")
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_id1qh")
+shape = SubResource("RectangleShape2D_uaiek")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
-position = Vector2(-1.19209e-07, 0)
+position = Vector2(-1.90735e-06, 0)
 scale = Vector2(0.7, 0.8)
 
 [node name="BulletSound" type="AudioStreamPlayer" parent="."]
@@ -28,5 +28,5 @@ volume_db = -25.0
 pitch_scale = 1.5
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
-[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_screen_exited"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="on_screen_exited"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_screen_exited"]
