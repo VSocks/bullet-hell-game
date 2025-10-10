@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://dv7a5baqarx6l"]
+
+[ext_resource type="Script" uid="uid://decrp6qlvwgsm" path="res://scripts/enemy_scripts/paths/path_follow_2d.gd" id="1_btpkg"]
+
+[sub_resource type="Curve2D" id="Curve2D_qturt"]
+_data = {
+"points": PackedVector2Array(-131.564, 314.945, 131.564, -314.945, 0, 0, 0, 0, 0, 0, 256, -64, 0, 194.7, 0, -194.7, 576, -320)
+}
+point_count = 3
+
+[node name="Path2D" type="Path2D"]
+curve = SubResource("Curve2D_qturt")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="."]
+rotation = -1.17509
+loop = false
+script = ExtResource("1_btpkg")
