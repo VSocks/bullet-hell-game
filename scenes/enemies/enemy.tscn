@@ -5,7 +5,7 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_md0e3"]
 
-[node name="Enemy" type="CharacterBody2D"]
+[node name="Enemy" type="Area2D"]
 collision_layer = 2
 script = ExtResource("1_md0e3")
 
@@ -21,4 +21,5 @@ shape = SubResource("RectangleShape2D_md0e3")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_screen_exited"]

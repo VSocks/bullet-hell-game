@@ -1,6 +1,6 @@
 extends Node2D
 
-const BULLET_COUNT : int = 7
+const BULLET_COUNT : int = 5
 const FIRE_RATE : float = 0.075
 const SPEED : int = 800
 

@@ -37,8 +37,6 @@ func reset_bullet():
 	is_initialized = false
 	direction = Vector2.UP
 	speed = 800
-	if $BulletSound.playing:
-		$BulletSound.stop()
 
 
 func reset_tween():
@@ -47,7 +45,7 @@ func reset_tween():
 		tween = create_tween()
 
 
-func _on_body_entered(hitbox):
+func _on_area_entered(hitbox):
 	if not is_initialized:
 		return 
 	

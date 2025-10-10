@@ -14,7 +14,7 @@ func initialize(_position):
 	animation.play("explode")
 
 
-func _on_body_entered(hitbox):
+func _on_area_entered(hitbox):
 	if not is_initialized:
 		return
 	

@@ -1,4 +1,4 @@
-extends CharacterBody2D
+extends Area2D
 class_name Boss
 
 const MAX_HEALTH : int = 1000

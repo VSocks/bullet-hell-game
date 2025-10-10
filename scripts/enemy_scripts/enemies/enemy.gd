@@ -1,4 +1,4 @@
-extends CharacterBody2D
+extends Area2D
 
 const MAX_HEALTH : int = 10
 
@@ -22,3 +22,8 @@ func take_damage(damage):
 func _on_screen_exited():
 	#print("enemy freed")
 	queue_free()
+
+
+func _on_body_entered(_hitbox):
+	if _hitbox is Player:
+		_hitbox.take_damage()
