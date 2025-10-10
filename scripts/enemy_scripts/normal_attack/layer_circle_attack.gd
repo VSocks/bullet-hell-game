@@ -1,6 +1,6 @@
 extends Node2D
 
-var fire_rate: float = 2.0
+var fire_rate: float = 3.0
 var layer_count: int = 5
 var bullets_per_ring: int = 18
 

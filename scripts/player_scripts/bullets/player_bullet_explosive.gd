@@ -55,9 +55,8 @@ func _on_body_entered(hitbox):
 	
 	if hitbox.is_in_group("enemies"):
 		hitbox.take_damage(DAMAGE)
-		var explosion = explosion_scene.instantiate()
-		explosion.position = position
-		get_tree().current_scene.call_deferred("add_child", explosion)
+		var explosion = BulletPool.get_bullet("pb_explosion")
+		explosion.initialize(position)
 		BulletPool.return_bullet(self)
 
 

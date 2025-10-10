@@ -16,4 +16,4 @@ func _on_timer_timeout():
 
 func shoot():
 	var bullet = BulletPool.get_bullet("eb_diamond")
-	bullet.initialize(global_position, Vector2.DOWN, 300, Vector2.DOWN.angle())
+	bullet.initialize(global_position, Vector2.DOWN, 400, Vector2.DOWN.angle())

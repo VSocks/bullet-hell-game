@@ -9,9 +9,10 @@ var bullet_scenes : Dictionary = {
 	"eb_square": preload("res://scenes/bullets/enemy_bullet_square.tscn"),
 	"pb_explosive": preload("res://scenes/bullets/player_bullet_explosive.tscn"),
 	"pb_laser": preload("res://scenes/bullets/player_bullet_laser.tscn"),
+	"pb_explosion": preload("res://scenes/bullets/player_bullet_explosion.tscn")
 }
 
-const pool_size : int = 500
+const pool_size : int = 2000
 
 var available_bullets : Dictionary = {}
 var this_level : Node
@@ -65,6 +66,7 @@ func get_bullet(bullet_type: String) -> Area2D:
 	
 	bullet.visible = true
 	bullet.process_mode = Node.PROCESS_MODE_INHERIT
+	print("bullet pulled from pool")
 	return bullet
 
 
@@ -81,8 +83,11 @@ func _deferred_return_bullet(bullet: Area2D):
 		bullet.visible = false
 		bullet.process_mode = Node.PROCESS_MODE_DISABLED
 		bullet.position = Vector2(-1000, -1000)
+		print("bulled reset by pool")
 	
 	if available_bullets.has(bullet_type):
 		available_bullets[bullet_type].append(bullet)
+		print("bullet returned to pool")
 	else:
 		bullet.queue_free()
+		print("bullet freed")

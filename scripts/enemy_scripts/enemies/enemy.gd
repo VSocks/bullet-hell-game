@@ -18,3 +18,8 @@ func take_damage(damage):
 	print(health)
 	if health <= 0:
 		queue_free()
+
+
+func _on__screen_exited():
+	print("enemy freed")
+	queue_free()

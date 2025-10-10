@@ -84,8 +84,7 @@ func reset_bullet():
 	is_initialized = false
 	direction = Vector2.DOWN
 	speed = 300
-	if $BulletSound.playing:
-		$BulletSound.stop()
+	print("bullet reset")
 
 
 func reset_tween():

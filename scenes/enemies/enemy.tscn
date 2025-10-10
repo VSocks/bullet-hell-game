@@ -18,3 +18,7 @@ shape = SubResource("RectangleShape2D_md0e3")
 [node name="Attack" type="Node2D" parent="."]
 
 [node name="Timer" type="Timer" parent="Attack"]
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on__screen_exited"]

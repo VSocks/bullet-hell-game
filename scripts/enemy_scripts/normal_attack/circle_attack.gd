@@ -1,7 +1,7 @@
 extends Node2D
 
-var fire_rate: float = 1.0
-var bullet_count: int = 36
+var fire_rate: float = 2.0
+var bullet_count: int = 12
 
 @onready var timer = $Timer
 
@@ -18,5 +18,5 @@ func shoot_circle():
 		var angle = (TAU / bullet_count) * i
 		var direction = Vector2(cos(angle), sin(angle))
 		
-		var bullet = BulletPool.get_bullet("eb_square")
-		bullet.initialize(global_position, direction, 200, direction.angle())
+		var bullet = BulletPool.get_bullet("eb_diamond")
+		bullet.initialize(global_position, direction, 150, direction.angle())
