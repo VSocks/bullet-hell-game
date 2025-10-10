@@ -84,7 +84,7 @@ func reset_bullet():
 	is_initialized = false
 	direction = Vector2.DOWN
 	speed = 300
-	print("bullet reset")
+	#print("bullet reset")
 
 
 func reset_tween():

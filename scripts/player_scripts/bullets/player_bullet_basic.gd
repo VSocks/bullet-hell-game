@@ -53,6 +53,8 @@ func _on_body_entered(hitbox):
 	
 	if hitbox.is_in_group("enemies"):
 		hitbox.take_damage(DAMAGE)
+		var spark = BulletPool.get_bullet("pb_spark")
+		spark.initialize(position)
 		BulletPool.return_bullet(self)
 
 

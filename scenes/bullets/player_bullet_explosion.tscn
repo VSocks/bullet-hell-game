@@ -1,24 +1,59 @@
-[gd_scene load_steps=4 format=3 uid="uid://d3s42u1bywo0t"]
+[gd_scene load_steps=11 format=3 uid="uid://d3s42u1bywo0t"]
 
 [ext_resource type="Script" uid="uid://dy3rs5pxy0o2h" path="res://scripts/player_scripts/bullets/player_bullet_explosion.gd" id="1_rx343"]
-[ext_resource type="Texture2D" uid="uid://dmpgiyevy18bi" path="res://assets/sprites/bullets/explosion_temporary.png" id="2_66a4a"]
+[ext_resource type="Texture2D" uid="uid://bilvgapasj1h2" path="res://assets/sprites/bullets/player_missile_explosion1.png" id="2_gwy3e"]
+[ext_resource type="Texture2D" uid="uid://50y6dt475p5g" path="res://assets/sprites/bullets/player_missile_explosion2.png" id="3_c0vca"]
+[ext_resource type="Texture2D" uid="uid://cms86j2xsnht0" path="res://assets/sprites/bullets/player_missile_explosion3.png" id="4_h1vqv"]
+[ext_resource type="Texture2D" uid="uid://c08w3kquxobxv" path="res://assets/sprites/bullets/player_missile_explosion4.png" id="5_50yf4"]
+[ext_resource type="Texture2D" uid="uid://b0aqgwlefft6a" path="res://assets/sprites/bullets/player_missile_explosion5.png" id="6_5faqp"]
+[ext_resource type="Texture2D" uid="uid://cuwpnqiyecjms" path="res://assets/sprites/bullets/player_missile_explosion6.png" id="7_e4uuk"]
+[ext_resource type="Texture2D" uid="uid://dipj873dxhj4" path="res://assets/sprites/bullets/player_missile_explosion7.png" id="8_qj15q"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gtv4d"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_gwy3e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_c0vca")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_h1vqv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_50yf4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_5faqp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_e4uuk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_qj15q")
+}],
+"loop": false,
+"name": &"explode",
+"speed": 21.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4gwpn"]
-radius = 8.0
+radius = 16.0
 
 [node name="PlayerBulletExplosion" type="Area2D"]
 collision_layer = 8
 collision_mask = 2
 script = ExtResource("1_rx343")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-2.38419e-07, -2.38419e-07)
-texture = ExtResource("2_66a4a")
+sprite_frames = SubResource("SpriteFrames_gtv4d")
+animation = &"explode"
+frame_progress = 0.933749
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_4gwpn")
 
-[node name="Timer" type="Timer" parent="."]
-
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="animation_finished" from="Sprite2D" to="." method="_on_animation_finished"]

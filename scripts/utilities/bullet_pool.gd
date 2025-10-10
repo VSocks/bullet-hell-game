@@ -9,10 +9,11 @@ var bullet_scenes : Dictionary = {
 	"eb_square": preload("res://scenes/bullets/enemy_bullet_square.tscn"),
 	"pb_explosive": preload("res://scenes/bullets/player_bullet_explosive.tscn"),
 	"pb_laser": preload("res://scenes/bullets/player_bullet_laser.tscn"),
-	"pb_explosion": preload("res://scenes/bullets/player_bullet_explosion.tscn")
+	"pb_explosion": preload("res://scenes/bullets/player_bullet_explosion.tscn"),
+	"pb_spark": preload("res://scenes/bullets/player_laser_spark.tscn")
 }
 
-const pool_size : int = 2000
+const pool_size : int = 500
 
 var available_bullets : Dictionary = {}
 var this_level : Node
@@ -27,13 +28,13 @@ func _ready():
 			var bullet = create_bullet(bullet_type)
 			available_bullets[bullet_type].append(bullet)
 	
-	print("Bullet pool initialized with types: ", bullet_scenes.keys())
+	#print("Bullet pool initialized with types: ", bullet_scenes.keys())
 
 
 func create_bullet(bullet_type: String) -> Area2D:
 	var bullet_scene = bullet_scenes.get(bullet_type)
 	if not bullet_scene:
-		print("Bullet type not found: " + bullet_type)
+		#print("Bullet type not found: " + bullet_type)
 		return null
 	
 	var bullet = bullet_scene.instantiate()
@@ -52,7 +53,7 @@ func create_bullet(bullet_type: String) -> Area2D:
 
 func get_bullet(bullet_type: String) -> Area2D:
 	if not bullet_scenes.has(bullet_type):
-		print("Unknown bullet type: " + bullet_type)
+		#print("Unknown bullet type: " + bullet_type)
 		bullet_type = "eb_round"  # Fallback
 	
 	var bullet_array = available_bullets.get(bullet_type, [])
@@ -66,7 +67,7 @@ func get_bullet(bullet_type: String) -> Area2D:
 	
 	bullet.visible = true
 	bullet.process_mode = Node.PROCESS_MODE_INHERIT
-	print("bullet pulled from pool")
+	#print("bullet pulled from pool")
 	return bullet
 
 
@@ -83,11 +84,11 @@ func _deferred_return_bullet(bullet: Area2D):
 		bullet.visible = false
 		bullet.process_mode = Node.PROCESS_MODE_DISABLED
 		bullet.position = Vector2(-1000, -1000)
-		print("bulled reset by pool")
+		#print("bulled reset by pool")
 	
 	if available_bullets.has(bullet_type):
 		available_bullets[bullet_type].append(bullet)
-		print("bullet returned to pool")
+		#print("bullet returned to pool")
 	else:
 		bullet.queue_free()
-		print("bullet freed")
+		#print("bullet freed")

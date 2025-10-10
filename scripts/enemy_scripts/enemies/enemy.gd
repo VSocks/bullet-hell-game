@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-const MAX_HEALTH : int = 5
+const MAX_HEALTH : int = 10
 
 var health : int
 
@@ -15,11 +15,10 @@ func _ready():
 func take_damage(damage):
 	health -= damage
 
-	print(health)
 	if health <= 0:
 		queue_free()
 
 
-func _on__screen_exited():
-	print("enemy freed")
+func _on_screen_exited():
+	#print("enemy freed")
 	queue_free()

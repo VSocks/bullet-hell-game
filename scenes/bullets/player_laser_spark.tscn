@@ -1,0 +1,40 @@
+[gd_scene load_steps=8 format=3 uid="uid://c4fbxwolnfh8a"]
+
+[ext_resource type="Script" uid="uid://ca7u2og134kgb" path="res://scripts/player_scripts/bullets/player_laser_spark.gd" id="1_fyaaa"]
+[ext_resource type="Texture2D" uid="uid://l0s4wfumm85d" path="res://assets/sprites/bullets/player_laser_spark1.png" id="2_qhbt7"]
+[ext_resource type="Texture2D" uid="uid://b1b0bhwcs703m" path="res://assets/sprites/bullets/player_laser_spark2.png" id="3_0o1am"]
+[ext_resource type="Texture2D" uid="uid://cd44ieqtr05jn" path="res://assets/sprites/bullets/player_laser_spark3.png" id="4_vdq5y"]
+[ext_resource type="Texture2D" uid="uid://cl7yhvbnu8s4g" path="res://assets/sprites/bullets/player_laser_spark4.png" id="5_7c365"]
+[ext_resource type="Texture2D" uid="uid://buhc75ju5gwcf" path="res://assets/sprites/bullets/player_laser_spark5.png" id="6_ww5jf"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1suc7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_qhbt7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_0o1am")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_vdq5y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_7c365")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_ww5jf")
+}],
+"loop": false,
+"name": &"spark",
+"speed": 25.0
+}]
+
+[node name="PlayerLaserSpark" type="Area2D"]
+script = ExtResource("1_fyaaa")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_1suc7")
+animation = &"spark"
+
+[connection signal="animation_finished" from="Sprite2D" to="." method="_on_animation_finished"]
