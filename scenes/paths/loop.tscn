@@ -1,6 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://bps5x0cj3gdnq"]
-
-[ext_resource type="Script" uid="uid://decrp6qlvwgsm" path="res://scripts/enemy_scripts/paths/path_follow_2d.gd" id="1_kgns6"]
+[gd_scene load_steps=2 format=3 uid="uid://bps5x0cj3gdnq"]
 
 [sub_resource type="Curve2D" id="Curve2D_oh3qh"]
 _data = {
@@ -13,4 +11,3 @@ curve = SubResource("Curve2D_oh3qh")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="."]
 loop = false
-script = ExtResource("1_kgns6")

@@ -4,6 +4,7 @@ var fire_rate: float = 2.0
 var bullet_count: int = 12
 
 @onready var timer = $Timer
+@onready var enemy = get_parent()
 
 func _ready():
 	timer.timeout.connect(_on_timer_timeout)
@@ -11,7 +12,8 @@ func _ready():
 	timer.start()
 
 func _on_timer_timeout():
-	shoot_circle()
+	if enemy.can_attack:
+		shoot_circle()
 
 func shoot_circle():
 	for i in range(bullet_count):

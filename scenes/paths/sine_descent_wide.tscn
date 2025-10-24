@@ -1,6 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://bx8unhnukunuj"]
-
-[ext_resource type="Script" uid="uid://decrp6qlvwgsm" path="res://scripts/enemy_scripts/paths/path_follow_2d.gd" id="1_bipgx"]
+[gd_scene load_steps=2 format=3 uid="uid://bx8unhnukunuj"]
 
 [sub_resource type="Curve2D" id="Curve2D_7rhxg"]
 _data = {
@@ -14,4 +12,3 @@ curve = SubResource("Curve2D_7rhxg")
 [node name="PathFollow2D" type="PathFollow2D" parent="."]
 rotates = false
 loop = false
-script = ExtResource("1_bipgx")

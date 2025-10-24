@@ -6,6 +6,6 @@ func _ready():
 
 
 func _process(_delta):
-	progress += 5
+	progress += 3
 	if progress_ratio >= 1:
-		queue_free()
+		get_parent().queue_free()
