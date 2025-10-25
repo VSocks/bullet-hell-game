@@ -10,7 +10,7 @@ var is_spawning: bool = false
 
 func _ready():
 	create_spawn_list()
-	await get_tree().create_timer(1.0).timeout
+	await get_tree().create_timer(0.5).timeout
 	start_spawning()
 
 
@@ -21,12 +21,14 @@ func create_spawn_list():
 	
 	# Paths
 	var curve_descent = preload("res://scenes/paths/curve_descent.tscn")
-	var side_jump = preload("res://scenes/paths/jump_from_side.tscn")
+	var jump = preload("res://scenes/paths/parable_jump.tscn")
 	var loop = preload("res://scenes/paths/loop.tscn")
 	var sharp_descent = preload("res://scenes/paths/sharp_descent.tscn")
+	var side_straight = preload("res://scenes/paths/straight_side.tscn")
+	var side_jump = preload("res://scenes/paths/jump_from_side.tscn")
 	var small_sine = preload("res://scenes/paths/sine_descent_small.tscn")
-	var wide_sine = preload("res://scenes/paths/sine_descent_wide.tscn")
 	var straight = preload("res://scenes/paths/straight_down.tscn")
+	var wide_sine = preload("res://scenes/paths/sine_descent_wide.tscn")
 	
 	# Path scripts
 	var slow_default = load("res://scripts/enemy_scripts/paths/slow_speed_default.gd")
@@ -44,94 +46,233 @@ func create_spawn_list():
 	var spawn_list = []
 	var last_delay
 	
-	for j in range(2):
-		for i in range(10):
-			last_delay = 0.5 * floor(i / 9) # Equals to n times 1 only on last enemy. Not very elegant but works
-			var pos = Vector2(abs(i * 133.333 - 600) - 50, -50)
-			
-			spawn_list.append(EnemySpawner.create_spawn_data(
-				basic_enemy, straight, pos, circle, pause_shoot_point, 0.1 + last_delay))
+	
+	spawn_list.append(EnemySpawner.create_spawn_data(
+		basic_enemy, straight, Vector2(300, -50), null, pause_point, 1.5
+		))
+	
+	for i in range(6):
+		last_delay = 0.5 * floor(i / 5)
+		var flip_h = false
+		if i < 3:
+			flip_h = true
+		spawn_list.append(EnemySpawner.create_spawn_data(
+			basic_enemy, sharp_descent, Vector2(i * 100 + 50, -50), null, pause_point, 0.05 + last_delay,
+			deg_to_rad(0), Vector2.ONE, flip_h
+			))
+	
+	for i in range(5):
+		last_delay = 0.5 * floor(i / 4)
+		var flip_h = false
+		if i < 3:
+			flip_h = true
+		spawn_list.append(EnemySpawner.create_spawn_data(
+			basic_enemy, sharp_descent, Vector2(i * 100 + 100, -75), null, pause_point, 0.05 + last_delay,
+			deg_to_rad(0), Vector2.ONE, flip_h
+			))
+	
+	for i in range(6):
+		last_delay = 1.5 * floor(i / 5)
+		var flip_h = false
+		if i < 3:
+			flip_h = true
+		spawn_list.append(EnemySpawner.create_spawn_data(
+			basic_enemy, sharp_descent, Vector2(i * 100 + 50, -100), null, pause_point, 0.05 + last_delay,
+			deg_to_rad(0), Vector2.ONE, flip_h
+			))
+	
+	for i in range(40):
+		last_delay = floor(i / 39)
+		spawn_list.append(EnemySpawner.create_spawn_data(
+			basic_enemy, wide_sine, Vector2(150, -50), null, slow_default, 0.2 + last_delay
+			))
 	
 	for j in range(3):
-		for i in range(10):
-			last_delay = 1 * floor(i / 9)
-			var flip_h = true
-			var pos = Vector2(i * 65, -50)
-			if i % 2 == 0:
-				flip_h = false
-			
+		for i in range(2):
+			last_delay = i
 			spawn_list.append(EnemySpawner.create_spawn_data(
-				basic_enemy, sharp_descent, pos, circle, shoot_point, 0.0 + last_delay, 
-				0, Vector2.ONE, flip_h))
+				basic_enemy, straight, Vector2(i * 500 + 50, -50), null, medium_default, 0.5 + last_delay,
+				))
 	
-	
-	for i in range(5):
-		last_delay = 1 * floor(i / 4)
-		
+	for i in range(15):
+		last_delay = 2 * floor(i / 14)
 		spawn_list.append(EnemySpawner.create_spawn_data(
-			basic_enemy, loop, Vector2(-50, 200), circle, shoot_point, 0.25 + last_delay))
+			basic_enemy, loop, Vector2(-50, 200), null, fast_default, 0.05 + last_delay))
 	
-	for i in range(5):
-		last_delay = 2 * floor(i / 4)
-		
+	for i in range(15):
+		last_delay = floor(i / 14)
 		spawn_list.append(EnemySpawner.create_spawn_data(
-			basic_enemy, loop, Vector2(650, 300), circle, shoot_point, 0.25 + last_delay,
+			basic_enemy, loop, Vector2(650, 300), null, fast_default, 0.05 + last_delay,
 			deg_to_rad(0), Vector2.ONE, true, true))
 	
-	for i in range(5):
-		last_delay = 2 * floor(i / 4)
-		
+	for i in range(15):
+		last_delay = floor(i / 14)
 		spawn_list.append(EnemySpawner.create_spawn_data(
-			basic_enemy, loop, Vector2(300, 650), circle, shoot_point, 0.25 + last_delay,
+			basic_enemy, loop, Vector2(300, 650), null, fast_default, 0.05 + last_delay,
 			deg_to_rad(-90), Vector2.ONE))
 	
-	for i in range(5):
-		last_delay = 2 * floor(i / 4)
-		
+	for i in range(15):
+		last_delay = 2 * floor(i / 14)
 		spawn_list.append(EnemySpawner.create_spawn_data(
-			basic_enemy, loop, Vector2(300, -50), circle, shoot_point, 0.25 + last_delay,
+			basic_enemy, loop, Vector2(300, -50), null, fast_default, 0.05 + last_delay,
 			deg_to_rad(90), Vector2.ONE))
 	
-	
-	for i in range(10):
-		last_delay = 1 * floor(i / 9)
-		var flip_h = false
-		var offset = 0
-		if i > 4:
-			flip_h = true
-			offset = -700
-		var pos = Vector2(abs(i * 50 + offset), -50)
-		
-		spawn_list.append(EnemySpawner.create_spawn_data(
-			basic_enemy, curve_descent, pos, circle, pause_point, 0.35 + last_delay,
-			deg_to_rad(0), Vector2.ONE, flip_h))
-
-	
-	for i in range(10):
-		last_delay = 3 * floor(i / 9)
-		var pos = Vector2(-i * 25 + 300, -50 - i * 10)
-		spawn_list.append(EnemySpawner.create_spawn_data(
-			basic_enemy, small_sine, pos, circle, slow_default, 0.1 + last_delay,))
-	
-	
-	for i in range(10):
-		last_delay = 5 * floor(i / 9)
+	for i in range(60):
+		last_delay = 2 * floor(i / 59)
 		var side = -70
-		var offset = i * 25
+		var offset = i * 2
 		var flip_h = false
 		if i % 2 == 0:
 			side = 670
 			flip_h = true
-		spawn_list.append(EnemySpawner.create_spawn_data(
-				basic_enemy, side_jump, Vector2(side, 250 + offset), circle, shoot_point, 0.25 + last_delay,
-				deg_to_rad(0), Vector2.ONE, flip_h))
+		if i % 3 == 0:
+			spawn_list.append(EnemySpawner.create_spawn_data(
+				basic_enemy, jump, Vector2(side, 600), null, medium_default, 0.1 + last_delay,
+				deg_to_rad(0), Vector2.ONE, flip_h
+				))
+		else:
+			spawn_list.append(EnemySpawner.create_spawn_data(
+				basic_enemy, side_jump, Vector2(side, 220 + offset), null, medium_default, 0.1 + last_delay,
+				deg_to_rad(0), Vector2.ONE, flip_h
+				))
 	
+	for i in range(6):
+		last_delay = 0.5 * floor(i / 5)
+		var flip_h = false
+		if i % 2 != 0:
+			flip_h = true
+		spawn_list.append(EnemySpawner.create_spawn_data(
+			basic_enemy, sharp_descent, Vector2(i * 100 + 50, -50), null, pause_point, last_delay,
+			deg_to_rad(0), Vector2.ONE, flip_h
+			))
+	
+	for i in range(7):
+		last_delay = 0.5 * floor(i / 6)
+		var flip_h = false
+		if i % 2 != 0:
+			flip_h = true
+		spawn_list.append(EnemySpawner.create_spawn_data(
+			basic_enemy, sharp_descent, Vector2(i * 100, -75), null, pause_point, last_delay,
+			deg_to_rad(0), Vector2.ONE, flip_h
+			))
+	
+	for i in range(6):
+		last_delay = 0.5 * floor(i / 5)
+		var flip_h = false
+		if i % 2 != 0:
+			flip_h = true
+		spawn_list.append(EnemySpawner.create_spawn_data(
+			basic_enemy, sharp_descent, Vector2(i * 100 + 50, -100), null, pause_point, last_delay,
+			deg_to_rad(0), Vector2.ONE, flip_h
+			))
+	
+	for i in range(7):
+		last_delay = 3 * floor(i / 6)
+		var flip_h = false
+		if i % 2 != 0:
+			flip_h = true
+		spawn_list.append(EnemySpawner.create_spawn_data(
+			basic_enemy, sharp_descent, Vector2(i * 100, -125), null, pause_point, last_delay,
+			deg_to_rad(0), Vector2.ONE, flip_h
+			))
+	
+	for i in range(25):
+		last_delay = 1.5 * floor(i / 24)
+		if i % 2 == 0:
+			var pos = Vector2(i * 15 + 50, -50)
+			spawn_list.append(EnemySpawner.create_spawn_data(
+				basic_enemy, curve_descent, pos, null, medium_default, 0.1 + last_delay,
+				))
+		else:
+			spawn_list.append(EnemySpawner.create_spawn_data(
+				basic_enemy, jump, Vector2(-50, 550), null, medium_default, 0.1 + last_delay
+				))
+	
+	spawn_list.append(EnemySpawner.create_spawn_data(
+		basic_enemy, straight, Vector2(300, -50), null, pause_point, 0.0
+		))
+	
+	for i in range(25):
+		last_delay = 1.5 * floor(i / 24)
+		if i % 2 == 0:
+			var pos = Vector2(i * -15 + 550, -50)
+			spawn_list.append(EnemySpawner.create_spawn_data(
+				basic_enemy, curve_descent, pos, null, medium_default, 0.1 + last_delay,
+				deg_to_rad(0), Vector2.ONE, true
+				))
+		else:
+			spawn_list.append(EnemySpawner.create_spawn_data(
+				basic_enemy, jump, Vector2(650, 550), null, medium_default, 0.1 + last_delay,
+				deg_to_rad(0), Vector2.ONE, true
+				))
+	
+	for i in range(10):
+		last_delay = floor(i / 9)
+		var pos = Vector2(-i * 25 + 250, -50 - i * 10)
+		spawn_list.append(EnemySpawner.create_spawn_data(
+			basic_enemy, small_sine, pos, null, slow_default, 0.1 + last_delay
+			))
+	
+	for i in range(10):
+		last_delay = floor(i / 9)
+		var pos = Vector2(-i * 25 + 300, -50 - i * 10)
+		spawn_list.append(EnemySpawner.create_spawn_data(
+			basic_enemy, small_sine, pos, null, slow_default, 0.1 + last_delay
+			))
+	
+	for i in range(10):
+		last_delay = floor(i / 9)
+		var pos = Vector2(-i * 25 + 350, -50 - i * 10)
+		spawn_list.append(EnemySpawner.create_spawn_data(
+			basic_enemy, small_sine, pos, null, slow_default, 0.1 + last_delay
+			))
+	
+	for i in range(10):
+		last_delay = 3 * floor(i / 9)
+		var pos = Vector2(-i * 25 + 400, -50 - i * 10)
+		spawn_list.append(EnemySpawner.create_spawn_data(
+			basic_enemy, small_sine, pos, null, slow_default, 0.1 + last_delay
+			))
+	
+	for i in range(2):
+		last_delay = 3 * i
+		spawn_list.append(EnemySpawner.create_spawn_data(
+			basic_enemy, straight, Vector2(300 * i + 150, -50), null, pause_point, last_delay
+			))
+	
+	for i in range(10):
+		last_delay = 2 * floor(i / 9)
+		var flip_h = false
+		var side = -50
+		if i % 2 == 0:
+			side = 650
+			flip_h = true
+		spawn_list.append(EnemySpawner.create_spawn_data(
+			basic_enemy, side_straight, Vector2(side, abs(-i * 25 + 135)), null, medium_default, 0.35 + last_delay,
+			deg_to_rad(0), Vector2.ONE, flip_h))
+	
+	spawn_list.append(EnemySpawner.create_spawn_data(
+		basic_enemy, straight, Vector2(300, -50), null, pause_point, 0.0
+		))
+	
+	for i in range(20):
+		last_delay = floor(i / 19)
+		var side = -50
+		var flip_h = false
+		if i % 2 == 0:
+			side = 650
+			flip_h = true
+		spawn_list.append(EnemySpawner.create_spawn_data(
+				basic_enemy, jump, Vector2(side, 550), null, medium_default, 0.1 + last_delay,
+				deg_to_rad(0), Vector2.ONE, flip_h
+				))
+		
+
 	setup_spawn_list(spawn_list)
 
 
 func setup_spawn_list(spawn_list: Array):
 	spawn_queue = spawn_list.duplicate()
-	print_debug("Setup spawn list with ", spawn_queue.size(), " enemies")
 
 
 func start_spawning():

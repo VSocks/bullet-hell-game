@@ -5,7 +5,7 @@ var shot_fired: bool = false
 
 func _ready():
 	trigger_points = [1]  # Point index 1 triggers shooting
-	speed = 500.0
+	speed = 300.0
 
 func on_trigger_point_reached(point_index: int):
 	if not shot_fired:
@@ -21,4 +21,4 @@ func shoot():
 			attack_node.shoot()
 		elif attack_node.has_method("execute_attack"):
 			attack_node.execute_attack()
-	print("Fired shot at point!")
+	#print_debug("Fired shot at point!")

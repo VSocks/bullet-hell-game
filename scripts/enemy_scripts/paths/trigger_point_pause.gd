@@ -8,7 +8,7 @@ var pause_timer: float = 0.0
 func _ready():
 	# Set which point indices should trigger pauses
 	trigger_points = [1]  # Point index 1 (second point) triggers pause
-	speed = 500.0
+	speed = 300.0
 
 func _process(delta):
 	if is_paused:
@@ -24,6 +24,6 @@ func _process(delta):
 		get_parent().queue_free()
 
 func on_trigger_point_reached(point_index: int):
-	print("Pausing at point ", point_index)
+	#print_debug("Pausing at point ", point_index)
 	is_paused = true
 	pause_timer = pause_duration

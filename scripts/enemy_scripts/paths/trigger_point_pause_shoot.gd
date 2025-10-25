@@ -8,7 +8,7 @@ var has_shot: bool = false
 
 func _ready():
 	trigger_points = [1]  # Point index 1 triggers pause+shoot
-	speed = 500.0
+	speed = 300.0
 
 func _process(delta):
 	if is_paused:
@@ -25,7 +25,7 @@ func _process(delta):
 
 func on_trigger_point_reached(point_index: int):
 	if not has_shot:
-		print("Pausing and shooting at point ", point_index)
+		#print_debug("Pausing and shooting at point ", point_index)
 		shoot()
 		is_paused = true
 		pause_timer = pause_duration

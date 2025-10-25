@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bx2fgybhgfttv" path="res://assets/sprites/bullets/enemy_bullet_round.png" id="2_2rw7y"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_y25gk"]
-radius = 4.0
+radius = 5.0
 
 [node name="EnemyBulletRound" type="Area2D"]
 collision_layer = 8
