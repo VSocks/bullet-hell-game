@@ -25,6 +25,10 @@ window/size/viewport_height=600
 window/size/mode=3
 window/stretch/mode="viewport"
 
+[editor]
+
+movie_writer/movie_file="/home/vsocks/Godot/bullet-hell-game/recording.avi"
+
 [global_group]
 
 enemies=""

@@ -1,6 +1,6 @@
 extends Area2D
 
-const MAX_HEALTH : int = 10
+const MAX_HEALTH : int = 5
 
 var health : int
 var can_attack : bool = false
