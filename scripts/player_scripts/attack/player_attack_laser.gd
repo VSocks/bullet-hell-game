@@ -16,12 +16,12 @@ func start_attack():
 	shoot()
 	fire_rate_timer.wait_time = FIRE_RATE
 	fire_rate_timer.start()
-	#print("player attack started!")
+	#print_debug("player attack started!")
 
 
 func stop_attack():
 	fire_rate_timer.stop()
-	#print("player attack over!")
+	#print_debug("player attack over!")
 
 
 func shoot():

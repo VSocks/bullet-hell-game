@@ -27,6 +27,7 @@ func _ready():
 	animation.play("default")
 	health = MAX_HEALTH
 	speed = NORMAL_SPEED
+	reset_position()
 
 
 func _process(delta):
@@ -73,10 +74,10 @@ func take_damage():
 		invincibility_timer.set_wait_time(1)
 		invincibility_timer.start()
 		health -= 1
-		print("player takes damage!")
+		print_debug("player takes damage!")
 		if health <= 0:
 			queue_free()
-			print("player dead!")
+			print_debug("player dead!")
 		current_attack.stop_attack()
 		animation.play("hurt")
 		reset_position()
@@ -84,13 +85,14 @@ func take_damage():
 
 func reset_position():
 	reset_tween()
-	tween.tween_property(self, "position", Vector2(225, 550), 0.25)
+	var window = get_viewport_rect().size
+	tween.tween_property(self, "position", Vector2(window.x / 2, window.y - 50), 0.35)
 
 
 func reset_tween():
 	if tween:
 		tween.kill()
-		tween = create_tween()
+		tween = create_tween().set_ease(Tween.EASE_OUT)
 
 
 func _on_invincibility_timer_timeout():
@@ -102,4 +104,4 @@ func _on_invincibility_timer_timeout():
 		animation.play("attack")
 	else:
 		animation.play("default")
-	print("incinvibility over!")
+	print_debug("incinvibility over!")

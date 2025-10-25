@@ -38,7 +38,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"attack",
-"speed": 15.0
+"speed": 25.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -85,6 +85,8 @@ script = ExtResource("1_g2els")
 [node name="Animation" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ugbui")
 animation = &"hurt"
+frame = 1
+frame_progress = 0.842555
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
 position = Vector2(0, 8)

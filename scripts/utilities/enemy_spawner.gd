@@ -44,7 +44,7 @@ func create_spawn_list():
 	for j in range(2):
 		for i in range(10):
 			last_delay = 0.5 * floor(i / 9) # Equals to n times 1 only on last enemy. Not very elegant but works
-			var pos = Vector2(abs(i * 100 - 450) - 25, -50)
+			var pos = Vector2(abs(i * 133.333 - 600) - 50, -50)
 			
 			spawn_list.append(EnemySpawner.create_spawn_data(
 				basic_enemy, straight, pos, circle, fast_default, 0.1 + last_delay))
@@ -53,8 +53,8 @@ func create_spawn_list():
 		for i in range(10):
 			last_delay = 1 * floor(i / 9)
 			var flip_h = true
-			var pos = Vector2(i * 50, -50)
-			if i > 4:
+			var pos = Vector2(i * 65, -50)
+			if i % 2 == 0:
 				flip_h = false
 			
 			spawn_list.append(EnemySpawner.create_spawn_data(
@@ -72,21 +72,21 @@ func create_spawn_list():
 		last_delay = 2 * floor(i / 4)
 		
 		spawn_list.append(EnemySpawner.create_spawn_data(
-			basic_enemy, loop, Vector2(500, 300), circle, medium_default, 0.25 + last_delay,
+			basic_enemy, loop, Vector2(650, 300), circle, medium_default, 0.25 + last_delay,
 			deg_to_rad(0), Vector2.ONE, true, true))
 	
 	for i in range(5):
 		last_delay = 2 * floor(i / 4)
 		
 		spawn_list.append(EnemySpawner.create_spawn_data(
-			basic_enemy, loop, Vector2(225, 650), circle, fast_default, 0.25 + last_delay,
+			basic_enemy, loop, Vector2(300, 650), circle, fast_default, 0.25 + last_delay,
 			deg_to_rad(-90), Vector2.ONE))
 	
 	for i in range(5):
 		last_delay = 2 * floor(i / 4)
 		
 		spawn_list.append(EnemySpawner.create_spawn_data(
-			basic_enemy, loop, Vector2(225, -50), circle, fast_default, 0.25 + last_delay,
+			basic_enemy, loop, Vector2(300, -50), circle, fast_default, 0.25 + last_delay,
 			deg_to_rad(90), Vector2.ONE))
 	
 	
@@ -106,21 +106,21 @@ func create_spawn_list():
 	
 	for i in range(10):
 		last_delay = 3 * floor(i / 9)
-		var pos = Vector2(-i * 25 + 250, -50 - i * 10)
+		var pos = Vector2(-i * 25 + 300, -50 - i * 10)
 		spawn_list.append(EnemySpawner.create_spawn_data(
 			basic_enemy, small_sine, pos, circle, slow_default, 0.1 + last_delay,))
 	
 	
 	for i in range(10):
 		last_delay = 5 * floor(i / 9)
-		var side = -50
-		var offset = i * 50
+		var side = -70
+		var offset = i * 25
 		var flip_h = false
 		if i % 2 == 0:
-			side = 500
+			side = 670
 			flip_h = true
 		spawn_list.append(EnemySpawner.create_spawn_data(
-				basic_enemy, side_jump, Vector2(side, 200 + offset), circle, fast_default, 0.25 + last_delay,
+				basic_enemy, side_jump, Vector2(side, 250 + offset), circle, fast_default, 0.25 + last_delay,
 				deg_to_rad(0), Vector2.ONE, flip_h))
 	
 	setup_spawn_list(spawn_list)
@@ -128,12 +128,12 @@ func create_spawn_list():
 
 func setup_spawn_list(spawn_list: Array):
 	spawn_queue = spawn_list.duplicate()
-	print("Setup spawn list with ", spawn_queue.size(), " enemies")
+	print_debug("Setup spawn list with ", spawn_queue.size(), " enemies")
 
 
 func start_spawning():
 	if spawn_queue.is_empty():
-		print("No enemies to spawn!")
+		print_debug("No enemies to spawn!")
 		return
 	
 	is_spawning = true
@@ -142,7 +142,7 @@ func start_spawning():
 
 func spawn_next_enemy():
 	if current_index >= spawn_queue.size():
-		print("All enemies spawned!")
+		print_debug("All enemies spawned!")
 		is_spawning = false
 		timer.stop()
 		return
@@ -154,16 +154,16 @@ func spawn_next_enemy():
 	
 	if spawn_data.has("path_rotation") and spawn_data.path_rotation != 0:
 		path_instance.rotation = spawn_data["path_rotation"]
-		#print("rotating path of enemy ", current_index)
+		#print_debug("rotating path of enemy ", current_index)
 	if spawn_data.has("path_scale") and spawn_data.path_scale != Vector2.ONE:
 		path_instance.scale = spawn_data["path_scale"]
-		#print("scaling path of enemy ", current_index)
+		#print_debug("scaling path of enemy ", current_index)
 	if spawn_data.has("path_flip_h") and spawn_data.path_flip_h == true:
 		path_instance.scale.x *= -1
-		#print("flipping h of enemy ", current_index)
+		#print_debug("flipping h of enemy ", current_index)
 	if spawn_data.has("path_flip_v") and spawn_data.path_flip_v == true:
 		path_instance.scale.y *= -1
-		#print("flipping v of enemy ", current_index)
+		#print_debug("flipping v of enemy ", current_index)
 	
 	# Find or create PathFollow2D node
 	var path_follow = path_instance.get_node("PathFollow2D")
@@ -175,7 +175,7 @@ func spawn_next_enemy():
 	# Attach PathFollow2D script if specified
 	if spawn_data.get("pathfollow_script") and path_follow:
 		path_follow.set_script(spawn_data["pathfollow_script"])
-		print("Attached pathfollow script: ", spawn_data["pathfollow_script"].resource_path.get_file())
+		#print_debug("Attached pathfollow script: ", spawn_data["pathfollow_script"].resource_path.get_file())
 	
 	# Spawn the enemy and attach to PathFollow2D
 	var enemy_instance = spawn_data["enemy_scene"].instantiate()
@@ -185,11 +185,11 @@ func spawn_next_enemy():
 	# Attach attack script if specified
 	if spawn_data.get("attack_script") and enemy_instance.has_node("Attack"):
 		enemy_instance.get_node("Attack").set_script(spawn_data["attack_script"])
-		print("Attached attack script: ", spawn_data["attack_script"].resource_path.get_file())
+		#print_debug("Attached attack script: ", spawn_data["attack_script"].resource_path.get_file())
 	
 	# Add the complete path structure to the scene
 	get_parent().add_child(path_instance)
-	print("Spawned enemy with custom path behavior at position: ", spawn_data["spawn_position"])
+	#print_debug("Spawned enemy with at position: ", spawn_data["spawn_position"])
 	
 	current_index += 1
 	

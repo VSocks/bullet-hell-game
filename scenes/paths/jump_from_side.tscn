@@ -2,7 +2,7 @@
 
 [sub_resource type="Curve2D" id="Curve2D_qturt"]
 _data = {
-"points": PackedVector2Array(-131.564, 314.945, 131.564, -314.945, 0, 0, 0, 0, 0, 0, 256, -64, 0, 194.7, 0, -194.7, 576, -320)
+"points": PackedVector2Array(-170.678, 340.857, 170.678, -340.857, 0, 0, -93.7027, -76.204, 93.7027, 76.204, 344, -112, 0, 194.7, 0, -194.7, 704, -320)
 }
 point_count = 3
 
@@ -10,5 +10,5 @@ point_count = 3
 curve = SubResource("Curve2D_qturt")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="."]
-rotation = -1.17509
+rotation = -1.10656
 loop = false

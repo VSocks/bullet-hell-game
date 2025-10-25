@@ -69,7 +69,6 @@ func initialize(_position, _direction, _speed, _angle):
 	reset_tween()
 	tween.tween_property(self, "scale", Vector2(0.0, 0.0), 0.0)
 	tween.tween_property(self, "scale", Vector2(1.0, 1.0), 0.15)
-	#$BulletSound.play()
 
 
 func scale_bullet(_size, _time):
@@ -84,7 +83,7 @@ func reset_bullet():
 	is_initialized = false
 	direction = Vector2.DOWN
 	speed = 300
-	#print("bullet reset")
+	#print_debug("bullet reset")
 
 
 func reset_tween():

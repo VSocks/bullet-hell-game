@@ -28,13 +28,13 @@ func _ready():
 			var bullet = create_bullet(bullet_type)
 			available_bullets[bullet_type].append(bullet)
 	
-	#print("Bullet pool initialized with types: ", bullet_scenes.keys())
+	#print_debug("Bullet pool initialized with types: ", bullet_scenes.keys())
 
 
 func create_bullet(bullet_type: String) -> Area2D:
 	var bullet_scene = bullet_scenes.get(bullet_type)
 	if not bullet_scene:
-		#print("Bullet type not found: " + bullet_type)
+		#print_debug("Bullet type not found: " + bullet_type)
 		return null
 	
 	var bullet = bullet_scene.instantiate()
@@ -53,7 +53,7 @@ func create_bullet(bullet_type: String) -> Area2D:
 
 func get_bullet(bullet_type: String) -> Area2D:
 	if not bullet_scenes.has(bullet_type):
-		#print("Unknown bullet type: " + bullet_type)
+		print_debug("Unknown bullet type: " + bullet_type)
 		bullet_type = "eb_round"  # Fallback
 	
 	var bullet_array = available_bullets.get(bullet_type, [])
@@ -61,13 +61,13 @@ func get_bullet(bullet_type: String) -> Area2D:
 	
 	if bullet_array.is_empty():
 		bullet = create_bullet(bullet_type)
-		print("Pool expanded for type: ", bullet_type)
+		print_debug("Pool expanded for type: ", bullet_type)
 	else:
 		bullet = bullet_array.pop_back()
 	
 	bullet.visible = true
 	bullet.process_mode = Node.PROCESS_MODE_INHERIT
-	#print("bullet pulled from pool")
+	#print_debug("bullet pulled from pool")
 	return bullet
 
 
@@ -84,11 +84,11 @@ func _deferred_return_bullet(bullet: Area2D):
 		bullet.visible = false
 		bullet.process_mode = Node.PROCESS_MODE_DISABLED
 		bullet.position = Vector2(-1000, -1000)
-		#print("bulled reset by pool")
+		#print_debug("bulled reset by pool")
 	
 	if available_bullets.has(bullet_type):
 		available_bullets[bullet_type].append(bullet)
-		#print("bullet returned to pool")
+		#print_debug("bullet returned to pool")
 	else:
 		bullet.queue_free()
-		#print("bullet freed")
+		#print_debug("bullet freed")

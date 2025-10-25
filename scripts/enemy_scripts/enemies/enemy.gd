@@ -27,7 +27,7 @@ func _on_screen_entered():
 
 
 func _on_screen_exited():
-	#print("enemy freed")
+	#print_debug("enemy freed")
 	queue_free()
 
 

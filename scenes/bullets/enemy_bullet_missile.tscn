@@ -1,17 +1,16 @@
 [gd_scene load_steps=4 format=3 uid="uid://5epccem0myn1"]
 
 [ext_resource type="Script" uid="uid://c0qug8j6apbkq" path="res://scripts/enemy_scripts/bullets/enemy_bullet_basic.gd" id="1_k1aip"]
-[ext_resource type="Texture2D" uid="uid://dqwhmsmy7467l" path="res://assets/sprites/bullets/enemy_bullet_missile.png" id="2_ehu66"]
+[ext_resource type="Texture2D" uid="uid://dqwhmsmy7467l" path="res://assets/sprites/bullets/enemy_bullet_missile.png" id="2_bt0vx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6m53u"]
 size = Vector2(10, 23)
 
 [node name="EnemyBulletMissile" type="Area2D"]
-rotation = 3.14159
 script = ExtResource("1_k1aip")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_ehu66")
+texture = ExtResource("2_bt0vx")
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
 position = Vector2(0, 0.5)
