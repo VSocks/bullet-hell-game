@@ -1,21 +1,11 @@
 extends Node2D
 
-var fire_rate: float = 2.0
 var bullet_count: int = 12
 
-@onready var timer = $Timer
 @onready var enemy = get_parent()
 
-func _ready():
-	timer.timeout.connect(_on_timer_timeout)
-	timer.wait_time = fire_rate
-	timer.start()
 
-func _on_timer_timeout():
-	if enemy.can_attack:
-		shoot_circle()
-
-func shoot_circle():
+func shoot():
 	for i in range(bullet_count):
 		var angle = (TAU / bullet_count) * i
 		var direction = Vector2(cos(angle), sin(angle))

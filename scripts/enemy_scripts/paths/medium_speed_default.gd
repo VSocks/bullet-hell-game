@@ -5,7 +5,7 @@ func _ready():
 	pass
 
 
-func _process(_delta):
-	progress += 5
+func _process(delta):
+	progress += 500 * delta
 	if progress_ratio >= 1:
 		get_parent().queue_free()
