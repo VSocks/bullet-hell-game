@@ -20,5 +20,5 @@ func shoot_circle():
 		var angle = (TAU / bullet_count) * i
 		var direction = Vector2(cos(angle), sin(angle))
 		
-		var bullet = BulletPool.get_bullet("eb_missile")
+		var bullet = BulletPool.get_bullet("eb_round")
 		bullet.initialize(global_position, direction, 150, direction.angle())

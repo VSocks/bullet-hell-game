@@ -13,7 +13,7 @@ var bullet_scenes : Dictionary = {
 	"pb_spark": preload("res://scenes/bullets/player_laser_spark.tscn")
 }
 
-const pool_size : int = 500
+const pool_size = [500, 500, 500, 500, 500, 500, 200, 200, 20, 20]
 
 var available_bullets : Dictionary = {}
 var this_level : Node
@@ -21,14 +21,15 @@ var this_level : Node
 
 func _ready():
 	this_level = get_tree().current_scene
-	
+	var pool_size_index = 0
 	for bullet_type in bullet_scenes.keys():
 		available_bullets[bullet_type] = []
-		for i in range(pool_size):
+		for i in pool_size[pool_size_index]:
 			var bullet = create_bullet(bullet_type)
 			available_bullets[bullet_type].append(bullet)
+		print_debug("Created pool of size ", pool_size[pool_size_index], " for bullet type ", bullet_type)
+		pool_size_index += 1
 	
-	#print_debug("Bullet pool initialized with types: ", bullet_scenes.keys())
 
 
 func create_bullet(bullet_type: String) -> Area2D:

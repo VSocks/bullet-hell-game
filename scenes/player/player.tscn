@@ -84,9 +84,7 @@ script = ExtResource("1_g2els")
 
 [node name="Animation" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ugbui")
-animation = &"hurt"
-frame = 1
-frame_progress = 0.842555
+animation = &"attack"
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
 position = Vector2(0, 8)
