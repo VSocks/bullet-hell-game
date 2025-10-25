@@ -34,6 +34,7 @@ movie_writer/movie_file="/home/vsocks/Godot/bullet-hell-game/recording.avi"
 enemies=""
 enemy_bullets=""
 player_bullets=""
+player=""
 
 [input]
 

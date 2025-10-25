@@ -8,7 +8,7 @@ var pause_timer: float = 0.0
 func _ready():
 	# Set which point indices should trigger pauses
 	trigger_points = [1]  # Point index 1 (second point) triggers pause
-	speed = 300.0
+	speed = 400.0
 
 func _process(delta):
 	if is_paused:

@@ -39,7 +39,10 @@ func create_spawn_list():
 	var pause_shoot_point = load("res://scripts/enemy_scripts/paths/trigger_point_pause_shoot.gd")
 	
 	# Attacks
+	var aimed_shotgun = load("res://scripts/enemy_scripts/normal_attack/aimed_shotgun.gd")
+	var aimed_single = load("res://scripts/enemy_scripts/normal_attack/aimed_single_shot.gd")
 	var circle = load("res://scripts/enemy_scripts/normal_attack/circle_attack.gd")
+	var continuous_aimed_single = load("res://scripts/enemy_scripts/normal_attack/continuous_aimed_single.gd")
 	var layer_circle = load("res://scripts/enemy_scripts/normal_attack/layer_circle_attack.gd")
 	var single_shot = load("res://scripts/enemy_scripts/normal_attack/single_shot_attack.gd")
 	
@@ -48,7 +51,7 @@ func create_spawn_list():
 	
 	
 	spawn_list.append(EnemySpawner.create_spawn_data(
-		basic_enemy, straight, Vector2(300, -50), null, pause_point, 1.5
+		basic_enemy, straight, Vector2(300, -50), circle, pause_shoot_point, 1.5
 		))
 	
 	for i in range(6):
@@ -57,7 +60,7 @@ func create_spawn_list():
 		if i < 3:
 			flip_h = true
 		spawn_list.append(EnemySpawner.create_spawn_data(
-			basic_enemy, sharp_descent, Vector2(i * 100 + 50, -50), null, pause_point, 0.05 + last_delay,
+			basic_enemy, sharp_descent, Vector2(i * 100 + 50, -50), single_shot, pause_shoot_point, 0.05 + last_delay,
 			deg_to_rad(0), Vector2.ONE, flip_h
 			))
 	
@@ -67,7 +70,7 @@ func create_spawn_list():
 		if i < 3:
 			flip_h = true
 		spawn_list.append(EnemySpawner.create_spawn_data(
-			basic_enemy, sharp_descent, Vector2(i * 100 + 100, -75), null, pause_point, 0.05 + last_delay,
+			basic_enemy, sharp_descent, Vector2(i * 100 + 100, -75), single_shot, pause_shoot_point, 0.05 + last_delay,
 			deg_to_rad(0), Vector2.ONE, flip_h
 			))
 	
@@ -77,44 +80,44 @@ func create_spawn_list():
 		if i < 3:
 			flip_h = true
 		spawn_list.append(EnemySpawner.create_spawn_data(
-			basic_enemy, sharp_descent, Vector2(i * 100 + 50, -100), null, pause_point, 0.05 + last_delay,
+			basic_enemy, sharp_descent, Vector2(i * 100 + 50, -100), single_shot, pause_shoot_point, 0.05 + last_delay,
 			deg_to_rad(0), Vector2.ONE, flip_h
 			))
 	
 	for i in range(40):
 		last_delay = floor(i / 39)
 		spawn_list.append(EnemySpawner.create_spawn_data(
-			basic_enemy, wide_sine, Vector2(150, -50), null, slow_default, 0.2 + last_delay
+			basic_enemy, wide_sine, Vector2(150, -50), continuous_aimed_single, slow_default, 0.2 + last_delay
 			))
 	
 	for j in range(3):
 		for i in range(2):
 			last_delay = i
 			spawn_list.append(EnemySpawner.create_spawn_data(
-				basic_enemy, straight, Vector2(i * 500 + 50, -50), null, medium_default, 0.5 + last_delay,
+				basic_enemy, straight, Vector2(i * 500 + 50, -50), aimed_shotgun, shoot_point, 0.5 + last_delay,
 				))
 	
 	for i in range(15):
 		last_delay = 2 * floor(i / 14)
 		spawn_list.append(EnemySpawner.create_spawn_data(
-			basic_enemy, loop, Vector2(-50, 200), null, fast_default, 0.05 + last_delay))
+			basic_enemy, loop, Vector2(-50, 200), circle, shoot_point, 0.2 + last_delay))
 	
 	for i in range(15):
 		last_delay = floor(i / 14)
 		spawn_list.append(EnemySpawner.create_spawn_data(
-			basic_enemy, loop, Vector2(650, 300), null, fast_default, 0.05 + last_delay,
+			basic_enemy, loop, Vector2(650, 300), circle, shoot_point, 0.2 + last_delay,
 			deg_to_rad(0), Vector2.ONE, true, true))
 	
 	for i in range(15):
 		last_delay = floor(i / 14)
 		spawn_list.append(EnemySpawner.create_spawn_data(
-			basic_enemy, loop, Vector2(300, 650), null, fast_default, 0.05 + last_delay,
+			basic_enemy, loop, Vector2(300, 650), circle, shoot_point, 0.2 + last_delay,
 			deg_to_rad(-90), Vector2.ONE))
 	
 	for i in range(15):
 		last_delay = 2 * floor(i / 14)
 		spawn_list.append(EnemySpawner.create_spawn_data(
-			basic_enemy, loop, Vector2(300, -50), null, fast_default, 0.05 + last_delay,
+			basic_enemy, loop, Vector2(300, -50), circle, shoot_point, 0.2 + last_delay,
 			deg_to_rad(90), Vector2.ONE))
 	
 	for i in range(60):
@@ -127,12 +130,12 @@ func create_spawn_list():
 			flip_h = true
 		if i % 3 == 0:
 			spawn_list.append(EnemySpawner.create_spawn_data(
-				basic_enemy, jump, Vector2(side, 600), null, medium_default, 0.1 + last_delay,
+				basic_enemy, jump, Vector2(side, 600), circle, shoot_point, 0.1 + last_delay,
 				deg_to_rad(0), Vector2.ONE, flip_h
 				))
 		else:
 			spawn_list.append(EnemySpawner.create_spawn_data(
-				basic_enemy, side_jump, Vector2(side, 220 + offset), null, medium_default, 0.1 + last_delay,
+				basic_enemy, side_jump, Vector2(side, 220 + offset), circle, shoot_point, 0.1 + last_delay,
 				deg_to_rad(0), Vector2.ONE, flip_h
 				))
 	
@@ -142,7 +145,7 @@ func create_spawn_list():
 		if i % 2 != 0:
 			flip_h = true
 		spawn_list.append(EnemySpawner.create_spawn_data(
-			basic_enemy, sharp_descent, Vector2(i * 100 + 50, -50), null, pause_point, last_delay,
+			basic_enemy, sharp_descent, Vector2(i * 100 + 50, -50), single_shot, pause_shoot_point, last_delay,
 			deg_to_rad(0), Vector2.ONE, flip_h
 			))
 	
@@ -152,7 +155,7 @@ func create_spawn_list():
 		if i % 2 != 0:
 			flip_h = true
 		spawn_list.append(EnemySpawner.create_spawn_data(
-			basic_enemy, sharp_descent, Vector2(i * 100, -75), null, pause_point, last_delay,
+			basic_enemy, sharp_descent, Vector2(i * 100, -75), single_shot, pause_shoot_point, last_delay,
 			deg_to_rad(0), Vector2.ONE, flip_h
 			))
 	
@@ -162,7 +165,7 @@ func create_spawn_list():
 		if i % 2 != 0:
 			flip_h = true
 		spawn_list.append(EnemySpawner.create_spawn_data(
-			basic_enemy, sharp_descent, Vector2(i * 100 + 50, -100), null, pause_point, last_delay,
+			basic_enemy, sharp_descent, Vector2(i * 100 + 50, -100), single_shot, pause_shoot_point, last_delay,
 			deg_to_rad(0), Vector2.ONE, flip_h
 			))
 	
@@ -172,7 +175,7 @@ func create_spawn_list():
 		if i % 2 != 0:
 			flip_h = true
 		spawn_list.append(EnemySpawner.create_spawn_data(
-			basic_enemy, sharp_descent, Vector2(i * 100, -125), null, pause_point, last_delay,
+			basic_enemy, sharp_descent, Vector2(i * 100, -125), single_shot, pause_shoot_point, last_delay,
 			deg_to_rad(0), Vector2.ONE, flip_h
 			))
 	
@@ -181,15 +184,15 @@ func create_spawn_list():
 		if i % 2 == 0:
 			var pos = Vector2(i * 15 + 50, -50)
 			spawn_list.append(EnemySpawner.create_spawn_data(
-				basic_enemy, curve_descent, pos, null, medium_default, 0.1 + last_delay,
+				basic_enemy, curve_descent, pos, circle, shoot_point, 0.1 + last_delay,
 				))
 		else:
 			spawn_list.append(EnemySpawner.create_spawn_data(
-				basic_enemy, jump, Vector2(-50, 550), null, medium_default, 0.1 + last_delay
+				basic_enemy, jump, Vector2(-50, 550), aimed_single, shoot_point, 0.1 + last_delay
 				))
 	
 	spawn_list.append(EnemySpawner.create_spawn_data(
-		basic_enemy, straight, Vector2(300, -50), null, pause_point, 0.0
+		basic_enemy, straight, Vector2(300, -50), layer_circle, pause_shoot_point, 0.0
 		))
 	
 	for i in range(25):
@@ -197,12 +200,12 @@ func create_spawn_list():
 		if i % 2 == 0:
 			var pos = Vector2(i * -15 + 550, -50)
 			spawn_list.append(EnemySpawner.create_spawn_data(
-				basic_enemy, curve_descent, pos, null, medium_default, 0.1 + last_delay,
+				basic_enemy, curve_descent, pos, circle, shoot_point, 0.1 + last_delay,
 				deg_to_rad(0), Vector2.ONE, true
 				))
 		else:
 			spawn_list.append(EnemySpawner.create_spawn_data(
-				basic_enemy, jump, Vector2(650, 550), null, medium_default, 0.1 + last_delay,
+				basic_enemy, jump, Vector2(650, 550), aimed_shotgun, shoot_point, 0.1 + last_delay,
 				deg_to_rad(0), Vector2.ONE, true
 				))
 	
@@ -210,34 +213,34 @@ func create_spawn_list():
 		last_delay = floor(i / 9)
 		var pos = Vector2(-i * 25 + 250, -50 - i * 10)
 		spawn_list.append(EnemySpawner.create_spawn_data(
-			basic_enemy, small_sine, pos, null, slow_default, 0.1 + last_delay
+			basic_enemy, small_sine, pos, continuous_aimed_single, slow_default, 0.1 + last_delay
 			))
 	
 	for i in range(10):
 		last_delay = floor(i / 9)
 		var pos = Vector2(-i * 25 + 300, -50 - i * 10)
 		spawn_list.append(EnemySpawner.create_spawn_data(
-			basic_enemy, small_sine, pos, null, slow_default, 0.1 + last_delay
+			basic_enemy, small_sine, pos, continuous_aimed_single, slow_default, 0.1 + last_delay
 			))
 	
 	for i in range(10):
 		last_delay = floor(i / 9)
 		var pos = Vector2(-i * 25 + 350, -50 - i * 10)
 		spawn_list.append(EnemySpawner.create_spawn_data(
-			basic_enemy, small_sine, pos, null, slow_default, 0.1 + last_delay
+			basic_enemy, small_sine, pos, continuous_aimed_single, slow_default, 0.1 + last_delay
 			))
 	
 	for i in range(10):
 		last_delay = 3 * floor(i / 9)
 		var pos = Vector2(-i * 25 + 400, -50 - i * 10)
 		spawn_list.append(EnemySpawner.create_spawn_data(
-			basic_enemy, small_sine, pos, null, slow_default, 0.1 + last_delay
+			basic_enemy, small_sine, pos, continuous_aimed_single, slow_default, 0.1 + last_delay
 			))
 	
 	for i in range(2):
 		last_delay = 3 * i
 		spawn_list.append(EnemySpawner.create_spawn_data(
-			basic_enemy, straight, Vector2(300 * i + 150, -50), null, pause_point, last_delay
+			basic_enemy, straight, Vector2(300 * i + 150, -50), layer_circle, pause_shoot_point, last_delay
 			))
 	
 	for i in range(10):
@@ -248,11 +251,11 @@ func create_spawn_list():
 			side = 650
 			flip_h = true
 		spawn_list.append(EnemySpawner.create_spawn_data(
-			basic_enemy, side_straight, Vector2(side, abs(-i * 25 + 135)), null, medium_default, 0.35 + last_delay,
+			basic_enemy, side_straight, Vector2(side, abs(-i * 25 + 135)), aimed_shotgun, shoot_point, 0.35 + last_delay,
 			deg_to_rad(0), Vector2.ONE, flip_h))
 	
 	spawn_list.append(EnemySpawner.create_spawn_data(
-		basic_enemy, straight, Vector2(300, -50), null, pause_point, 0.0
+		basic_enemy, straight, Vector2(300, -50), layer_circle, pause_shoot_point, 0.0
 		))
 	
 	for i in range(20):
@@ -263,7 +266,7 @@ func create_spawn_list():
 			side = 650
 			flip_h = true
 		spawn_list.append(EnemySpawner.create_spawn_data(
-				basic_enemy, jump, Vector2(side, 550), null, medium_default, 0.1 + last_delay,
+				basic_enemy, jump, Vector2(side, 550), aimed_shotgun, shoot_point, 0.1 + last_delay,
 				deg_to_rad(0), Vector2.ONE, flip_h
 				))
 		

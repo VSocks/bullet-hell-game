@@ -5,7 +5,7 @@ var shot_fired: bool = false
 
 func _ready():
 	trigger_points = [1]  # Point index 1 triggers shooting
-	speed = 300.0
+	speed = 400.0
 
 func on_trigger_point_reached(point_index: int):
 	if not shot_fired:

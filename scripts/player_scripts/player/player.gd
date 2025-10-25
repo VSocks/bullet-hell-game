@@ -24,6 +24,7 @@ var tween := self.create_tween()
 
 
 func _ready():
+	add_to_group("player")
 	animation.play("default")
 	health = MAX_HEALTH
 	speed = NORMAL_SPEED
