@@ -36,6 +36,10 @@ enemy_bullets=""
 player_bullets=""
 player=""
 
+[gui]
+
+theme/default_font_multichannel_signed_distance_field=true
+
 [input]
 
 move_left={

@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://dxnsakkvu2gwh"]
 
-[ext_resource type="Script" uid="uid://dc1aj8gt20jhr" path="res://scripts/utilities/level.gd" id="1_w7c3h"]
-[ext_resource type="Shader" uid="uid://dyjxxbwc2voda" path="res://scenes/utilities/BG.gdshader" id="2_pq8pr"]
+[ext_resource type="Script" uid="uid://dc1aj8gt20jhr" path="res://scripts/levels/level.gd" id="1_w7c3h"]
+[ext_resource type="Shader" uid="uid://dyjxxbwc2voda" path="res://shaders/BG.gdshader" id="2_pq8pr"]
 [ext_resource type="Texture2D" uid="uid://btfeomftx4j6y" path="res://assets/sprites/backgrounds/BG.png" id="2_tqxvh"]
 [ext_resource type="PackedScene" uid="uid://bs4rndsusfiwu" path="res://scenes/player/player.tscn" id="2_w7c3h"]
 [ext_resource type="AudioStream" uid="uid://c46ydamr8tn2b" path="res://assets/sounds/video-game-boss-fiight-259885.mp3" id="4_mx8sn"]

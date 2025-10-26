@@ -10,7 +10,7 @@ var is_spawning: bool = false
 
 func _ready():
 	create_spawn_list()
-	await get_tree().create_timer(0.5).timeout
+	await get_tree().create_timer(5.0).timeout
 	start_spawning()
 
 
@@ -92,7 +92,7 @@ func create_spawn_list():
 	
 	for j in range(3):
 		for i in range(2):
-			last_delay = i
+			last_delay = floor((j + i) / 3)
 			spawn_list.append(EnemySpawner.create_spawn_data(
 				basic_enemy, straight, Vector2(i * 500 + 50, -50), aimed_shotgun, shoot_point, 0.5 + last_delay,
 				))
@@ -100,25 +100,29 @@ func create_spawn_list():
 	for i in range(15):
 		last_delay = 2 * floor(i / 14)
 		spawn_list.append(EnemySpawner.create_spawn_data(
-			basic_enemy, loop, Vector2(-50, 200), circle, shoot_point, 0.2 + last_delay))
+			basic_enemy, loop, Vector2(-50, 300 + i * 15), circle, shoot_point, 0.2 + last_delay,
+			))
 	
 	for i in range(15):
 		last_delay = floor(i / 14)
 		spawn_list.append(EnemySpawner.create_spawn_data(
-			basic_enemy, loop, Vector2(650, 300), circle, shoot_point, 0.2 + last_delay,
-			deg_to_rad(0), Vector2.ONE, true, true))
+			basic_enemy, loop, Vector2(650, 300 - i * 15), circle, shoot_point, 0.2 + last_delay,
+			deg_to_rad(0), Vector2.ONE, true, true
+			))
 	
 	for i in range(15):
 		last_delay = floor(i / 14)
 		spawn_list.append(EnemySpawner.create_spawn_data(
-			basic_enemy, loop, Vector2(300, 650), circle, shoot_point, 0.2 + last_delay,
-			deg_to_rad(-90), Vector2.ONE))
+			basic_enemy, loop, Vector2(300 + i * 15, 650), circle, shoot_point, 0.2 + last_delay,
+			deg_to_rad(-90), Vector2.ONE
+			))
 	
 	for i in range(15):
 		last_delay = 2 * floor(i / 14)
 		spawn_list.append(EnemySpawner.create_spawn_data(
-			basic_enemy, loop, Vector2(300, -50), circle, shoot_point, 0.2 + last_delay,
-			deg_to_rad(90), Vector2.ONE))
+			basic_enemy, loop, Vector2(300 - i * 15, -50), circle, shoot_point, 0.2 + last_delay,
+			deg_to_rad(90), Vector2.ONE
+			))
 	
 	for i in range(60):
 		last_delay = 2 * floor(i / 59)
@@ -252,7 +256,8 @@ func create_spawn_list():
 			flip_h = true
 		spawn_list.append(EnemySpawner.create_spawn_data(
 			basic_enemy, side_straight, Vector2(side, abs(-i * 25 + 135)), aimed_shotgun, shoot_point, 0.35 + last_delay,
-			deg_to_rad(0), Vector2.ONE, flip_h))
+			deg_to_rad(0), Vector2.ONE, flip_h
+			))
 	
 	spawn_list.append(EnemySpawner.create_spawn_data(
 		basic_enemy, straight, Vector2(300, -50), layer_circle, pause_shoot_point, 0.0

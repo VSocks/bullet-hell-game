@@ -68,7 +68,7 @@ func initialize(_position, _direction, _speed, _angle):
 	is_initialized = true
 	reset_tween()
 	tween.tween_property(self, "scale", Vector2(0.0, 0.0), 0.0)
-	tween.tween_property(self, "scale", Vector2(1.0, 1.0), 0.15)
+	tween.tween_property(self, "scale", Vector2(1.0, 1.0), 0.1)
 
 
 func scale_bullet(_size, _time):
