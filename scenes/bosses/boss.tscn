@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://vpv67ohyb1c6"]
 
 [ext_resource type="Script" uid="uid://cfgcddcoysvgb" path="res://scripts/enemy_scripts/bosses/boss.gd" id="1_jncid"]
-[ext_resource type="Texture2D" uid="uid://er7aab6pg24b" path="res://assets/sprites/enemies/enemy.png" id="2_qnbj4"]
+[ext_resource type="Texture2D" uid="uid://c2m01306oanpe" path="res://assets/sprites/enemies/enemy2.png" id="2_jvuli"]
 [ext_resource type="Script" uid="uid://b173cu56ue1a5" path="res://scripts/enemy_scripts/boss_attack/boss_attack_1.gd" id="3_jncid"]
 [ext_resource type="Script" uid="uid://c7ldjbla2ttfd" path="res://scripts/enemy_scripts/boss_attack/boss_attack_2.gd" id="4_qnbj4"]
 [ext_resource type="Script" uid="uid://bvi3c3ljlpb87" path="res://scripts/enemy_scripts/boss_attack/boss_attack_3.gd" id="5_r3bxh"]
@@ -15,7 +15,7 @@ collision_mask = 5
 script = ExtResource("1_jncid")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_qnbj4")
+texture = ExtResource("2_jvuli")
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
 light_mask = 0

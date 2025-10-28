@@ -23,7 +23,7 @@ func shoot():
 		var bullet_position = enemy_global_pos + direction
 		var bullet_direction = direction
 		var bullet_rotation = angle
-		bullet.initialize(bullet_position, bullet_direction, 350, bullet_rotation)
+		bullet.initialize(bullet_position, bullet_direction, 300, bullet_rotation)
 
 
 func execute_attack():

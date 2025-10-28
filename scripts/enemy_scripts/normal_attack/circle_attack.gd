@@ -1,6 +1,6 @@
 extends Node2D
 
-var bullet_count: int = 12
+var bullet_count: int = 18
 
 @onready var enemy = get_parent()
 
