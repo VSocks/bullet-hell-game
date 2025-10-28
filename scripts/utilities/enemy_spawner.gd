@@ -16,7 +16,8 @@ func _ready():
 
 func create_spawn_list():
 	# Enemies
-	var basic_enemy = preload("res://scenes/enemies/enemy.tscn")
+	var basic_enemy = preload("res://scenes/enemies/enemy1.tscn")
+	var tough_enemy = preload("res://scenes/enemies/enemy2.tscn")
 	var boss = preload("res://scenes/bosses/boss.tscn")
 	
 	# Paths
@@ -51,7 +52,7 @@ func create_spawn_list():
 	
 	
 	spawn_list.append(EnemySpawner.create_spawn_data(
-		basic_enemy, straight, Vector2(300, -50), circle, pause_shoot_point, 1.5
+		tough_enemy, straight, Vector2(300, -50), circle, pause_shoot_point, 1.5
 		))
 	
 	for i in range(6):
@@ -94,33 +95,26 @@ func create_spawn_list():
 		for i in range(2):
 			last_delay = floor((j + i) / 3)
 			spawn_list.append(EnemySpawner.create_spawn_data(
-				basic_enemy, straight, Vector2(i * 500 + 50, -50), aimed_shotgun, shoot_point, 0.5 + last_delay,
+				tough_enemy, straight, Vector2(i * 500 + 50, -50), aimed_shotgun, shoot_point, 0.5 + last_delay,
 				))
 	
 	for i in range(15):
 		last_delay = 2 * floor(i / 14)
 		spawn_list.append(EnemySpawner.create_spawn_data(
-			basic_enemy, loop, Vector2(-50, 300 + i * 15), circle, shoot_point, 0.2 + last_delay,
+			tough_enemy, loop, Vector2(-50, 300 + i * 15), circle, shoot_point, 0.2 + last_delay,
 			))
 	
 	for i in range(15):
 		last_delay = floor(i / 14)
 		spawn_list.append(EnemySpawner.create_spawn_data(
-			basic_enemy, loop, Vector2(650, 300 - i * 15), circle, shoot_point, 0.2 + last_delay,
+			tough_enemy, loop, Vector2(650, 300 - i * 15), circle, shoot_point, 0.2 + last_delay,
 			deg_to_rad(0), Vector2.ONE, true, true
-			))
-	
-	for i in range(15):
-		last_delay = floor(i / 14)
-		spawn_list.append(EnemySpawner.create_spawn_data(
-			basic_enemy, loop, Vector2(300 + i * 15, 650), circle, shoot_point, 0.2 + last_delay,
-			deg_to_rad(-90), Vector2.ONE
 			))
 	
 	for i in range(15):
 		last_delay = 2 * floor(i / 14)
 		spawn_list.append(EnemySpawner.create_spawn_data(
-			basic_enemy, loop, Vector2(300 - i * 15, -50), circle, shoot_point, 0.2 + last_delay,
+			tough_enemy, loop, Vector2(300 - i * 15, -50), circle, shoot_point, 0.2 + last_delay,
 			deg_to_rad(90), Vector2.ONE
 			))
 	
@@ -196,7 +190,7 @@ func create_spawn_list():
 				))
 	
 	spawn_list.append(EnemySpawner.create_spawn_data(
-		basic_enemy, straight, Vector2(300, -50), layer_circle, pause_shoot_point, 0.0
+		tough_enemy, straight, Vector2(300, -50), layer_circle, pause_shoot_point, 0.0
 		))
 	
 	for i in range(25):
@@ -244,7 +238,7 @@ func create_spawn_list():
 	for i in range(2):
 		last_delay = 3 * i
 		spawn_list.append(EnemySpawner.create_spawn_data(
-			basic_enemy, straight, Vector2(300 * i + 150, -50), layer_circle, pause_shoot_point, last_delay
+			tough_enemy, straight, Vector2(300 * i + 150, -50), layer_circle, pause_shoot_point, last_delay
 			))
 	
 	for i in range(10):
@@ -260,7 +254,7 @@ func create_spawn_list():
 			))
 	
 	spawn_list.append(EnemySpawner.create_spawn_data(
-		basic_enemy, straight, Vector2(300, -50), layer_circle, pause_shoot_point, 0.0
+		tough_enemy, straight, Vector2(300, -50), layer_circle, pause_shoot_point, 0.0
 		))
 	
 	for i in range(20):
