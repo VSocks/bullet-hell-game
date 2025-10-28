@@ -1,0 +1,48 @@
+[gd_scene load_steps=10 format=3 uid="uid://cnp0gv1uo4qhk"]
+
+[ext_resource type="Script" uid="uid://cu4d5leqxvgli" path="res://scripts/enemy_scripts/bullets/death_explosion.gd" id="1_v5a4n"]
+[ext_resource type="Texture2D" uid="uid://bkhgtocwyr4js" path="res://assets/sprites/bullets/enemy_death_explosion1.png" id="2_0sq08"]
+[ext_resource type="Texture2D" uid="uid://c7ubbbbx7exwt" path="res://assets/sprites/bullets/enemy_death_explosion3.png" id="3_xlvay"]
+[ext_resource type="Texture2D" uid="uid://bmlmbsymvxy1g" path="res://assets/sprites/bullets/enemy_death_explosion2.png" id="4_0r4cn"]
+[ext_resource type="Texture2D" uid="uid://cwuav6g4kfvw7" path="res://assets/sprites/bullets/enemy_death_explosion4.png" id="5_qtdkp"]
+[ext_resource type="Texture2D" uid="uid://d35i1idckuty3" path="res://assets/sprites/bullets/enemy_death_explosion5.png" id="6_i28ta"]
+[ext_resource type="Texture2D" uid="uid://bxy7q6k7qjem3" path="res://assets/sprites/bullets/enemy_death_explosion6.png" id="7_jchkh"]
+[ext_resource type="Texture2D" uid="uid://mwpuwsf5brla" path="res://assets/sprites/bullets/enemy_death_explosion7.png" id="8_dmvai"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rqblb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_0sq08")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_xlvay")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_0r4cn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_qtdkp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_i28ta")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_jchkh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_dmvai")
+}],
+"loop": false,
+"name": &"explode",
+"speed": 21.0
+}]
+
+[node name="DeathExplosion" type="Area2D"]
+script = ExtResource("1_v5a4n")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_rqblb")
+animation = &"explode"
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animation_finished"]

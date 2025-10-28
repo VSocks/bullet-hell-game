@@ -18,6 +18,8 @@ func take_damage(damage):
 	health -= damage
 
 	if health <= 0:
+		var bullet = BulletPool.get_bullet("death_explosion")
+		bullet.initialize(global_position)
 		queue_free()
 
 

@@ -10,10 +10,11 @@ var bullet_scenes : Dictionary = {
 	"pb_explosive": preload("res://scenes/bullets/player_bullet_explosive.tscn"),
 	"pb_laser": preload("res://scenes/bullets/player_bullet_laser.tscn"),
 	"pb_explosion": preload("res://scenes/bullets/player_bullet_explosion.tscn"),
-	"pb_spark": preload("res://scenes/bullets/player_laser_spark.tscn")
+	"pb_spark": preload("res://scenes/bullets/player_laser_spark.tscn"),
+	"death_explosion": preload("res://scenes/bullets/death_explosion.tscn")
 }
 
-const pool_size = [500, 500, 500, 500, 500, 500, 200, 200, 20, 20]
+const pool_size = [500, 500, 500, 500, 500, 500, 200, 200, 20, 20, 20]
 
 var available_bullets : Dictionary = {}
 

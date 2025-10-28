@@ -101,7 +101,7 @@ func create_spawn_list():
 	for i in range(15):
 		last_delay = 2 * floor(i / 14)
 		spawn_list.append(EnemySpawner.create_spawn_data(
-			tough_enemy, loop, Vector2(-50, 300 + i * 15), circle, shoot_point, 0.2 + last_delay,
+			tough_enemy, loop, Vector2(-50, 200 + i * 15), circle, shoot_point, 0.2 + last_delay,
 			))
 	
 	for i in range(15):
@@ -257,7 +257,7 @@ func create_spawn_list():
 		tough_enemy, straight, Vector2(300, -50), layer_circle, pause_shoot_point, 0.0
 		))
 	
-	for i in range(20):
+	for i in range(15):
 		last_delay = floor(i / 19)
 		var side = -50
 		var flip_h = false
