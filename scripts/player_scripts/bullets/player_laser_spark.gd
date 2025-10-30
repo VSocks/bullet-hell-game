@@ -2,7 +2,7 @@ extends Area2D
 
 var is_initialized : bool = false
 
-@onready var animation = $Sprite2D
+@onready var animation = $AnimatedSprite2D
 
 
 func initialize(_position):
