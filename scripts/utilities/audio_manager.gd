@@ -11,7 +11,7 @@ func _ready():
 		add_child(player)
 		audio_pool.append(player)
 
-func play_sound(stream: AudioStream):
+func play_sound(stream: AudioStream, db: int):
 	# Limit how many bullet sounds can play simultaneously
 	if playing_sounds >= max_concurrent_sounds:
 		return
@@ -19,7 +19,7 @@ func play_sound(stream: AudioStream):
 	var player = get_available_player()
 	if player:
 		playing_sounds += 1
-		player.volume_db = -20
+		player.volume_db = db
 		player.stream = stream
 		player.play()
 		# Connect to know when it finishes

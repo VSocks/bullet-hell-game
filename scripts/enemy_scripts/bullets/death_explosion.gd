@@ -12,7 +12,7 @@ func initialize(_position):
 	position = _position
 	is_initialized = true
 	animation.play("explode")
-	AudioManager.play_sound(sound)
+	AudioManager.play_sound(sound, -10)
 
 
 func _on_animation_finished():

@@ -83,7 +83,7 @@ func take_damage():
 		current_attack.stop_attack()
 		animation.play("hurt")
 		sound.play()
-		reset_position()
+		#reset_position()
 
 
 func reset_position():

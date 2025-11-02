@@ -71,7 +71,7 @@ func initialize(_position, _direction, _speed, _angle):
 	reset_tween()
 	tween.tween_property(self, "scale", Vector2(0.0, 0.0), 0.0)
 	tween.tween_property(self, "scale", Vector2(1.0, 1.0), 0.1)
-	AudioManager.play_sound(sound)
+	AudioManager.play_sound(sound, -20)
 
 
 func scale_bullet(_size, _time):
