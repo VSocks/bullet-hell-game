@@ -79,4 +79,5 @@ script = ExtResource("5_ppgk2")
 
 [node name="Timer" type="Timer" parent="EnemySpawner"]
 
+[connection signal="stage_clear" from="EnemySpawner" to="." method="_on_enemy_spawner_stage_clear"]
 [connection signal="timeout" from="EnemySpawner/Timer" to="EnemySpawner" method="_on_timer_timeout"]

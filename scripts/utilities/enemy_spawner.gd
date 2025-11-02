@@ -7,6 +7,8 @@ var is_spawning: bool = false
 
 @onready var timer = $Timer
 
+signal stage_clear
+
 
 func _ready():
 	create_spawn_list()
@@ -280,6 +282,7 @@ func setup_spawn_list(spawn_list: Array):
 func start_spawning():
 	if spawn_queue.is_empty():
 		print_debug("No enemies to spawn!")
+		stage_clear.emit()
 		return
 	
 	is_spawning = true
@@ -291,6 +294,7 @@ func spawn_next_enemy():
 		print_debug("All enemies spawned!")
 		is_spawning = false
 		timer.stop()
+		stage_clear.emit()
 		return
 	
 	var spawn_data = spawn_queue[current_index]
