@@ -11,6 +11,8 @@ var bounce_speed : int
 var is_initialized : bool = false
 var tween := self.create_tween()
 
+var sound = preload("res://assets/sounds/enemy_laser.wav")
+
 
 func _ready():
 	add_to_group("enemy_bullets")
@@ -69,6 +71,7 @@ func initialize(_position, _direction, _speed, _angle):
 	reset_tween()
 	tween.tween_property(self, "scale", Vector2(0.0, 0.0), 0.0)
 	tween.tween_property(self, "scale", Vector2(1.0, 1.0), 0.1)
+	AudioManager.play_sound(sound)
 
 
 func scale_bullet(_size, _time):

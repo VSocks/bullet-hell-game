@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bs4rndsusfiwu"]
+[gd_scene load_steps=21 format=3 uid="uid://bs4rndsusfiwu"]
 
 [ext_resource type="Script" uid="uid://kplcdo3ey3hg" path="res://scripts/player_scripts/player/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://bf0ifkw3qs0q" path="res://assets/sprites/player/default1.png" id="2_5gtgg"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://bfhd5edon141" path="res://assets/sprites/player/hurt1.png" id="12_kvlxm"]
 [ext_resource type="Texture2D" uid="uid://caegn6qpc54q4" path="res://assets/sprites/player/hurt2.png" id="13_uf5tr"]
 [ext_resource type="Texture2D" uid="uid://p7tk5lyqyto3" path="res://assets/sprites/player/hurt3.png" id="14_lgqa7"]
+[ext_resource type="AudioStream" uid="uid://b38xr6c0q1jl2" path="res://assets/sounds/hurt.mp3" id="18_uf5tr"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ugbui"]
 animations = [{
@@ -107,6 +108,10 @@ script = ExtResource("5_qlg0r")
 [node name="FireRateTimer" type="Timer" parent="PlayerAttackExplosive"]
 
 [node name="InvincibilityTimer" type="Timer" parent="."]
+
+[node name="HurtSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("18_uf5tr")
+volume_db = 15.0
 
 [connection signal="timeout" from="PlayerAttackLaser/FireRateTimer" to="PlayerAttackLaser" method="_on_fire_rate_timer_timeout"]
 [connection signal="timeout" from="PlayerAttackExplosive/FireRateTimer" to="PlayerAttackExplosive" method="_on_fire_rate_timer_timeout"]

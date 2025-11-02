@@ -17,6 +17,7 @@ config/features=PackedStringArray("4.4", "Forward Plus")
 [autoload]
 
 BulletPool="*res://scripts/utilities/bullet_pool.gd"
+AudioManager="*res://scripts/utilities/audio_manager.gd"
 
 [display]
 

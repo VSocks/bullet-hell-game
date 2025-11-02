@@ -21,6 +21,7 @@ var tween := self.create_tween()
 @onready var invincibility_timer = $InvincibilityTimer
 @onready var hitbox = $Hitbox
 @onready var hitbox_sprite = $Hitbox/HitboxSprite
+@onready var sound = $HurtSound
 
 
 func _ready():
@@ -81,6 +82,7 @@ func take_damage():
 			#print_debug("player dead!")
 		current_attack.stop_attack()
 		animation.play("hurt")
+		sound.play()
 		reset_position()
 
 

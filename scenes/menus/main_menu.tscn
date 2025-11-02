@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dksydrmyij1ll"]
+[gd_scene load_steps=13 format=3 uid="uid://dksydrmyij1ll"]
 
 [ext_resource type="Script" uid="uid://6a6eysn5x38r" path="res://scripts/menus/main_menu.gd" id="1_xqga4"]
 [ext_resource type="Texture2D" uid="uid://ksx00vj2ww35" path="res://assets/sprites/backgrounds/menu3.png" id="2_ng0o5"]
@@ -8,6 +8,7 @@
 [ext_resource type="Shader" uid="uid://fa5eqrnfiknw" path="res://shaders/main_menu2.gdshader" id="5_8r73w"]
 [ext_resource type="Texture2D" uid="uid://c041o4daalqqx" path="res://assets/sprites/backgrounds/menu1.png" id="5_50h1w"]
 [ext_resource type="Texture2D" uid="uid://bpg1vkae35cxc" path="res://assets/sprites/backgrounds/logo.png" id="7_1hnlc"]
+[ext_resource type="AudioStream" uid="uid://gg1dspjlxken" path="res://assets/sounds/main_menu.mp3" id="9_50h1w"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_euy4r"]
 shader = ExtResource("3_8r73w")
@@ -118,6 +119,11 @@ theme_override_fonts/font = ExtResource("4_6bivr")
 theme_override_font_sizes/font_size = 35
 text = "QUIT"
 metadata/_edit_use_anchors_ = true
+
+[node name="BGM" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_50h1w")
+autoplay = true
+parameters/looping = true
 
 [connection signal="pressed" from="ButtonManager/PanelContainer/Panel/MarginContainer/VBoxContainer/Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="ButtonManager/PanelContainer/Panel/MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

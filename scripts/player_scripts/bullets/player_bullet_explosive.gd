@@ -6,7 +6,7 @@ var speed : int = 800
 var direction : Vector2 = Vector2.UP
 var is_initialized : bool = false
 var tween := self.create_tween()
-
+var sound = preload("res://assets/sounds/player_missile.wav")
 var explosion_scene = preload("res://scenes/bullets/player_bullet_explosion.tscn")
 
 
@@ -29,6 +29,7 @@ func initialize(_position, _direction, _speed, _angle):
 	reset_tween()
 	tween.tween_property(self, "scale", Vector2(0.0, 0.0), 0.0)
 	tween.tween_property(self, "scale", Vector2(1.0, 1.0), 0.15)
+	AudioManager.play_sound(sound)
 
 
 func reset_bullet():
