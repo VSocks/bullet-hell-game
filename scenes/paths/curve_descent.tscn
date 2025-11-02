@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://d28bvb2y0108k"]
+
+[sub_resource type="Curve2D" id="Curve2D_dxe2b"]
+_data = {
+"points": PackedVector2Array(0, -202.259, 0, 202.259, 0, 0, 0, 0, 0, 0, 133.943, 282.672, -448.057, 0, 448.057, 0, 704, 384)
+}
+point_count = 3
+
+[node name="CurveDescent" type="Path2D"]
+curve = SubResource("Curve2D_dxe2b")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="."]
+rotation = 1.5708
+loop = false

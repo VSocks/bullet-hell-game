@@ -1,0 +1,118 @@
+[gd_scene load_steps=21 format=3 uid="uid://bs4rndsusfiwu"]
+
+[ext_resource type="Script" uid="uid://kplcdo3ey3hg" path="res://scripts/player_scripts/player/player.gd" id="1_g2els"]
+[ext_resource type="Texture2D" uid="uid://bf0ifkw3qs0q" path="res://assets/sprites/player/default1.png" id="2_5gtgg"]
+[ext_resource type="Texture2D" uid="uid://banyaxan78mm3" path="res://assets/sprites/player/attack1.png" id="2_ugbui"]
+[ext_resource type="Texture2D" uid="uid://bf2ytvqbonvqq" path="res://assets/sprites/misc/player_hitbox.png" id="3_dqkch"]
+[ext_resource type="Texture2D" uid="uid://cnge8u1jfvel2" path="res://assets/sprites/player/attack2.png" id="3_fcs02"]
+[ext_resource type="Texture2D" uid="uid://tpqa7p1aa7oo" path="res://assets/sprites/player/default2.png" id="3_h17s1"]
+[ext_resource type="Script" uid="uid://cvyilijwbd2jk" path="res://scripts/player_scripts/attack/player_attack_laser.gd" id="3_qhqgy"]
+[ext_resource type="Texture2D" uid="uid://b4qs7bfce8d5p" path="res://assets/sprites/player/default3.png" id="4_je7p5"]
+[ext_resource type="Texture2D" uid="uid://dey23ejomroja" path="res://assets/sprites/player/attack3.png" id="4_myrg7"]
+[ext_resource type="Texture2D" uid="uid://coymg2kxifqb0" path="res://assets/sprites/player/default4.png" id="5_fm80t"]
+[ext_resource type="Texture2D" uid="uid://b35jpk7vt4vb3" path="res://assets/sprites/player/attack4.png" id="5_kvlxm"]
+[ext_resource type="Script" uid="uid://blyxyxfvlmpk7" path="res://scripts/player_scripts/attack/player_attack_explosive.gd" id="5_qlg0r"]
+[ext_resource type="Texture2D" uid="uid://vxguijslig4r" path="res://assets/sprites/player/default5.png" id="6_gx1jg"]
+[ext_resource type="Texture2D" uid="uid://bcah26wp88t1v" path="res://assets/sprites/player/attack5.png" id="6_uf5tr"]
+[ext_resource type="Texture2D" uid="uid://bfhd5edon141" path="res://assets/sprites/player/hurt1.png" id="12_kvlxm"]
+[ext_resource type="Texture2D" uid="uid://caegn6qpc54q4" path="res://assets/sprites/player/hurt2.png" id="13_uf5tr"]
+[ext_resource type="Texture2D" uid="uid://p7tk5lyqyto3" path="res://assets/sprites/player/hurt3.png" id="14_lgqa7"]
+[ext_resource type="AudioStream" uid="uid://b38xr6c0q1jl2" path="res://assets/sounds/hurt.mp3" id="18_uf5tr"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ugbui"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ugbui")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_fcs02")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_myrg7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_kvlxm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_uf5tr")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 25.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_5gtgg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_h17s1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_je7p5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_fm80t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_gx1jg")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_kvlxm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_uf5tr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_lgqa7")
+}],
+"loop": true,
+"name": &"hurt",
+"speed": 12.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g2els"]
+radius = 2.0
+
+[node name="Player" type="CharacterBody2D"]
+collision_mask = 6
+script = ExtResource("1_g2els")
+
+[node name="Animation" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ugbui")
+animation = &"attack"
+
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+position = Vector2(0, 8)
+shape = SubResource("CircleShape2D_g2els")
+
+[node name="HitboxSprite" type="Sprite2D" parent="Hitbox"]
+visible = false
+position = Vector2(1.19209e-07, 1.19209e-07)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("3_dqkch")
+
+[node name="PlayerAttackLaser" type="Node2D" parent="."]
+script = ExtResource("3_qhqgy")
+
+[node name="FireRateTimer" type="Timer" parent="PlayerAttackLaser"]
+
+[node name="PlayerAttackExplosive" type="Node2D" parent="."]
+script = ExtResource("5_qlg0r")
+
+[node name="FireRateTimer" type="Timer" parent="PlayerAttackExplosive"]
+
+[node name="InvincibilityTimer" type="Timer" parent="."]
+
+[node name="HurtSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("18_uf5tr")
+volume_db = 15.0
+
+[connection signal="timeout" from="PlayerAttackLaser/FireRateTimer" to="PlayerAttackLaser" method="_on_fire_rate_timer_timeout"]
+[connection signal="timeout" from="PlayerAttackExplosive/FireRateTimer" to="PlayerAttackExplosive" method="_on_fire_rate_timer_timeout"]
+[connection signal="timeout" from="InvincibilityTimer" to="." method="_on_invincibility_timer_timeout"]
