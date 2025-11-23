@@ -20,7 +20,6 @@ func create_spawn_list():
 	# Enemies
 	var basic_enemy = preload("res://scenes/enemies/enemy1.tscn")
 	var tough_enemy = preload("res://scenes/enemies/enemy2.tscn")
-	var boss = preload("res://scenes/bosses/boss.tscn")
 	
 	# Paths
 	var curve_descent = preload("res://scenes/paths/curve_descent.tscn")
